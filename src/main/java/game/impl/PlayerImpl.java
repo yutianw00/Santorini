@@ -24,13 +24,21 @@ public class PlayerImpl implements Player {
     }
 
     @Override
-    public void setWorkerA(Pos pos) {
+    public boolean setWorkerA(Pos pos) {
+        if (!posIsValid(pos)) {
+            return false;
+        }
         w1 = new WorkerImpl(pos);
+        return true;
     }
 
     @Override
-    public void setWorkerB(Pos pos) {
+    public boolean setWorkerB(Pos pos) {
+        if (!posIsValid(pos)) {
+            return false;
+        }
         w2 = new WorkerImpl(pos);
+        return true;
     }
 
     @Override
