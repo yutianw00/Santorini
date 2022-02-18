@@ -4,6 +4,10 @@ import game.Worker;
 import game.utils.Pos;
 
 public class WorkerImpl implements Worker {
+    Pos pos;
+
+
+
     @Override
     public boolean move(Pos pos) {
         return false;
