@@ -1,9 +1,11 @@
 package game;
 
 import game.utils.Pos;
-import game.Grid;
 
 public interface Board {
+    final int numCols = 5;
+    final int numRows = 5;
+
     boolean hasWorker(Pos pos);
     boolean checkMove(Worker worker, Pos pos);
     boolean checkBuild(Worker worker, Pos pos);

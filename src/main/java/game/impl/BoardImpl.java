@@ -10,8 +10,6 @@ import java.util.List;
 
 public class BoardImpl implements Board {
 
-    private final int numCols = 5;
-    private final int numRows = 5;
     List<Worker> workers; // 4 workers in workers, with order P1-A, P1-B, P2-A, P2-B
     Grid grids[][];
 
