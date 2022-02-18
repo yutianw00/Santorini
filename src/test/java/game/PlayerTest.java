@@ -17,13 +17,23 @@ public class PlayerTest {
 
     @Test
     public void setWorkerATest() {
-        player.setWorkerA(new Pos(3,4));
+        assertTrue(player.setWorkerA(new Pos(3,4)));
         assert(player.getWorkerA().getPos().equals(new Pos(3,4)));
     }
 
     @Test
+    public void setWorkerATestInvalidInput1() {
+        assertFalse(player.setWorkerA(new Pos(4,5)));
+    }
+
+    @Test
+    public void setWorkerATestInvalidInput2() {
+        assertFalse(player.setWorkerA(new Pos(-1,0)));
+    }
+
+    @Test
     public void setWorkerB() {
-        player.setWorkerB(new Pos(0,0));
+        assertTrue(player.setWorkerB(new Pos(0,0)));
         assert(player.getWorkerB().getPos().equals(new Pos(0,0)));
     }
 
