@@ -1,7 +1,6 @@
 package game.impl;
 
 import game.Grid;
-import game.utils.Pos;
 
 public class GridImpl implements Grid {
     int levels;
