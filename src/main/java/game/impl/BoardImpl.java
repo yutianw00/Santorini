@@ -5,18 +5,29 @@ import game.Grid;
 import game.Worker;
 import game.utils.Pos;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class BoardImpl implements Board {
 
-    Worker worker1A;
-    Worker worker1B;
-    Worker worker2A;
-    Worker worker2B;
+    List<Worker> workers; // 4 workers in workers, with order P1-A, P1-B, P2-A, P2-B
 
     public BoardImpl() {
+        Worker worker1A = null;
+        Worker worker1B = null;
+        Worker worker2A = null;
+        Worker worker2B = null;
+        workers = Arrays.asList(worker1A, worker1B, worker2A, worker2B);
     }
 
     @Override
     public boolean hasWorker(Pos pos) {
+        for (Worker worker : workers) {
+            if (worker.getPos() == pos) {
+                return true;
+            }
+        }
         return false;
     }
 

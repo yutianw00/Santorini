@@ -16,4 +16,23 @@ public class Pos {
         return col;
     }
 
+    @Override
+    public int hashCode() {
+        return this.col * this.row;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+
+        if (!(obj instanceof Pos)) {
+            return false;
+        }
+
+        Pos pos = (Pos) obj;
+
+        return (pos.getCol() == this.col && pos.getRow() == this.row);
+    }
 }
