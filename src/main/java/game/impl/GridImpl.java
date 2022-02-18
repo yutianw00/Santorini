@@ -4,29 +4,20 @@ import game.Grid;
 import game.utils.Pos;
 
 public class GridImpl implements Grid {
+    int levels;
 
     @Override
     public void build() {
-
-    }
-
-    @Override
-    public boolean hasDome() {
-        return false;
+        levels++;
     }
 
     @Override
     public int getLevels() {
-        return 0;
-    }
-
-    @Override
-    public Pos getPos() {
-        return null;
+        return levels;
     }
 
     @Override
     public boolean isComplete() {
-        return false;
+        return (levels == 4);
     }
 }
