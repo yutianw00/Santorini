@@ -13,4 +13,9 @@ public class WorkerImpl implements Worker {
     public boolean build(Pos pos) {
         return false;
     }
+
+    @Override
+    public Pos getPos() {
+        return null;
+    }
 }

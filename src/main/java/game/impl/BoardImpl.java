@@ -15,7 +15,10 @@ public class BoardImpl implements Board {
     public BoardImpl() {
     }
 
-
+    @Override
+    public boolean hasWorker(Pos pos) {
+        return false;
+    }
 
     @Override
     public boolean checkMove(Worker worker, Pos pos) {
@@ -38,22 +41,12 @@ public class BoardImpl implements Board {
     }
 
     @Override
-    public Worker getWorker1A() {
+    public Worker getWorker(int playerId, int workerId) {
         return null;
     }
 
     @Override
-    public Worker getWorker1B() {
-        return null;
-    }
+    public void setWorker(int playerId, int workerId, Worker worker) {
 
-    @Override
-    public Worker getWorker2A() {
-        return null;
-    }
-
-    @Override
-    public Worker getWorker2B() {
-        return null;
     }
 }

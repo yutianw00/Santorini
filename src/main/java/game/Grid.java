@@ -3,6 +3,9 @@ package game;
 import game.utils.Pos;
 
 public interface Grid {
-    Tower getTower();
     Pos getPos();
+    boolean buildBlock();
+    boolean buildDome();
+    boolean hasDome();
+    int getLevels();
 }

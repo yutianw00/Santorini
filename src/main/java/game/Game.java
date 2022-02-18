@@ -1,8 +1,11 @@
 package game;
 
+import game.utils.Pos;
+
 public interface Game {
-    void setup();
+    boolean setupWorker(int playerId, int workerId, Pos pos);
     boolean isFinished();
-    Player getNextPlayer();
+    Player getPlayer();
     Player getWinner();
+    void flipPlayer();
 }
