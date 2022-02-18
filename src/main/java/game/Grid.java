@@ -4,8 +4,8 @@ import game.utils.Pos;
 
 public interface Grid {
     Pos getPos();
-    boolean buildBlock();
-    boolean buildDome();
+    void build();
     boolean hasDome();
     int getLevels();
+    boolean isComplete();
 }

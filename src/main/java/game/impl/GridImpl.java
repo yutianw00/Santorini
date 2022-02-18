@@ -6,13 +6,8 @@ import game.utils.Pos;
 public class GridImpl implements Grid {
 
     @Override
-    public boolean buildBlock() {
-        return false;
-    }
+    public void build() {
 
-    @Override
-    public boolean buildDome() {
-        return false;
     }
 
     @Override
@@ -28,5 +23,10 @@ public class GridImpl implements Grid {
     @Override
     public Pos getPos() {
         return null;
+    }
+
+    @Override
+    public boolean isComplete() {
+        return false;
     }
 }

@@ -21,6 +21,7 @@ public class Pos {
         return this.col * this.row;
     }
 
+    /* reference: https://www.geeksforgeeks.org/overriding-equals-method-in-java/ */
     @Override
     public boolean equals(Object obj) {
         if (obj == this) {
