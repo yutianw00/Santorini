@@ -33,6 +33,9 @@ public class BoardImpl implements Board {
     @Override
     public boolean hasWorker(Pos pos) {
         for (Worker worker : workers) {
+            if (worker == null) {
+                continue; // worker is not initialized yet
+            }
             if (worker.getPos() == pos) {
                 return true;
             }

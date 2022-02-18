@@ -24,12 +24,11 @@ public class GameImpl implements Game {
     }
 
     @Override
-    public boolean setupWorker(int playerId, int workerId, Pos pos) {
-        if (board.hasWorker(pos)) {
+    public boolean setupWorker(int playerId, int workerId, Worker worker) {
+        if (board.hasWorker(worker.getPos())) {
             return false;
         }
-        Worker w = new WorkerImpl();
-        board.setWorker(playerId, workerId, w);
+        board.setWorker(playerId, workerId, worker);
         return true;
     }
 

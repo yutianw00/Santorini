@@ -6,6 +6,10 @@ import game.utils.Pos;
 public class GridImpl implements Grid {
     int levels;
 
+    public GridImpl() {
+        this.levels = 0;
+    }
+
     @Override
     public void build() {
         levels++;

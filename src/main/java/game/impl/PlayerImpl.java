@@ -2,26 +2,24 @@ package game.impl;
 
 import game.Player;
 import game.Worker;
-import game.utils.Pos;
 
 public class PlayerImpl implements Player {
+    Worker w1;
+    Worker w2;
+
+    public PlayerImpl() {
+        w1 = new WorkerImpl();
+        w2 = new WorkerImpl();
+    }
+
     @Override
     public Worker getWorkerA() {
-        return null;
+        return w1;
     }
 
     @Override
     public Worker getWorkerB() {
-        return null;
+        return w2;
     }
 
-    @Override
-    public boolean placeWorkerA(Pos pos) {
-        return false;
-    }
-
-    @Override
-    public boolean placeWorkerB(Pos pos) {
-        return false;
-    }
 }
