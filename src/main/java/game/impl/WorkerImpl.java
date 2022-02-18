@@ -6,20 +6,17 @@ import game.utils.Pos;
 public class WorkerImpl implements Worker {
     Pos pos;
 
-
-
-    @Override
-    public boolean move(Pos pos) {
-        return false;
+    public WorkerImpl(Pos pos) {
+        this.pos = pos;
     }
 
     @Override
-    public boolean build(Pos pos) {
-        return false;
+    public void move(Pos pos) {
+        this.pos = pos;
     }
 
     @Override
     public Pos getPos() {
-        return null;
+        return pos;
     }
 }
