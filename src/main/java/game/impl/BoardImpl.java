@@ -86,9 +86,11 @@ public class BoardImpl implements Board {
             return false;
         }
 
-        // cannot move to grids more than 1 level higher
+        // cannot move to grids more than 1 level higher,
+        // and cannot move to a grid that is completed (with a dome)
         int currLevel = getGrid(currPos).getLevels();
-        if (getGrid(pos).getLevels() > currLevel + 1) {
+        Grid grid = getGrid(pos);
+        if (grid.getLevels() > currLevel + 1 || grid.isComplete()) {
             return false;
         }
 
