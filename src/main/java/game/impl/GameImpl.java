@@ -15,6 +15,10 @@ public class GameImpl implements Game {
     private Player winner;
     private Player currPlayer;
 
+    public Board getBoard() {
+        return this.board;
+    }
+
     public GameImpl() {
         board = new BoardImpl();
         p1 = new PlayerImpl();
