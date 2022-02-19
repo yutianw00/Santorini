@@ -5,6 +5,13 @@ import game.Player;
 import game.Worker;
 import game.utils.Pos;
 
+/**
+ * An IO interface to achieve the IO interactions
+ * with the user to make the game a CLI game
+ *
+ * (Since performing a CLI game and a Main function is optional,
+ * no specific documentation is written for Classes/Interfaces in cli package)
+ */
 public interface IO {
     void printWelcome();
     Pos playerPick(Player player, int workerId);
