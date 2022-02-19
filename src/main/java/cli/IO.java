@@ -7,11 +7,13 @@ import game.utils.Pos;
 
 public interface IO {
     void printWelcome();
-    void printPlayerPick(Player player, int workerId);
+    Pos playerPick(Player player, int workerId);
     void printBoard(Board board);
     void printWinner(Player player);
     void printPosErr();
     void printMoveErr();
-    Pos playerMove(Worker worker); // prompt the player to move and choose move position, and assign worker
-    Pos getPos();
+    void printBuildErr();
+    Pos playerMove(Worker[] workers); // prompt the player to move and choose move position, and assign worker
+    Pos playerBuild(Worker worker);
+
 }

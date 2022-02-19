@@ -37,4 +37,11 @@ public class Pos {
 
         return (pos.getCol() == this.col && pos.getRow() == this.row);
     }
+
+    @Override
+    public String toString() {
+        return "Pos{" + row +
+                ", " + col +
+                '}';
+    }
 }
