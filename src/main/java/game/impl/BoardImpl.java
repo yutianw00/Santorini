@@ -21,8 +21,8 @@ public class BoardImpl implements Board {
 
     public BoardImpl() {
         Worker worker1A = null;
-        Worker worker1B = null;
         Worker worker2A = null;
+        Worker worker1B = null;
         Worker worker2B = null;
         workers = Arrays.asList(worker1A, worker1B, worker2A, worker2B);
 

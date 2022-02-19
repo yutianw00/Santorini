@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="4" failures="0" name="game.GameTest" time="0" errors="0" skipped="0">
+<testsuite tests="4" failures="0" name="game.GameTest" time="0.001" errors="0" skipped="0">
   <properties>
     <property name="idea.version" value="2021.1.3"/>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
@@ -58,6 +58,6 @@
   </properties>
   <testcase classname="game.GameTest" name="flipPlayerTestFalse" time="0"/>
   <testcase classname="game.GameTest" name="flipPlayerTestTrue" time="0"/>
-  <testcase classname="game.GameTest" name="isFinishedTestFalse" time="0"/>
+  <testcase classname="game.GameTest" name="isFinishedTestFalse" time="0.001"/>
   <testcase classname="game.GameTest" name="isFinishedTestTrue" time="0"/>
 </testsuite>
