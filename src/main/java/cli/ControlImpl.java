@@ -78,7 +78,7 @@ public class ControlImpl implements Control{
                 continue;
             }
             Worker worker2 = currPlayer.getWorkerB();
-            valid = game.setupWorker(playerId, 2, worker2);
+            valid = game.getBoard().setWorker(playerId, 2, worker2);
             if (!valid) {
                 System.out.println("position is occupied!");
                 continue;

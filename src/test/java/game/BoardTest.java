@@ -26,7 +26,7 @@ public class BoardTest {
         GameImpl game = new GameImpl();
         Player p1 = game.getPlayer();
         p1.setWorkerA(new Pos(1,1));
-        game.setupWorker(1,1,p1.getWorkerA());
+        game.getBoard().setWorker(1,1,p1.getWorkerA());
         assertTrue(game.getBoard().hasWorker(new Pos(1,1)));
     }
 
@@ -35,7 +35,7 @@ public class BoardTest {
         GameImpl game = new GameImpl();
         Player p1 = game.getPlayer();
         p1.setWorkerA(new Pos(1,1));
-        game.setupWorker(1,1,p1.getWorkerA());
+        game.getBoard().setWorker(1,1,p1.getWorkerA());
         assertTrue(game.getBoard().checkMove(p1.getWorkerA(), new Pos(0,1)));
     }
 
@@ -44,7 +44,7 @@ public class BoardTest {
         GameImpl game = new GameImpl();
         Player p1 = game.getPlayer();
         p1.setWorkerA(new Pos(1,1));
-        game.setupWorker(1,1,p1.getWorkerA());
+        game.getBoard().setWorker(1,1,p1.getWorkerA());
         assertFalse(game.getBoard().checkMove(p1.getWorkerA(), new Pos(1,1)));
     }
 
@@ -53,7 +53,7 @@ public class BoardTest {
         GameImpl game = new GameImpl();
         Player p1 = game.getPlayer();
         p1.setWorkerA(new Pos(1,1));
-        game.setupWorker(1,1,p1.getWorkerA());
+        game.getBoard().setWorker(1,1,p1.getWorkerA());
         assertFalse(game.getBoard().checkMove(p1.getWorkerA(), new Pos(1,3)));
     }
 
@@ -62,7 +62,7 @@ public class BoardTest {
         GameImpl game = new GameImpl();
         Player p1 = game.getPlayer();
         p1.setWorkerA(new Pos(1,1));
-        game.setupWorker(1,1,p1.getWorkerA());
+        game.getBoard().setWorker(1,1,p1.getWorkerA());
         assertTrue(game.getBoard().checkMove(p1.getWorkerA(), new Pos(2,2)));
     }
 
@@ -71,7 +71,7 @@ public class BoardTest {
         GameImpl game = new GameImpl();
         Player p1 = game.getPlayer();
         p1.setWorkerA(new Pos(1,1));
-        game.setupWorker(1,1,p1.getWorkerA());
+        game.getBoard().setWorker(1,1,p1.getWorkerA());
 
         Board board = game.getBoard();
         assertTrue(board.checkBuild(p1.getWorkerA(), new Pos(0,1)));
@@ -82,7 +82,7 @@ public class BoardTest {
         GameImpl game = new GameImpl();
         Player p1 = game.getPlayer();
         p1.setWorkerA(new Pos(1,1));
-        game.setupWorker(1,1,p1.getWorkerA());
+        game.getBoard().setWorker(1,1,p1.getWorkerA());
 
         Board board = game.getBoard();
         assertTrue(board.checkBuild(p1.getWorkerA(), new Pos(2,2)));
@@ -93,7 +93,7 @@ public class BoardTest {
         GameImpl game = new GameImpl();
         Player p1 = game.getPlayer();
         p1.setWorkerA(new Pos(1,1));
-        game.setupWorker(1,1,p1.getWorkerA());
+        game.getBoard().setWorker(1,1,p1.getWorkerA());
 
         Board board = game.getBoard();
         assertFalse(board.checkBuild(p1.getWorkerA(), new Pos(1,1)));
@@ -104,7 +104,7 @@ public class BoardTest {
         GameImpl game = new GameImpl();
         Player p1 = game.getPlayer();
         p1.setWorkerA(new Pos(1,1));
-        game.setupWorker(1,1,p1.getWorkerA());
+        game.getBoard().setWorker(1,1,p1.getWorkerA());
 
         Board board = game.getBoard();
         assertFalse(board.checkBuild(p1.getWorkerA(), new Pos(1,3)));

@@ -11,11 +11,6 @@ import static org.junit.Assert.*;
 public class GameTest {
     Game game;
 
-    @Before
-    public void setup() {
-
-    }
-
     @Test
     public void isFinishedTestFalse() {
         game = new GameImpl();
