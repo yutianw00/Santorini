@@ -7,6 +7,7 @@ public class WorkerImpl implements Worker {
     Pos pos;
 
     public WorkerImpl(Pos pos) {
+
         this.pos = pos;
     }
 

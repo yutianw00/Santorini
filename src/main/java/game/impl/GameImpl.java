@@ -28,6 +28,7 @@ public class GameImpl implements Game {
         if (board.hasWorker(worker.getPos())) {
             return false;
         }
+
         board.setWorker(playerId, workerId, worker);
         return true;
     }

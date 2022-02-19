@@ -34,7 +34,7 @@ public class BoardImpl implements Board {
             if (worker == null) {
                 continue; // worker is not initialized yet
             }
-            if (worker.getPos() == pos) {
+            if (worker.getPos().equals(pos)) {
                 return true;
             }
         }

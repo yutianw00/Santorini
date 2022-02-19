@@ -1,5 +1,6 @@
 package game.utils;
 
+
 public class Pos {
     private int row;
     private int col;
