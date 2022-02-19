@@ -55,15 +55,17 @@ public interface Board {
     Grid getGrid(Pos pos);
 
     /** Put a worker on to the board (performed at the beginning of the game when players
-     * choose positions to put their workers)
-     * Effect: the worker of the board is updated by this {@code worker}
+     * choose positions to put their workers), while checking if the position is already
+     * occupied by some other workers already
+     * Effect: the worker of the board is updated by this {@code worker} on success
      *
      * @param playerId Specifying which {@link Player} (1 or 2) the {@code worker} belongs to
      * @param workerId Specifying which {@link Worker} of the player (the 1 or the 2 one)
      *                 the {@code worker} represents
      * @param worker The {@link Worker} to be placed on the board
+     * @return If the worker is successfully place onto the board
      *
      */
-    void setWorker(int playerId, int workerId, Worker worker);
+    boolean setWorker(int playerId, int workerId, Worker worker);
 
 }

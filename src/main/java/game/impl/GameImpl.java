@@ -29,16 +29,6 @@ public class GameImpl implements Game {
     }
 
     @Override
-    public boolean setupWorker(int playerId, int workerId, Worker worker) {
-        if (board.hasWorker(worker.getPos())) {
-            return false;
-        }
-
-        board.setWorker(playerId, workerId, worker);
-        return true;
-    }
-
-    @Override
     public boolean isFinished() {
         Pos p1APos = p1.getWorkerA().getPos();
         Pos p1BPos = p1.getWorkerB().getPos();

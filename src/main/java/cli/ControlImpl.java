@@ -53,6 +53,7 @@ public class ControlImpl implements Control{
     public void playerPickPos(Player currPlayer) {
         boolean valid = false;
         int playerId = (currPlayer == player1) ? 1 : 2;
+        Board board = game.getBoard();
         while (!valid) {
             Pos pos = io.playerPick(currPlayer, 1);
             valid = currPlayer.setWorkerA(pos);
@@ -61,7 +62,7 @@ public class ControlImpl implements Control{
                 continue;
             }
             Worker worker1 = currPlayer.getWorkerA();
-            valid = game.setupWorker(playerId, 1, worker1);
+            valid = board.setWorker(playerId, 1, worker1);
             if (!valid) {
                 System.out.println("position is occupied!");
                 continue;

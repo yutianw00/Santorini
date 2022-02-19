@@ -134,26 +134,12 @@ public class BoardImpl implements Board {
         return grids[r][c];
     }
 
-//    @Override
-//    public Worker getWorker(int playerId, int workerId) {
-//        if (playerId == 1) {
-//            if (workerId == 1) {
-//                return workers.get(0);
-//            } else if (workerId == 2) {
-//                return workers.get(1);
-//            }
-//        } else if (playerId == 2) {
-//            if (workerId == 1) {
-//                return workers.get(2);
-//            } else if (workerId == 2) {
-//                return workers.get(3);
-//            }
-//        }
-//        return null;
-//    }
-
     @Override
-    public void setWorker(int playerId, int workerId, Worker worker) {
+    public boolean setWorker(int playerId, int workerId, Worker worker) {
+        if (hasWorker(worker.getPos())) {
+            return false;
+        }
+
         if (playerId == 1) {
             if (workerId == 1) {
                 workers.set(0, worker);
@@ -167,6 +153,7 @@ public class BoardImpl implements Board {
                 workers.set(3, worker);
             }
         }
+        return true;
     }
 
     @Override
