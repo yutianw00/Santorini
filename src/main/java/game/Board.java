@@ -3,8 +3,8 @@ package game;
 import game.utils.Pos;
 
 public interface Board {
-    final int numCols = 5;
-    final int numRows = 5;
+    int NUMCOLS = 5;
+    int NUMROWS = 5;
 
     /**
      * Checks if a position already has a {@link Worker} on it already

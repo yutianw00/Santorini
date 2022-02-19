@@ -4,7 +4,7 @@ import game.Worker;
 import game.utils.Pos;
 
 public class WorkerImpl implements Worker {
-    Pos pos;
+    private Pos pos;
 
     public WorkerImpl(Pos pos) {
 

@@ -1,10 +1,19 @@
-#Fri Feb 18 11:30:44 EST 2022
-/Users/yutianw/Desktop/17214hw3/hw3-santorini-yutianw00/src/main/java/game/Player.java=1645201825309
-configuration*?=BBB3ABE47FD71C3E7B4AABCBC6245A3629147D07
+#Sat Feb 19 16:12:10 EST 2022
 /Users/yutianw/Desktop/17214hw3/hw3-santorini-yutianw00/src/main/java/game/Tower.java=1645201825318
-/Users/yutianw/Desktop/17214hw3/hw3-santorini-yutianw00/src/main/java/game/Grid.java=1645201825304
-/Users/yutianw/Desktop/17214hw3/hw3-santorini-yutianw00/src/main/java/game/utils/Pos.java=1645201825314
-/Users/yutianw/Desktop/17214hw3/hw3-santorini-yutianw00/src/main/java/cli/Main.java=1645201008128
-/Users/yutianw/Desktop/17214hw3/hw3-santorini-yutianw00/src/main/java/game/Worker.java=1645201825298
-/Users/yutianw/Desktop/17214hw3/hw3-santorini-yutianw00/src/main/java/game/Game.java=1645201825322
-/Users/yutianw/Desktop/17214hw3/hw3-santorini-yutianw00/src/main/java/game/Board.java=1645201825290
+configuration*?=BBB3ABE47FD71C3E7B4AABCBC6245A3629147D07
+/Users/yutianw/Desktop/17214hw3/hw3-santorini-yutianw00/src/main/java/game/utils/Pos.java=1645303504926
+/Users/yutianw/Desktop/17214hw3/hw3-santorini-yutianw00/src/main/java/cli/Control.java=1645303815270
+/Users/yutianw/Desktop/17214hw3/hw3-santorini-yutianw00/src/main/java/cli/IOImpl.java=1645305065216
+/Users/yutianw/Desktop/17214hw3/hw3-santorini-yutianw00/src/main/java/game/impl/GridImpl.java=1645305009797
+/Users/yutianw/Desktop/17214hw3/hw3-santorini-yutianw00/src/main/java/game/Worker.java=1645303405096
+/Users/yutianw/Desktop/17214hw3/hw3-santorini-yutianw00/src/main/java/game/Game.java=1645305009787
+/Users/yutianw/Desktop/17214hw3/hw3-santorini-yutianw00/src/main/java/game/Player.java=1645303266455
+/Users/yutianw/Desktop/17214hw3/hw3-santorini-yutianw00/src/main/java/game/impl/WorkerImpl.java=1645304858067
+/Users/yutianw/Desktop/17214hw3/hw3-santorini-yutianw00/src/main/java/game/Grid.java=1645305009805
+/Users/yutianw/Desktop/17214hw3/hw3-santorini-yutianw00/src/main/java/cli/ControlImpl.java=1645305065226
+/Users/yutianw/Desktop/17214hw3/hw3-santorini-yutianw00/src/main/java/cli/Main.java=1645303815284
+/Users/yutianw/Desktop/17214hw3/hw3-santorini-yutianw00/src/main/java/cli/IO.java=1645303815278
+/Users/yutianw/Desktop/17214hw3/hw3-santorini-yutianw00/src/main/java/game/impl/BoardImpl.java=1645305124761
+/Users/yutianw/Desktop/17214hw3/hw3-santorini-yutianw00/src/main/java/game/impl/GameImpl.java=1645305009812
+/Users/yutianw/Desktop/17214hw3/hw3-santorini-yutianw00/src/main/java/game/Board.java=1645305009801
+/Users/yutianw/Desktop/17214hw3/hw3-santorini-yutianw00/src/main/java/game/impl/PlayerImpl.java=1645305009793

@@ -1,6 +1,7 @@
 package game;
 
 public interface Grid {
+    int DOMELEVEL = 4;
 
     /**
      * Build a tower at the current grid.

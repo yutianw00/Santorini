@@ -1,17 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="8.45">
-<file name="/Users/yutianw/Desktop/17214hw3/hw3-santorini-yutianw00/src/main/java/game/Tower.java">
-</file>
-<file name="/Users/yutianw/Desktop/17214hw3/hw3-santorini-yutianw00/src/main/java/game/Grid.java">
-</file>
-<file name="/Users/yutianw/Desktop/17214hw3/hw3-santorini-yutianw00/src/main/java/game/utils/Pos.java">
-</file>
-<file name="/Users/yutianw/Desktop/17214hw3/hw3-santorini-yutianw00/src/main/java/game/Worker.java">
-</file>
-<file name="/Users/yutianw/Desktop/17214hw3/hw3-santorini-yutianw00/src/main/java/game/Player.java">
-</file>
-<file name="/Users/yutianw/Desktop/17214hw3/hw3-santorini-yutianw00/src/main/java/game/Game.java">
-</file>
-<file name="/Users/yutianw/Desktop/17214hw3/hw3-santorini-yutianw00/src/main/java/game/Board.java">
+<file name="/Users/yutianw/Desktop/17214hw3/hw3-santorini-yutianw00/src/main/java/game/impl/BoardImpl.java">
 </file>
 </checkstyle>

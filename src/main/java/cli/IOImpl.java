@@ -10,10 +10,10 @@ import java.util.Scanner;
 
 public class IOImpl implements IO{
 
-    Game game;
-    Player player1;
-    Player player2;
-    Scanner scanner;
+    private Game game;
+    private Player player1;
+    private Player player2;
+    private Scanner scanner;
 
     public IOImpl(Game game) {
         this.game = game;

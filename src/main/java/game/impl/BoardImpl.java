@@ -11,7 +11,12 @@ import java.util.List;
 public class BoardImpl implements Board {
 
     private List<Worker> workers; // 4 workers in workers, with order P1-A, P1-B, P2-A, P2-B
-    private Grid grids[][];
+    private Grid[][] grids;
+
+    private final int idx1A = 0;
+    private final int idx1B = 1;
+    private final int idx2A = 2;
+    private final int idx2B = 3;
 
     public BoardImpl() {
         Worker worker1A = null;
@@ -20,9 +25,9 @@ public class BoardImpl implements Board {
         Worker worker2B = null;
         workers = Arrays.asList(worker1A, worker1B, worker2A, worker2B);
 
-        grids = new Grid[numRows][numCols];
-        for (int i = 0; i < numRows; i++) {
-            for (int j = 0; j < numCols; j++) {
+        grids = new Grid[NUMROWS][NUMCOLS];
+        for (int i = 0; i < NUMROWS; i++) {
+            for (int j = 0; j < NUMCOLS; j++) {
                 grids[i][j] = new GridImpl();
             }
         }
@@ -45,10 +50,10 @@ public class BoardImpl implements Board {
         int r = pos.getRow();
         int c = pos.getCol();
 
-        if (r < 0 || r >= numRows) {
+        if (r < 0 || r >= NUMROWS) {
             return false;
         }
-        if (c < 0 || c >= numCols) {
+        if (c < 0 || c >= NUMCOLS) {
             return false;
         }
 
@@ -144,15 +149,15 @@ public class BoardImpl implements Board {
 
         if (playerId == 1) {
             if (workerId == 1) {
-                workers.set(0, worker);
+                workers.set(idx1A, worker);
             } else if (workerId == 2) {
-                workers.set(1, worker);
+                workers.set(idx1B, worker);
             }
         } else if (playerId == 2) {
             if (workerId == 1) {
-                workers.set(2, worker);
+                workers.set(idx2A, worker);
             } else if (workerId == 2) {
-                workers.set(3, worker);
+                workers.set(idx2B, worker);
             }
         }
         return true;
@@ -161,8 +166,8 @@ public class BoardImpl implements Board {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < numRows; i++) {
-            for (int j = 0; j < numCols; j++) {
+        for (int i = 0; i < NUMROWS; i++) {
+            for (int j = 0; j < NUMCOLS; j++) {
 
                 Pos pos = new Pos(i, j);
 

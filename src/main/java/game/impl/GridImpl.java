@@ -3,7 +3,7 @@ package game.impl;
 import game.Grid;
 
 public class GridImpl implements Grid {
-    int levels;
+    private int levels;
 
     public GridImpl() {
         this.levels = 0;
@@ -21,6 +21,6 @@ public class GridImpl implements Grid {
 
     @Override
     public boolean isComplete() {
-        return (levels == 4);
+        return (levels == DOMELEVEL);
     }
 }

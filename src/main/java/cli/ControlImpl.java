@@ -8,10 +8,10 @@ import game.impl.GameImpl;
 import game.utils.Pos;
 
 public class ControlImpl implements Control{
-    Game game;
-    IO io;
-    Player player1;
-    Player player2;
+    private Game game;
+    private IO io;
+    private Player player1;
+    private Player player2;
 
     public ControlImpl() {
         game = new GameImpl();

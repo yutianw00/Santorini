@@ -1,6 +1,8 @@
 package game;
 
 public interface Game {
+    int WINTOWERLEVEL = 3;
+
     /**
      * Check whether the game is finished (whether there's a worker standing
      * on a tower of level 3

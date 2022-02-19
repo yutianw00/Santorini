@@ -9,6 +9,8 @@ import game.utils.Pos;
 import java.util.Arrays;
 
 public class GameImpl implements Game {
+
+
     private Board board;
     private Player p1;
     private Player p2;
@@ -36,14 +38,14 @@ public class GameImpl implements Game {
         Pos p2BPos = p2.getWorkerB().getPos();
 
         for (Pos pos : Arrays.asList(p1APos, p1BPos)) {
-            if (board.getGrid(pos).getLevels() == 3) {
+            if (board.getGrid(pos).getLevels() == WINTOWERLEVEL) {
                 winner = p1;
                 return true;
             }
         }
 
         for (Pos pos : Arrays.asList(p2APos, p2BPos)) {
-            if (board.getGrid(pos).getLevels() == 3) {
+            if (board.getGrid(pos).getLevels() == WINTOWERLEVEL) {
                 winner = p2;
                 return true;
             }
