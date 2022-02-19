@@ -10,4 +10,5 @@ public interface Game {
     Player getPlayer();
     Player getWinner();
     void flipPlayer();
+    public Board getBoard();
 }

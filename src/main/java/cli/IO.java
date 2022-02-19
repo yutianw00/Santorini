@@ -1,10 +1,17 @@
 package cli;
 
 import game.Board;
+import game.Player;
+import game.Worker;
+import game.utils.Pos;
 
 public interface IO {
     void printWelcome();
-    void printPrompt(int playeId);
+    void printPlayerPick(Player player, int workerId);
     void printBoard(Board board);
-    void printWinner(int playerId);
+    void printWinner(Player player);
+    void printPosErr();
+    void printMoveErr();
+    Pos playerMove(Worker worker); // prompt the player to move and choose move position, and assign worker
+    Pos getPos();
 }

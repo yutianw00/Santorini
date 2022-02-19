@@ -15,6 +15,7 @@ public class GameImpl implements Game {
     private Player winner;
     private Player currPlayer;
 
+    @Override
     public Board getBoard() {
         return this.board;
     }
