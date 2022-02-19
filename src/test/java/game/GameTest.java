@@ -34,18 +34,40 @@ public class GameTest {
     }
 
     @Test
-    public void isFinished() {
+    public void isFinishedTestFalse() {
+        game = new GameImpl();
+        Player p1 = game.getPlayer();
+        game.flipPlayer();
+        Player p2 = game.getPlayer();
+        p1.setWorkerA(new Pos(0,0));
+        p1.setWorkerB(new Pos(0,1));
+        p2.setWorkerA(new Pos(1,0));
+        p2.setWorkerB(new Pos(1,1));
+
+        assertFalse(game.isFinished());
     }
 
     @Test
-    public void getPlayer() {
+    public void isFinishedTestTrue() {
+        game = new GameImpl();
+        // need to test or not? ask piazza?
+        // TODO
     }
 
     @Test
-    public void getWinner() {
+    public void flipPlayerTestFalse() {
+        game = new GameImpl();
+        Player p1 = game.getPlayer();
+        game.flipPlayer();
+        assertFalse(game.getPlayer() == p1);
     }
 
     @Test
-    public void flipPlayer() {
+    public void flipPlayerTestTrue() {
+        game = new GameImpl();
+        Player p1 = game.getPlayer();
+        game.flipPlayer();
+        game.flipPlayer();
+        assertTrue(game.getPlayer() == p1);
     }
 }
