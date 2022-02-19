@@ -19,9 +19,11 @@ public interface Grid {
     int getLevels();
 
     /**
-     * Decide whether the grid's construction is complete and no worker can stand (no more build can perform
-     * on the grid). If the grid has a dome on three blocks then its construction is complete.
-     * @return
+     * Decide whether the grid's construction is complete and no worker can stand
+     * (no more build can perform on the grid and no worker can stand on that grid).
+     * If the grid has a dome on three blocks then its construction is complete.
+     *
+     * @return whether the grid's construction is complete.
      */
     boolean isComplete();
 }
