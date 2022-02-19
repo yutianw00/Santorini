@@ -168,4 +168,35 @@ public class BoardImpl implements Board {
             }
         }
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < numRows; i++) {
+            for (int j = 0; j < numCols; j++) {
+
+                Pos pos = new Pos(i, j);
+
+                // figure out levels
+                String levels = Integer.toString(getGrid(pos).getLevels());
+
+                // figure out workers
+                char leftSign = ' ';
+                char rightSign = ' ';
+                if (hasWorker(pos)) {
+                    if (workers.get(0).getPos().equals(pos)
+                    || workers.get(1).getPos().equals(pos)) {
+                        leftSign = '(';
+                        rightSign = ')';
+                    } else {
+                        leftSign = '[';
+                        rightSign = ']';
+                    }
+                }
+                sb.append(" " + leftSign + levels + rightSign + " ");
+            }
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
 }
