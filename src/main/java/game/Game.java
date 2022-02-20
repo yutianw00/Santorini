@@ -17,7 +17,7 @@ public interface Game {
      * Get the current player who takes the turn
      * @return The current {@link Player} who takes the turn
      */
-    Player getPlayer();
+    Player getCurrPlayer();
 
     /**
      * Get the winner of the game (the player who has a worker standing on a

@@ -16,9 +16,9 @@ public class ControlImpl implements Control{
     public ControlImpl() {
         game = new GameImpl();
         io = new IOImpl(game);
-        player1 = game.getPlayer();
+        player1 = game.getCurrPlayer();
         game.flipPlayer();
-        player2 = game.getPlayer();
+        player2 = game.getCurrPlayer();
         game.flipPlayer();
     }
 
@@ -27,16 +27,16 @@ public class ControlImpl implements Control{
         setup();
 
         // player 1 pick pos for workers
-        playerPickPos(game.getPlayer());
+        playerPickPos(game.getCurrPlayer());
         game.flipPlayer();
 
         // player 2 pick pos for workers
-        playerPickPos(game.getPlayer());
+        playerPickPos(game.getCurrPlayer());
         game.flipPlayer();
 
         boolean gameEnds = false;
         while (!gameEnds) {
-            Player player = game.getPlayer();
+            Player player = game.getCurrPlayer();
             playerTurn(player);
             gameEnds = game.isFinished();
             game.flipPlayer();

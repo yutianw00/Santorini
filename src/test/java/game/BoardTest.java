@@ -24,7 +24,7 @@ public class BoardTest {
     @Test
     public void hasWorkerTestTrue() {
         GameImpl game = new GameImpl();
-        Player p1 = game.getPlayer();
+        Player p1 = game.getCurrPlayer();
         p1.setWorkerA(new Pos(1,1));
         game.getBoard().setWorker(1,1,p1.getWorkerA());
         assertTrue(game.getBoard().hasWorker(new Pos(1,1)));
@@ -33,7 +33,7 @@ public class BoardTest {
     @Test
     public void checkMoveTestTrue() {
         GameImpl game = new GameImpl();
-        Player p1 = game.getPlayer();
+        Player p1 = game.getCurrPlayer();
         p1.setWorkerA(new Pos(1,1));
         game.getBoard().setWorker(1,1,p1.getWorkerA());
         assertTrue(game.getBoard().checkMove(p1.getWorkerA(), new Pos(0,1)));
@@ -42,7 +42,7 @@ public class BoardTest {
     @Test
     public void checkMoveTestFalseNotMove() {
         GameImpl game = new GameImpl();
-        Player p1 = game.getPlayer();
+        Player p1 = game.getCurrPlayer();
         p1.setWorkerA(new Pos(1,1));
         game.getBoard().setWorker(1,1,p1.getWorkerA());
         assertFalse(game.getBoard().checkMove(p1.getWorkerA(), new Pos(1,1)));
@@ -51,7 +51,7 @@ public class BoardTest {
     @Test
     public void checkMoveTestFalseMoveFar() {
         GameImpl game = new GameImpl();
-        Player p1 = game.getPlayer();
+        Player p1 = game.getCurrPlayer();
         p1.setWorkerA(new Pos(1,1));
         game.getBoard().setWorker(1,1,p1.getWorkerA());
         assertFalse(game.getBoard().checkMove(p1.getWorkerA(), new Pos(1,3)));
@@ -60,7 +60,7 @@ public class BoardTest {
     @Test
     public void checkMoveTestTrueMoveDiagonal() {
         GameImpl game = new GameImpl();
-        Player p1 = game.getPlayer();
+        Player p1 = game.getCurrPlayer();
         p1.setWorkerA(new Pos(1,1));
         game.getBoard().setWorker(1,1,p1.getWorkerA());
         assertTrue(game.getBoard().checkMove(p1.getWorkerA(), new Pos(2,2)));
@@ -69,7 +69,7 @@ public class BoardTest {
     @Test
     public void checkBuildTestTrueAdjacent() {
         GameImpl game = new GameImpl();
-        Player p1 = game.getPlayer();
+        Player p1 = game.getCurrPlayer();
         p1.setWorkerA(new Pos(1,1));
         game.getBoard().setWorker(1,1,p1.getWorkerA());
 
@@ -80,7 +80,7 @@ public class BoardTest {
     @Test
     public void checkBuildTestTrueDiagonal() {
         GameImpl game = new GameImpl();
-        Player p1 = game.getPlayer();
+        Player p1 = game.getCurrPlayer();
         p1.setWorkerA(new Pos(1,1));
         game.getBoard().setWorker(1,1,p1.getWorkerA());
 
@@ -91,7 +91,7 @@ public class BoardTest {
     @Test
     public void checkBuildTestFalseHasBuilder() {
         GameImpl game = new GameImpl();
-        Player p1 = game.getPlayer();
+        Player p1 = game.getCurrPlayer();
         p1.setWorkerA(new Pos(1,1));
         game.getBoard().setWorker(1,1,p1.getWorkerA());
 
@@ -102,7 +102,7 @@ public class BoardTest {
     @Test
     public void checkBuildTestFalseTooFar() {
         GameImpl game = new GameImpl();
-        Player p1 = game.getPlayer();
+        Player p1 = game.getCurrPlayer();
         p1.setWorkerA(new Pos(1,1));
         game.getBoard().setWorker(1,1,p1.getWorkerA());
 

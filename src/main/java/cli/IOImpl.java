@@ -17,9 +17,9 @@ public class IOImpl implements IO{
 
     public IOImpl(Game game) {
         this.game = game;
-        player1 = game.getPlayer();
+        player1 = game.getCurrPlayer();
         game.flipPlayer();
-        player2 = game.getPlayer();
+        player2 = game.getCurrPlayer();
         game.flipPlayer();
         scanner = new Scanner(System.in);  // Create a Scanner object
     }
@@ -119,7 +119,7 @@ public class IOImpl implements IO{
 
     @Override
     public Pos playerMove(Worker[] workers) {
-        Player player = game.getPlayer();
+        Player player = game.getCurrPlayer();
         String playerStr = getCurrPlayer(player);
         System.out.println("It's " + playerStr + "'s turn. " +
                 "Please following the prompts and MOVE your worker!");
@@ -153,7 +153,7 @@ public class IOImpl implements IO{
 
     @Override
     public Pos playerBuild(Worker worker) {
-        Player player = game.getPlayer();
+        Player player = game.getCurrPlayer();
         String playerStr = getCurrPlayer(player);
         System.out.println("It's still " + playerStr + "'s turn. " +
                 "Please following the prompts and let your worker to BUILD!");

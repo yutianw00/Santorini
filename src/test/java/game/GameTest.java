@@ -1,9 +1,7 @@
 package game;
 
 import game.impl.GameImpl;
-import game.impl.WorkerImpl;
 import game.utils.Pos;
-import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -14,9 +12,9 @@ public class GameTest {
     @Test
     public void isFinishedTestFalse() {
         game = new GameImpl();
-        Player p1 = game.getPlayer();
+        Player p1 = game.getCurrPlayer();
         game.flipPlayer();
-        Player p2 = game.getPlayer();
+        Player p2 = game.getCurrPlayer();
         p1.setWorkerA(new Pos(0,0));
         p1.setWorkerB(new Pos(0,1));
         p2.setWorkerA(new Pos(1,0));
@@ -35,17 +33,17 @@ public class GameTest {
     @Test
     public void flipPlayerTestFalse() {
         game = new GameImpl();
-        Player p1 = game.getPlayer();
+        Player p1 = game.getCurrPlayer();
         game.flipPlayer();
-        assertFalse(game.getPlayer() == p1);
+        assertFalse(game.getCurrPlayer() == p1);
     }
 
     @Test
     public void flipPlayerTestTrue() {
         game = new GameImpl();
-        Player p1 = game.getPlayer();
+        Player p1 = game.getCurrPlayer();
         game.flipPlayer();
         game.flipPlayer();
-        assertTrue(game.getPlayer() == p1);
+        assertTrue(game.getCurrPlayer() == p1);
     }
 }

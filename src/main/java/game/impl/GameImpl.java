@@ -56,7 +56,7 @@ public class GameImpl implements Game {
     }
 
     @Override
-    public Player getPlayer() {
+    public Player getCurrPlayer() {
         return currPlayer;
     }
 
