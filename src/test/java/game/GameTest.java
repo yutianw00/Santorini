@@ -24,13 +24,6 @@ public class GameTest {
     }
 
     @Test
-    public void isFinishedTestTrue() {
-        game = new GameImpl();
-        // need to test or not? ask piazza?
-        // TODO
-    }
-
-    @Test
     public void flipPlayerTestFalse() {
         game = new GameImpl();
         Player p1 = game.getCurrPlayer();
