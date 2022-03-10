@@ -76,6 +76,19 @@ public class GameImpl implements Game {
 
     @Override
     public boolean move(Worker worker, Pos pos) {
-        return false;
+        if (!board.checkMove(worker, pos)) {
+            return false;
+        }
+        worker.move(pos);
+        return true;
+    }
+
+    @Override
+    public boolean build(Worker worker, Pos pos) {
+        if (!board.checkBuild(worker, pos)) {
+            return false;
+        }
+        board.build(pos);
+        return true;
     }
 }

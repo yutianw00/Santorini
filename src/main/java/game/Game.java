@@ -57,4 +57,17 @@ public interface Game {
      */
     boolean move(Worker worker, Pos pos);
 
+    /**
+     * The Worker performs the build operation at position pos.
+     * Before the actual build, the validity is checked.
+     * If the build is not valid, false is returned and no build is performed;
+     * otherwise the build is performed and true is returned.
+     *
+     * @param worker The worker that performs the build operation
+     * @param pos The position that the worker will build
+     * @return true if the operation is valid and succeeds, false otherwise and no
+     *  operation is performed
+     */
+    boolean build(Worker worker, Pos pos);
+
 }
