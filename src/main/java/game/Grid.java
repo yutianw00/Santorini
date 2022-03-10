@@ -27,4 +27,14 @@ public interface Grid {
      * @return whether the grid's construction is complete.
      */
     boolean isComplete();
+
+    /**
+     * Decide if moving from previous level to the current grid's level is valid operation
+     * meaning the current grid doesn't have a doom, and the grid level is not 2 more levels than
+     * the previous fromLevel
+     *
+     * @param fromLevel the level to check
+     * @return
+     */
+    boolean isValidLevel(int fromLevel);
 }

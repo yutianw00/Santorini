@@ -1,5 +1,7 @@
 package game;
 
+import game.utils.Pos;
+
 public interface Game {
     int WINTOWERLEVEL = 3;
 
@@ -42,4 +44,17 @@ public interface Game {
      * @return The {@link Board} of this game
      */
     Board getBoard();
+
+    /**
+     * Move a worker to a new position, checking the validity of such move
+     * before the actual action.
+     * If the move is valid, the actual move is performed, and true is returned;
+     * otherwise no operation is done and false is returned.
+     *
+     * @param worker The worker to be moved
+     * @param pos The position to be moved
+     * @return true if move is successful, false if move is invalid
+     */
+    boolean move(Worker worker, Pos pos);
+
 }

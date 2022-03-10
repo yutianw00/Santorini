@@ -73,4 +73,9 @@ public class GameImpl implements Game {
     public Player getWinner() {
         return winner;
     }
+
+    @Override
+    public boolean move(Worker worker, Pos pos) {
+        return false;
+    }
 }
