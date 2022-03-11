@@ -47,7 +47,7 @@ public class BoardImpl implements Board {
         return false;
     }
 
-    private boolean isInBound(Pos pos) {
+    public boolean isInBound(Pos pos) {
         int r = pos.getRow();
         int c = pos.getCol();
 
@@ -96,7 +96,7 @@ public class BoardImpl implements Board {
         // and cannot move to a grid that is completed (with a dome)
         int currLevel = getGrid(currPos).getLevels();
         Grid grid = getGrid(pos);
-        if (grid.isValidLevel(currLevel)) {
+        if (!grid.isValidLevel(currLevel)) {
             return false;
         }
 

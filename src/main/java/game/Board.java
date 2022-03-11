@@ -15,6 +15,13 @@ public interface Board {
     boolean hasWorker(Pos pos);
 
     /**
+     * Check if the given position is in the bound of the board
+     * @param pos The given position
+     * @return true if the position is in bound. False otherwise.
+     */
+    boolean isInBound(Pos pos);
+
+    /**
      * Check if a move is valid (meaning moving to an adjacent empty blocks without workers,
      * and the worker is going up at most by 1 level during the move
      * Note that this function only checks for validity but not perform the move operation

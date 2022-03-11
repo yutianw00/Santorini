@@ -70,4 +70,17 @@ public interface Game {
      */
     boolean build(Worker worker, Pos pos);
 
+    /**
+     * Set up the worker positions for the player.
+     * Will check the validity of the positions before actually setting up.
+     * If either of the positions are not valid, nothing is done and false is returned
+     * Otherwise the worker positions are setup and true is returned.
+     *
+     * @param player The player whose workers' positions to be setup
+     * @param pos1 The position of the first worker
+     * @param pos2 The position of the second worker
+     * @return true if set up is successful, false if the position is invalid
+     */
+    boolean setWorker(Player player, Pos pos1, Pos pos2);
+
 }

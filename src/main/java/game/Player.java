@@ -7,22 +7,20 @@ public interface Player {
     /**
      * Set the first worker for the player
      * Effect: update that worker's position
+     * Precondition: pos is a valid position
      *
      * @param pos The updated {@link Pos} position of that worker
-     * @return Whether the position is a valid position and
-     * the update is successfully performed
      */
-    boolean setWorkerA(Pos pos);
+    void setWorkerA(Pos pos);
 
     /**
      * Set the second worker for the player
      * Effect: update that worker's position
+     *Precondition: pos is a valid position
      *
      * @param pos The updated {@link Pos} position of that worker
-     * @return Whether the position is a valid position and
-     * the update is successfully performed
      */
-    boolean setWorkerB(Pos pos);
+    void setWorkerB(Pos pos);
 
     /**
      * Get the first worker of the player

@@ -91,4 +91,25 @@ public class GameImpl implements Game {
         board.build(pos);
         return true;
     }
+
+    @Override
+    public boolean setWorker(Player player, Pos pos1, Pos pos2) {
+        if (!board.isInBound(pos1) || !board.isInBound(pos2)) {
+            return false;
+        }
+        if (board.hasWorker(pos1) || board.hasWorker(pos2)) {
+            return false;
+        }
+
+        currPlayer.setWorkerA(pos1);
+        currPlayer.setWorkerB(pos2);
+        Worker worker1 = currPlayer.getWorkerA();
+        Worker worker2 = currPlayer.getWorkerB();
+        int playerId = (currPlayer == p1) ? 1 : 2;
+        board.setWorker(playerId, 1, worker1);
+        board.setWorker(playerId, 2, worker2);
+        return true;
+
+
+    }
 }

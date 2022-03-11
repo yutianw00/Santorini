@@ -52,38 +52,31 @@ public class ControlImpl implements Control{
     @Override
     public void playerPickPos(Player currPlayer) {
         boolean valid = false;
-        int playerId = (currPlayer == player1) ? 1 : 2;
-        Board board = game.getBoard();
         while (!valid) {
-            Pos pos = io.playerPick(currPlayer, 1);
-            valid = currPlayer.setWorkerA(pos);
+            Pos pos1 = io.playerPick(currPlayer, 1);
+            Pos pos2 = io.playerPick(currPlayer, 2);
+            valid = game.setWorker(currPlayer, pos1, pos2);
             if (!valid) {
                 io.printPosErr();
-                continue;
-            }
-            Worker worker1 = currPlayer.getWorkerA();
-            valid = board.setWorker(playerId, 1, worker1);
-            if (!valid) {
-                System.out.println("position is occupied!");
                 continue;
             }
         }
 
-        valid = false;
-        while (!valid) {
-            Pos pos = io.playerPick(currPlayer, 2);
-            valid = currPlayer.setWorkerB(pos);
-            if (!valid) {
-                io.printPosErr();
-                continue;
-            }
-            Worker worker2 = currPlayer.getWorkerB();
-            valid = game.getBoard().setWorker(playerId, 2, worker2);
-            if (!valid) {
-                System.out.println("position is occupied!");
-                continue;
-            }
-        }
+//        valid = false;
+//        while (!valid) {
+//            Pos pos = io.playerPick(currPlayer, 2);
+//            valid = currPlayer.setWorkerB(pos);
+//            if (!valid) {
+//                io.printPosErr();
+//                continue;
+//            }
+//            Worker worker2 = currPlayer.getWorkerB();
+//            valid = game.getBoard().setWorker(playerId, 2, worker2);
+//            if (!valid) {
+//                System.out.println("position is occupied!");
+//                continue;
+//            }
+//        }
         io.printBoard(game.getBoard());
     }
 
@@ -94,6 +87,7 @@ public class ControlImpl implements Control{
         while (true) {
             Pos pos = io.playerMove(workers); // worker will be filled with the correct worker for the player
             Worker worker = workers[0];
+            System.out.println("here!" + worker.toString() + " " + pos.toString());
             if (!board.checkMove(worker, pos)) {
                 io.printMoveErr();
                 continue;
