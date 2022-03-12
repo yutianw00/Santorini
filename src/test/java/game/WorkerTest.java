@@ -5,8 +5,6 @@ import game.utils.Pos;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 public class WorkerTest {
     Worker worker;
 
@@ -19,7 +17,7 @@ public class WorkerTest {
     @Test
     public void moveTestNew() {
         Pos newPos = new Pos(2,5);
-        worker.move(newPos);
+        worker.setPos(newPos);
         assert(worker.getPos().equals(newPos));
     }
 
@@ -28,7 +26,7 @@ public class WorkerTest {
         Pos pos = new Pos(3,4);
         worker = new WorkerImpl(pos);
         Pos newPos = new Pos(3,4); // same position
-        worker.move(newPos);
+        worker.setPos(newPos);
         assert(worker.getPos().equals(newPos));
     }
 

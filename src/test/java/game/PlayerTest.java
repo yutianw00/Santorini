@@ -12,7 +12,7 @@ public class PlayerTest {
 
     @Before
     public void setUp() {
-        player = new PlayerImpl();
+//        player = new PlayerImpl();
     }
 
     @Test

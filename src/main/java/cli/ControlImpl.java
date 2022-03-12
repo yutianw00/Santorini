@@ -51,32 +51,18 @@ public class ControlImpl implements Control{
 
     @Override
     public void playerPickPos(Player currPlayer) {
-        boolean valid = false;
-        while (!valid) {
-            Pos pos1 = io.playerPick(currPlayer, 1);
-            Pos pos2 = io.playerPick(currPlayer, 2);
-            valid = game.setWorker(currPlayer, pos1, pos2);
-            if (!valid) {
-                io.printPosErr();
-                continue;
-            }
-        }
-
-//        valid = false;
+        //TODO
+//        boolean valid = false;
 //        while (!valid) {
-//            Pos pos = io.playerPick(currPlayer, 2);
-//            valid = currPlayer.setWorkerB(pos);
+//            Pos pos1 = io.playerPick(currPlayer, 1);
+//            Pos pos2 = io.playerPick(currPlayer, 2);
+//            valid = game.setWorker(currPlayer, pos1, pos2);
 //            if (!valid) {
 //                io.printPosErr();
 //                continue;
 //            }
-//            Worker worker2 = currPlayer.getWorkerB();
-//            valid = game.getBoard().setWorker(playerId, 2, worker2);
-//            if (!valid) {
-//                System.out.println("position is occupied!");
-//                continue;
-//            }
 //        }
+
         io.printBoard(game.getBoard());
     }
 
@@ -92,7 +78,7 @@ public class ControlImpl implements Control{
                 io.printMoveErr();
                 continue;
             }
-            worker.move(pos);
+            worker.setPos(pos);
             break;
         }
         io.printBoard(board);

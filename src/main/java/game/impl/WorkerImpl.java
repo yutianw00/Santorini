@@ -15,12 +15,17 @@ public class WorkerImpl implements Worker {
     }
 
     @Override
-    public void move(Pos pos) {
+    public void setPos(Pos pos) {
         this.pos = pos;
     }
 
     @Override
     public Pos getPos() {
         return pos;
+    }
+
+    @Override
+    public Worker copy() {
+        return new WorkerImpl(this.pos);
     }
 }

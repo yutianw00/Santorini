@@ -1,10 +1,12 @@
 package game.impl;
 
 import game.Board;
+import game.Game;
 import game.Grid;
 import game.Worker;
 import game.utils.Pos;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -19,19 +21,28 @@ public class BoardImpl implements Board {
     private final int idx2A = 2;
     private final int idx2B = 3;
 
+    private void initGrid() {
+        Grid[][] grids = new Grid[NUMROWS][NUMCOLS];
+        for (int i = 0; i < NUMROWS; i++) {
+            for (int j = 0; j < NUMCOLS; j++) {
+                grids[i][j] = new GridImpl();
+            }
+        }
+        this.grids = grids;
+    }
+
     public BoardImpl(Worker w11, Worker w12, Worker w21, Worker w22) {
         Worker worker1A = w11;
         Worker worker2A = w21;
         Worker worker1B = w12;
         Worker worker2B = w22;
         workers = Arrays.asList(worker1A, worker1B, worker2A, worker2B);
+        initGrid();
+    }
 
-        grids = new Grid[NUMROWS][NUMCOLS];
-        for (int i = 0; i < NUMROWS; i++) {
-            for (int j = 0; j < NUMCOLS; j++) {
-                grids[i][j] = new GridImpl();
-            }
-        }
+    public BoardImpl(List<Worker> workers) {
+        this.workers = workers;
+        initGrid();
     }
 
     @Override
@@ -143,25 +154,28 @@ public class BoardImpl implements Board {
     }
 
     @Override
-    public boolean setWorker(int playerId, int workerId, Worker worker) {
-        if (hasWorker(worker.getPos())) {
-            return false;
+    public Board copyBoard() {
+        List<Worker> newWorkerLst = new ArrayList<>();
+        for (Worker w : this.workers) {
+            newWorkerLst.add(w.copy());
         }
+        return new BoardImpl(newWorkerLst);
+    }
 
-        if (playerId == 1) {
-            if (workerId == 1) {
-                workers.set(idx1A, worker);
-            } else if (workerId == 2) {
-                workers.set(idx1B, worker);
-            }
-        } else if (playerId == 2) {
-            if (workerId == 1) {
-                workers.set(idx2A, worker);
-            } else if (workerId == 2) {
-                workers.set(idx2B, worker);
-            }
-        }
-        return true;
+    @Override
+    public List<Worker> getWorkers() {
+        return this.workers;
+    }
+
+    @Override
+    public Board setBoardWorker(int playerId, int workerId, Pos pos) {
+
+        Board newBoard = copyBoard();
+        int workerIdx = (playerId - 1) * Game.NUMPLAYERS + (workerId - 1);
+        Worker worker = newBoard.getWorkers().get(workerIdx);
+        worker.setPos(pos);
+
+        return newBoard;
     }
 
     @Override

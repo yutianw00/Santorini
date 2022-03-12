@@ -97,7 +97,7 @@ public class GameImpl implements Game {
         if (!board.checkMove(worker, pos)) {
             return false;
         }
-        worker.move(pos);
+        worker.setPos(pos);
         return true;
     }
 
@@ -111,22 +111,21 @@ public class GameImpl implements Game {
     }
 
     @Override
-    public boolean setWorker(Player player, Pos pos1, Pos pos2) {
-        if (!board.isInBound(pos1) || !board.isInBound(pos2)) {
-            return false;
+    public Board setWorker(int playerId, int workerId, Pos pos) {
+        if (!board.isInBound(pos)) {
+            System.out.println("Game.setWorker: position is out of bound.");
+            return null;
         }
-        if (board.hasWorker(pos1) || board.hasWorker(pos2)) {
-            return false;
+        if (board.hasWorker(pos)) {
+            System.out.println("Game.setWorker: position is occupied.");
+            return null;
         }
 
-        currPlayer.setWorkerA(pos1);
-        currPlayer.setWorkerB(pos2);
-        Worker worker1 = currPlayer.getWorkerA();
-        Worker worker2 = currPlayer.getWorkerB();
-        int playerId = (currPlayer == p1) ? 1 : 2;
-        board.setWorker(playerId, 1, worker1);
-        board.setWorker(playerId, 2, worker2);
-        return true;
+        Player currPlayer = (playerId == 1) ? p1 : p2;
+
+        currPlayer.setWorker(pos, workerId);
+
+        return board.setBoardWorker(playerId, workerId, pos);
 
 
     }

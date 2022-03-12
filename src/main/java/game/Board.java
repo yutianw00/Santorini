@@ -2,6 +2,8 @@ package game;
 
 import game.utils.Pos;
 
+import java.util.List;
+
 public interface Board {
     int NUMCOLS = 5;
     int NUMROWS = 5;
@@ -69,10 +71,14 @@ public interface Board {
      * @param playerId Specifying which {@link Player} (1 or 2) the {@code worker} belongs to
      * @param workerId Specifying which {@link Worker} of the player (the 1 or the 2 one)
      *                 the {@code worker} represents
-     * @param worker The {@link Worker} to be placed on the board
-     * @return If the worker is successfully place onto the board
+     * @param pos The position of the worker to be set
+     * @return null if not successful, a new Board if succeed
      *
      */
-    boolean setWorker(int playerId, int workerId, Worker worker);
+    Board setBoardWorker(int playerId, int workerId, Pos pos);
+
+    Board copyBoard();
+
+    List<Worker> getWorkers();
 
 }

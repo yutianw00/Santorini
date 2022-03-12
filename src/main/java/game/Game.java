@@ -4,6 +4,7 @@ import game.utils.Pos;
 
 public interface Game {
     int WINTOWERLEVEL = 3;
+    int NUMPLAYERS = 2;
 
     /**
      * Set the next action to be done
@@ -89,14 +90,15 @@ public interface Game {
     /**
      * Set up the worker positions for the player.
      * Will check the validity of the positions before actually setting up.
-     * If either of the positions are not valid, nothing is done and false is returned
-     * Otherwise the worker positions are setup and true is returned.
+     * If the positions are not valid, nothing is done and false is returned
+     * Otherwise the worker position is setup and true is returned.
      *
-     * @param player The player whose workers' positions to be setup
-     * @param pos1 The position of the first worker
-     * @param pos2 The position of the second worker
+     * @param playerId the id of the player. 1 means player 1, 2 means player 2
+     * @param pos the pos of the worker to be set
+     * @param workerId the worker id. 1 means worker 1, 2 means worker 2
+     *
      * @return true if set up is successful, false if the position is invalid
      */
-    boolean setWorker(Player player, Pos pos1, Pos pos2);
+    Board setWorker(int playerId, int workerId, Pos pos);
 
 }
