@@ -13,7 +13,7 @@ public class BoardTest {
     Board board;
     @Before
     public void setup() {
-        board = new BoardImpl();
+//        board = new BoardImpl();
     }
 
     @Test

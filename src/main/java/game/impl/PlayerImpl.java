@@ -9,7 +9,9 @@ public class PlayerImpl implements Player {
     private Worker w1;
     private Worker w2;
 
-    public PlayerImpl() {
+    public PlayerImpl(Worker w1, Worker w2) {
+        this.w1 = w1;
+        this.w2 = w2;
     }
 
     private boolean posIsValid(Pos pos) {

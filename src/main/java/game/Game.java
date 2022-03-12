@@ -6,6 +6,22 @@ public interface Game {
     int WINTOWERLEVEL = 3;
 
     /**
+     * Set the next action to be done
+     * Action could be move, build or flip
+     *
+     * @param action The next action to be set
+     */
+    void setNextAction(String action);
+
+    /**
+     * Get the next action as a string
+     * Action could be move, build or flip
+     *
+     * @return the next action as a String
+     */
+    String getNextAction();
+
+    /**
      * Check whether the game is finished (whether there's a worker standing
      * on a tower of level 3
      *

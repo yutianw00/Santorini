@@ -7,8 +7,11 @@ public class WorkerImpl implements Worker {
     private Pos pos;
 
     public WorkerImpl(Pos pos) {
-
         this.pos = pos;
+    }
+
+    public WorkerImpl() {
+        this.pos = null;
     }
 
     @Override

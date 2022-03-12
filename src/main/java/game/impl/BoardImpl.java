@@ -19,11 +19,11 @@ public class BoardImpl implements Board {
     private final int idx2A = 2;
     private final int idx2B = 3;
 
-    public BoardImpl() {
-        Worker worker1A = null;
-        Worker worker2A = null;
-        Worker worker1B = null;
-        Worker worker2B = null;
+    public BoardImpl(Worker w11, Worker w12, Worker w21, Worker w22) {
+        Worker worker1A = w11;
+        Worker worker2A = w21;
+        Worker worker1B = w12;
+        Worker worker2B = w22;
         workers = Arrays.asList(worker1A, worker1B, worker2A, worker2B);
 
         grids = new Grid[NUMROWS][NUMCOLS];

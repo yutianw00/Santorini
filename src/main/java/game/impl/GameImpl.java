@@ -10,6 +10,7 @@ import java.util.Arrays;
 
 public class GameImpl implements Game {
 
+    private String nextAction;
 
     private Board board;
     private Player p1;
@@ -18,14 +19,31 @@ public class GameImpl implements Game {
     private Player currPlayer;
 
     @Override
+    public void setNextAction(String action) {
+        this.nextAction = action;
+    }
+
+    @Override
+    public String getNextAction() {
+        return this.nextAction;
+    }
+
+    @Override
     public Board getBoard() {
         return this.board;
     }
 
     public GameImpl() {
-        board = new BoardImpl();
-        p1 = new PlayerImpl();
-        p2 = new PlayerImpl();
+        Worker w11 = new WorkerImpl();
+        Worker w12 = new WorkerImpl();
+        p1 = new PlayerImpl(w11, w12);
+
+        Worker w21 = new WorkerImpl();
+        Worker w22 = new WorkerImpl();
+        p2 = new PlayerImpl(w21, w22);
+
+        board = new BoardImpl(w11, w12, w21, w22);
+
         winner = null;
         currPlayer = p1;
     }
