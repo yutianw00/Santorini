@@ -9,6 +9,15 @@ public class GridImpl implements Grid {
         this.levels = 0;
     }
 
+    public GridImpl(int levels) {
+        this.levels = levels;
+    }
+
+    @Override
+    public Grid copy() {
+        return new GridImpl(this.getLevels());
+    }
+
     @Override
     public void build() {
         levels++;

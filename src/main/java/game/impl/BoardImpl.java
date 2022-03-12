@@ -16,10 +16,10 @@ public class BoardImpl implements Board {
     private List<Worker> workers;
     private Grid[][] grids;
 
-    private final int idx1A = 0;
-    private final int idx1B = 1;
-    private final int idx2A = 2;
-    private final int idx2B = 3;
+//    private final int idx1A = 0;
+//    private final int idx1B = 1;
+//    private final int idx2A = 2;
+//    private final int idx2B = 3;
 
     private void initGrid() {
         Grid[][] grids = new Grid[NUMROWS][NUMCOLS];
@@ -40,10 +40,11 @@ public class BoardImpl implements Board {
         initGrid();
     }
 
-    public BoardImpl(List<Worker> workers) {
+    public BoardImpl(List<Worker> workers, Grid[][] grids) {
         this.workers = workers;
-        initGrid();
+        this.grids = grids;
     }
+
 
     @Override
     public boolean hasWorker(Pos pos) {
@@ -159,7 +160,14 @@ public class BoardImpl implements Board {
         for (Worker w : this.workers) {
             newWorkerLst.add(w.copy());
         }
-        return new BoardImpl(newWorkerLst);
+        Grid[][] newGrid = new Grid[NUMROWS][NUMCOLS];
+        for (int i = 0; i < grids.length; i++) {
+            for (int j = 0; j < grids[0].length; j++) {
+                newGrid[i][j] = (grids[i][j]).copyGrid();
+            }
+        }
+
+        return new BoardImpl(newWorkerLst, newGrid);
     }
 
     @Override

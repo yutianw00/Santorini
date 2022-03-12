@@ -37,4 +37,6 @@ public interface Grid {
      * @return
      */
     boolean isValidLevel(int fromLevel);
+
+    Grid copyGrid();
 }
