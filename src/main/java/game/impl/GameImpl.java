@@ -20,6 +20,11 @@ public class GameImpl implements Game {
     private int nextPlayerId;
 
     @Override
+    public void setBoard(Board newBoard) {
+        this.board = newBoard;
+    }
+
+    @Override
     public boolean undo() {
         return history.undo();
     }
@@ -139,6 +144,18 @@ public class GameImpl implements Game {
         if (!board.checkMove(worker, pos)) {
             return null;
         }
+
+        Board newBoard = board.setBoardWorker(playerId, workerId, pos); // delegation
+        this.board = newBoard; // assign the newBoard to be the board of the game
+
+        this.setNextAction(BUILD);
+        State newState = createState(newBoard);
+        history.addHistory(newState);
+        return newState;
+    }
+
+    @Override
+    public State moveWithoutCheck(int playerId, int workerId, Pos pos) {
         Board newBoard = board.copyBoard();
         newBoard.setBoardWorker(playerId, workerId, pos); // delegation
         this.setNextAction(BUILD);
@@ -153,8 +170,9 @@ public class GameImpl implements Game {
         if (!board.checkBuild(worker, pos)) {
             return null;
         }
-        Board newBoard = board.copyBoard();
-        newBoard.build(pos);
+        Board newBoard = board.build(pos);
+        this.board = newBoard;
+
         this.setNextAction(FLIP);
         this.flipPlayer();
         State newState = createState(newBoard);

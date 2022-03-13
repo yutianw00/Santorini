@@ -73,19 +73,6 @@ public class BoardImpl implements Board {
         return true;
     }
 
-    private boolean isAdjacent(Pos pos1, Pos pos2) {
-        int r1 = pos1.getRow();
-        int c1 = pos1.getCol();
-
-        int r2 = pos2.getRow();
-        int c2 = pos2.getCol();
-
-        if (Math.abs(c2 - c1) > 1 || Math.abs(r2 - r1) > 1) {
-            return false;
-        }
-        return true;
-    }
-
     @Override
     public boolean checkMove(Worker worker, Pos pos) {
         // cannot move out of bound
@@ -95,7 +82,7 @@ public class BoardImpl implements Board {
 
         Pos currPos = worker.getPos();
         // cannot move to non-adjacent places
-        if (!isAdjacent(currPos, pos)) {
+        if (!Board.isAdjacent(currPos, pos)) {
             return false;
         }
 
@@ -124,7 +111,7 @@ public class BoardImpl implements Board {
 
         Pos currPos = worker.getPos();
         // cannot build to non-adjacent places
-        if (!isAdjacent(currPos, pos)) {
+        if (!Board.isAdjacent(currPos, pos)) {
             return false;
         }
 
@@ -142,9 +129,11 @@ public class BoardImpl implements Board {
     }
 
     @Override
-    public void build(Pos pos) {
-        Grid grid = getGrid(pos);
+    public Board build(Pos pos) {
+        Board newBoard = this.copyBoard();
+        Grid grid = newBoard.getGrid(pos);
         grid.build();
+        return newBoard;
     }
 
     @Override

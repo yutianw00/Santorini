@@ -53,8 +53,9 @@ public interface Board {
      * {@code checkBuild()} returns true
      *
      * @param pos The position to build the block
+     * @return the new Board that the build performs
      */
-    void build(Pos pos);
+    Board build(Pos pos);
 
     /**
      * Get the Grid object based on the position given
@@ -76,6 +77,19 @@ public interface Board {
      *
      */
     Board setBoardWorker(int playerId, int workerId, Pos pos);
+
+    static boolean isAdjacent(Pos pos1, Pos pos2) {
+        int r1 = pos1.getRow();
+        int c1 = pos1.getCol();
+
+        int r2 = pos2.getRow();
+        int c2 = pos2.getCol();
+
+        if (Math.abs(c2 - c1) > 1 || Math.abs(r2 - r1) > 1) {
+            return false;
+        }
+        return true;
+    }
 
     Board copyBoard();
 
