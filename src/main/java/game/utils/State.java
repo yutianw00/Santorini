@@ -1,7 +1,6 @@
 package game.utils;
 
 import game.Board;
-import game.Player;
 
 public class State {
     Board board;
@@ -12,5 +11,17 @@ public class State {
         this.board = board;
         this.playerId = playerId;
         this.nextAction = nextAction;
+    }
+
+    public Board getBoard() {
+        return board;
+    }
+
+    public int getPlayerId() {
+        return playerId;
+    }
+
+    public int getNextAction() {
+        return nextAction;
     }
 }

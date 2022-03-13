@@ -77,7 +77,7 @@ public interface Game {
      * Effect: player's turn is flipped, the {@code getPlayer()} will return
      * different players before and after this function is executed
      */
-    State flipPlayer();
+    void flipPlayer();
 
     /**
      * Get the board of this game

@@ -94,17 +94,18 @@ public class GameImpl implements Game {
         return nextPlayerId;
     }
 
+    /* by design, this function is called automatically within after the build
+     * is successful and finished.
+     * It can also be called with Godpower in special cases.
+     */
     @Override
-    public State flipPlayer() {
+    public void flipPlayer() {
         if (nextPlayerId == 1) {
             nextPlayerId = 2;
         } else {
             nextPlayerId = 1;
         }
         this.setNextAction(MOVE);
-        State newState = createState(this.board);
-        history.addHistory(newState);
-        return newState;
     }
 
     @Override
