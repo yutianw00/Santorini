@@ -1,6 +1,9 @@
 package game;
 
 import game.utils.Pos;
+import game.utils.State;
+
+import java.util.List;
 
 public interface Game {
     int WINTOWERLEVEL = 3;
@@ -10,6 +13,19 @@ public interface Game {
     int MOVE = 1;
     int BUILD = 2;
     int FLIP = 3;
+
+    /**
+     * Undo the last operation
+     * @return true if the undo is successful, false if
+     *  no previous board state is recorded in history
+     */
+    boolean undo();
+
+    /**
+     * Get all the history of the game
+     * @return A list of states representing all the history of the game
+     */
+    List<State> getHistory();
 
     /**
      * Set the next action to be done

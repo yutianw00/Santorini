@@ -1,22 +1,33 @@
 package game.impl;
 
-import game.Board;
-import game.Game;
-import game.Player;
-import game.Worker;
+import game.*;
 import game.utils.Pos;
+import game.utils.State;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class GameImpl implements Game {
 
     private int nextAction;
+
+    History<State> history = new HistoryImpl<>();
 
     private Board board;
     private Player p1;
     private Player p2;
     private Player winner;
     private Player currPlayer;
+
+    @Override
+    public boolean undo() {
+        return history.undo();
+    }
+
+    @Override
+    public List<State> getHistory() {
+        return history.getHistory();
+    }
 
     @Override
     public void setNextAction(int action) {
