@@ -10,7 +10,7 @@ import java.util.Arrays;
 
 public class GameImpl implements Game {
 
-    private String nextAction;
+    private int nextAction;
 
     private Board board;
     private Player p1;
@@ -19,12 +19,12 @@ public class GameImpl implements Game {
     private Player currPlayer;
 
     @Override
-    public void setNextAction(String action) {
+    public void setNextAction(int action) {
         this.nextAction = action;
     }
 
     @Override
-    public String getNextAction() {
+    public int getNextAction() {
         return this.nextAction;
     }
 
@@ -74,8 +74,8 @@ public class GameImpl implements Game {
     }
 
     @Override
-    public Player getCurrPlayer() {
-        return currPlayer;
+    public int getCurrPlayer() {
+        return (currPlayer == p1) ? 1 : 2;
     }
 
     @Override
@@ -85,29 +85,56 @@ public class GameImpl implements Game {
         } else {
             currPlayer = p1;
         }
+        this.setNextAction(MOVE);
     }
 
     @Override
-    public Player getWinner() {
-        return winner;
+    public int getWinner() {
+        if (winner == null) {
+            return -1;
+        } else {
+            return (winner == p1) ? 1 : 2;
+        }
+    }
+
+    Worker getWorker(int playerId, int workerId) {
+        if (playerId == 1) {
+            if (workerId == 1) {
+                return p1.getWorkerA();
+            } else {
+                return p1.getWorkerB();
+            }
+        } else {
+            if (workerId == 1) {
+                return p2.getWorkerA();
+            } else {
+                return p2.getWorkerB();
+            }
+        }
     }
 
     @Override
-    public boolean move(Worker worker, Pos pos) {
+    public Board move(int playerId, int workerId, Pos pos) {
+        Worker worker = getWorker(playerId, workerId);
         if (!board.checkMove(worker, pos)) {
-            return false;
+            return null;
         }
-        worker.setPos(pos);
-        return true;
+        Board newBoard = board.copyBoard();
+        newBoard.setBoardWorker(playerId, workerId, pos); // delegation
+        this.setNextAction(BUILD);
+        return newBoard;
     }
 
     @Override
-    public boolean build(Worker worker, Pos pos) {
+    public Board build(int playerId, int workerId, Pos pos) {
+        Worker worker = getWorker(playerId, workerId);
         if (!board.checkBuild(worker, pos)) {
-            return false;
+            return null;
         }
-        board.build(pos);
-        return true;
+        Board newBoard = board.copyBoard();
+        newBoard.build(pos);
+        this.setNextAction(FLIP);
+        return newBoard;
     }
 
     @Override

@@ -16,12 +16,12 @@ public class IOImpl implements IO{
     private Scanner scanner;
 
     public IOImpl(Game game) {
-        this.game = game;
-        player1 = game.getCurrPlayer();
-        game.flipPlayer();
-        player2 = game.getCurrPlayer();
-        game.flipPlayer();
-        scanner = new Scanner(System.in);  // Create a Scanner object
+//        this.game = game;
+//        player1 = game.getCurrPlayer();
+//        game.flipPlayer();
+//        player2 = game.getCurrPlayer();
+//        game.flipPlayer();
+//        scanner = new Scanner(System.in);  // Create a Scanner object
     }
 
     @Override
@@ -119,50 +119,52 @@ public class IOImpl implements IO{
 
     @Override
     public Pos playerMove(Worker[] workers) {
-        Player player = game.getCurrPlayer();
-        String playerStr = getCurrPlayer(player);
-        System.out.println("It's " + playerStr + "'s turn. " +
-                "Please following the prompts and MOVE your worker!");
-        printBoard(game.getBoard());
-
-        Worker workerA = player.getWorkerA();
-        Worker workerB = player.getWorkerB();
-        System.out.println("Worker A is at " + workerA.getPos().toString());
-        System.out.println("Worker B is at " + workerB.getPos().toString());
-        System.out.println("You can move one of these two workers.");
-        System.out.println("Type 'A' if you want to move worker A, and 'B' if you want to move worker B");
-        while (true) {
-            String workerStr = scanner.nextLine();
-            if (workerStr.equals("A")) {
-                workers[0] = workerA;
-                break;
-            } else if (workerStr.equals("B")){
-                workers[0] = workerB;
-                break;
-            } else {
-                System.out.println("Error: invalid input. Please try again.");
-            }
-        }
-
-        System.out.println("Now move your worker. Please indicate where you want to move the worker " +
-                "in the form of (x,y): ");
-
-        return getPos();
+        return null;
+//        Player player = game.getCurrPlayer();
+//        String playerStr = getCurrPlayer(player);
+//        System.out.println("It's " + playerStr + "'s turn. " +
+//                "Please following the prompts and MOVE your worker!");
+//        printBoard(game.getBoard());
+//
+//        Worker workerA = player.getWorkerA();
+//        Worker workerB = player.getWorkerB();
+//        System.out.println("Worker A is at " + workerA.getPos().toString());
+//        System.out.println("Worker B is at " + workerB.getPos().toString());
+//        System.out.println("You can move one of these two workers.");
+//        System.out.println("Type 'A' if you want to move worker A, and 'B' if you want to move worker B");
+//        while (true) {
+//            String workerStr = scanner.nextLine();
+//            if (workerStr.equals("A")) {
+//                workers[0] = workerA;
+//                break;
+//            } else if (workerStr.equals("B")){
+//                workers[0] = workerB;
+//                break;
+//            } else {
+//                System.out.println("Error: invalid input. Please try again.");
+//            }
+//        }
+//
+//        System.out.println("Now move your worker. Please indicate where you want to move the worker " +
+//                "in the form of (x,y): ");
+//
+//        return getPos();
 
     }
 
     @Override
     public Pos playerBuild(Worker worker) {
-        Player player = game.getCurrPlayer();
-        String playerStr = getCurrPlayer(player);
-        System.out.println("It's still " + playerStr + "'s turn. " +
-                "Please following the prompts and let your worker to BUILD!");
-
-        System.out.println("Your worker's position is at " + worker.getPos().toString() +
-                " Please indicate where you want to build " +
-                "in the form of (x,y): ");
-
-        return getPos();
+//        Player player = game.getCurrPlayer();
+//        String playerStr = getCurrPlayer(player);
+//        System.out.println("It's still " + playerStr + "'s turn. " +
+//                "Please following the prompts and let your worker to BUILD!");
+//
+//        System.out.println("Your worker's position is at " + worker.getPos().toString() +
+//                " Please indicate where you want to build " +
+//                "in the form of (x,y): ");
+//
+//        return getPos();
+        return null;
     }
 
     private Pos getPos() {

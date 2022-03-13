@@ -179,11 +179,16 @@ public class BoardImpl implements Board {
     public Board setBoardWorker(int playerId, int workerId, Pos pos) {
 
         Board newBoard = copyBoard();
-        int workerIdx = (playerId - 1) * Game.NUMPLAYERS + (workerId - 1);
-        Worker worker = newBoard.getWorkers().get(workerIdx);
+        Worker worker = newBoard.getWorker(playerId, workerId);
         worker.setPos(pos);
 
         return newBoard;
+    }
+
+    @Override
+    public Worker getWorker(int playerId, int workerId) {
+        int workerIdx = (playerId - 1) * Game.NUMPLAYERS + (workerId - 1);
+        return workers.get(workerIdx);
     }
 
     @Override

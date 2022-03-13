@@ -6,21 +6,27 @@ public interface Game {
     int WINTOWERLEVEL = 3;
     int NUMPLAYERS = 2;
 
+    // action number constants
+    int MOVE = 1;
+    int BUILD = 2;
+    int FLIP = 3;
+
     /**
      * Set the next action to be done
      * Action could be move, build or flip
      *
-     * @param action The next action to be set
+     * @param action An int constant representing
+     *  the next action to be set
      */
-    void setNextAction(String action);
+    void setNextAction(int action);
 
     /**
      * Get the next action as a string
      * Action could be move, build or flip
      *
-     * @return the next action as a String
+     * @return the next action as a int constant
      */
-    String getNextAction();
+    int getNextAction();
 
     /**
      * Check whether the game is finished (whether there's a worker standing
@@ -36,7 +42,7 @@ public interface Game {
      * Get the current player who takes the turn
      * @return The current {@link Player} who takes the turn
      */
-    Player getCurrPlayer();
+    int getCurrPlayer();
 
     /**
      * Get the winner of the game (the player who has a worker standing on a
@@ -46,7 +52,7 @@ public interface Game {
      *
      * @return The winner {@link Player} of the game
      */
-    Player getWinner();
+    int getWinner();
 
     /**
      * Flip the turn of the players
@@ -68,11 +74,13 @@ public interface Game {
      * If the move is valid, the actual move is performed, and true is returned;
      * otherwise no operation is done and false is returned.
      *
-     * @param worker The worker to be moved
+     * @param workerId the worker id
+     * @param playerId the player id
      * @param pos The position to be moved
-     * @return true if move is successful, false if move is invalid
+     * @return null if the move is invalid, otherwise a new Board that reflects the
+     *  move is returned
      */
-    boolean move(Worker worker, Pos pos);
+    Board move(int playerId, int workerId, Pos pos);
 
     /**
      * The Worker performs the build operation at position pos.
@@ -80,12 +88,13 @@ public interface Game {
      * If the build is not valid, false is returned and no build is performed;
      * otherwise the build is performed and true is returned.
      *
-     * @param worker The worker that performs the build operation
+     * @param workerId the worker id
+     * @param playerId the player id
      * @param pos The position that the worker will build
-     * @return true if the operation is valid and succeeds, false otherwise and no
-     *  operation is performed
+     * @return null if the build is invalid, otherwise return a new Board which
+     *  reflects the result of the successful build operation
      */
-    boolean build(Worker worker, Pos pos);
+    Board build(int playerId, int workerId, Pos pos);
 
     /**
      * Set up the worker positions for the player.

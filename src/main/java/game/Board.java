@@ -79,6 +79,8 @@ public interface Board {
 
     Board copyBoard();
 
+    Worker getWorker(int playerId, int workerId);
+
     List<Worker> getWorkers();
 
 }

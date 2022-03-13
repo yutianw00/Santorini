@@ -14,34 +14,34 @@ public class ControlImpl implements Control{
     private Player player2;
 
     public ControlImpl() {
-        game = new GameImpl();
-        io = new IOImpl(game);
-        player1 = game.getCurrPlayer();
-        game.flipPlayer();
-        player2 = game.getCurrPlayer();
-        game.flipPlayer();
+//        game = new GameImpl();
+//        io = new IOImpl(game);
+//        player1 = game.getCurrPlayer();
+//        game.flipPlayer();
+//        player2 = game.getCurrPlayer();
+//        game.flipPlayer();
     }
 
     @Override
     public void play() {
         setup();
 
-        // player 1 pick pos for workers
-        playerPickPos(game.getCurrPlayer());
-        game.flipPlayer();
-
-        // player 2 pick pos for workers
-        playerPickPos(game.getCurrPlayer());
-        game.flipPlayer();
-
-        boolean gameEnds = false;
-        while (!gameEnds) {
-            Player player = game.getCurrPlayer();
-            playerTurn(player);
-            gameEnds = game.isFinished();
-            game.flipPlayer();
-        }
-        endGame(game.getWinner());
+//        // player 1 pick pos for workers
+//        playerPickPos(game.getCurrPlayer());
+//        game.flipPlayer();
+//
+//        // player 2 pick pos for workers
+//        playerPickPos(game.getCurrPlayer());
+//        game.flipPlayer();
+//
+//        boolean gameEnds = false;
+//        while (!gameEnds) {
+//            Player player = game.getCurrPlayer();
+//            playerTurn(player);
+//            gameEnds = game.isFinished();
+//            game.flipPlayer();
+//        }
+//        endGame(game.getWinner());
     }
 
     @Override
