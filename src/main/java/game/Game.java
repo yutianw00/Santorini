@@ -13,6 +13,7 @@ public interface Game {
     int MOVE = 1;
     int BUILD = 2;
     int FLIP = 3;
+    int SETUP = 4;
 
     /**
      * Undo the last operation

@@ -57,6 +57,7 @@ public class GameImpl implements Game {
 
         winner = null;
         nextPlayerId = 1;
+        nextAction = SETUP;
     }
 
     private State createState(Board board) {
@@ -101,7 +102,9 @@ public class GameImpl implements Game {
             nextPlayerId = 1;
         }
         this.setNextAction(MOVE);
-        return createState(this.board);
+        State newState = createState(this.board);
+        history.addHistory(newState);
+        return newState;
     }
 
     @Override
@@ -138,7 +141,9 @@ public class GameImpl implements Game {
         Board newBoard = board.copyBoard();
         newBoard.setBoardWorker(playerId, workerId, pos); // delegation
         this.setNextAction(BUILD);
-        return createState(newBoard);
+        State newState = createState(newBoard);
+        history.addHistory(newState);
+        return newState;
     }
 
     @Override
@@ -151,7 +156,9 @@ public class GameImpl implements Game {
         newBoard.build(pos);
         this.setNextAction(FLIP);
         this.flipPlayer();
-        return createState(newBoard);
+        State newState = createState(newBoard);
+        history.addHistory(newState);
+        return newState;
     }
 
     @Override
@@ -169,8 +176,16 @@ public class GameImpl implements Game {
 
         currPlayer.setWorker(pos, workerId);
 
-        return createState(board.setBoardWorker(playerId, workerId, pos));
+        if (workerId == 2) {
+            flipPlayer();
+            if (playerId == 2) {
+                this.setNextAction(MOVE);
+            }
+        }
 
+        State newState = createState(board.setBoardWorker(playerId, workerId, pos));
+        history.addHistory(newState);
+        return newState;
 
     }
 }
