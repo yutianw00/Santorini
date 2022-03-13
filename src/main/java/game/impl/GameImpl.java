@@ -17,7 +17,7 @@ public class GameImpl implements Game {
     private Player p1;
     private Player p2;
     private Player winner;
-    private Player currPlayer;
+    private int nextPlayerId;
 
     @Override
     public boolean undo() {
@@ -56,7 +56,11 @@ public class GameImpl implements Game {
         board = new BoardImpl(w11, w12, w21, w22);
 
         winner = null;
-        currPlayer = p1;
+        nextPlayerId = 1;
+    }
+
+    private State createState(Board board) {
+        return new State(board, nextPlayerId, nextAction);
     }
 
     @Override
@@ -85,18 +89,19 @@ public class GameImpl implements Game {
     }
 
     @Override
-    public int getCurrPlayer() {
-        return (currPlayer == p1) ? 1 : 2;
+    public int getNextPlayerId() {
+        return nextPlayerId;
     }
 
     @Override
-    public void flipPlayer() {
-        if (currPlayer == p1) {
-            currPlayer = p2;
+    public State flipPlayer() {
+        if (nextPlayerId == 1) {
+            nextPlayerId = 2;
         } else {
-            currPlayer = p1;
+            nextPlayerId = 1;
         }
         this.setNextAction(MOVE);
+        return createState(this.board);
     }
 
     @Override
@@ -125,7 +130,7 @@ public class GameImpl implements Game {
     }
 
     @Override
-    public Board move(int playerId, int workerId, Pos pos) {
+    public State move(int playerId, int workerId, Pos pos) {
         Worker worker = getWorker(playerId, workerId);
         if (!board.checkMove(worker, pos)) {
             return null;
@@ -133,11 +138,11 @@ public class GameImpl implements Game {
         Board newBoard = board.copyBoard();
         newBoard.setBoardWorker(playerId, workerId, pos); // delegation
         this.setNextAction(BUILD);
-        return newBoard;
+        return createState(newBoard);
     }
 
     @Override
-    public Board build(int playerId, int workerId, Pos pos) {
+    public State build(int playerId, int workerId, Pos pos) {
         Worker worker = getWorker(playerId, workerId);
         if (!board.checkBuild(worker, pos)) {
             return null;
@@ -145,11 +150,12 @@ public class GameImpl implements Game {
         Board newBoard = board.copyBoard();
         newBoard.build(pos);
         this.setNextAction(FLIP);
-        return newBoard;
+        this.flipPlayer();
+        return createState(newBoard);
     }
 
     @Override
-    public Board setWorker(int playerId, int workerId, Pos pos) {
+    public State setWorker(int playerId, int workerId, Pos pos) {
         if (!board.isInBound(pos)) {
             System.out.println("Game.setWorker: position is out of bound.");
             return null;
@@ -163,7 +169,7 @@ public class GameImpl implements Game {
 
         currPlayer.setWorker(pos, workerId);
 
-        return board.setBoardWorker(playerId, workerId, pos);
+        return createState(board.setBoardWorker(playerId, workerId, pos));
 
 
     }

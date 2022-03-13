@@ -5,12 +5,12 @@ import game.Player;
 
 public class State {
     Board board;
-    Player player;
+    int playerId;
     int nextAction;
 
-    public State(Board board, Player player, int nextAction) {
+    public State(Board board, int playerId, int nextAction) {
         this.board = board;
-        this.player = player;
+        this.playerId = playerId;
         this.nextAction = nextAction;
     }
 }

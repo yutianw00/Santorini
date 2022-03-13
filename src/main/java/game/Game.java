@@ -55,10 +55,10 @@ public interface Game {
     boolean isFinished();
 
     /**
-     * Get the current player who takes the turn
-     * @return The current {@link Player} who takes the turn
+     * Get the next player who is taking the next action
+     * @return The next {@link Player} who takes the next action
      */
-    int getCurrPlayer();
+    int getNextPlayerId();
 
     /**
      * Get the winner of the game (the player who has a worker standing on a
@@ -76,7 +76,7 @@ public interface Game {
      * Effect: player's turn is flipped, the {@code getPlayer()} will return
      * different players before and after this function is executed
      */
-    void flipPlayer();
+    State flipPlayer();
 
     /**
      * Get the board of this game
@@ -96,7 +96,7 @@ public interface Game {
      * @return null if the move is invalid, otherwise a new Board that reflects the
      *  move is returned
      */
-    Board move(int playerId, int workerId, Pos pos);
+    State move(int playerId, int workerId, Pos pos);
 
     /**
      * The Worker performs the build operation at position pos.
@@ -110,7 +110,7 @@ public interface Game {
      * @return null if the build is invalid, otherwise return a new Board which
      *  reflects the result of the successful build operation
      */
-    Board build(int playerId, int workerId, Pos pos);
+    State build(int playerId, int workerId, Pos pos);
 
     /**
      * Set up the worker positions for the player.
@@ -124,6 +124,6 @@ public interface Game {
      *
      * @return true if set up is successful, false if the position is invalid
      */
-    Board setWorker(int playerId, int workerId, Pos pos);
+    State setWorker(int playerId, int workerId, Pos pos);
 
 }
