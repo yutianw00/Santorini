@@ -25,6 +25,11 @@ public class GameImpl implements Game {
     }
 
     @Override
+    public State getCurrState() {
+        return history.getLast();
+    }
+
+    @Override
     public boolean undo() {
         return history.undo();
     }

@@ -31,6 +31,9 @@ public class HistoryImpl<T> implements History<T> {
 
     @Override
     public T getLast() {
+        if (history.size() == 0) {
+            return null;
+        }
         return history.get(history.size()-1);
     }
 

@@ -28,6 +28,12 @@ public interface Game {
     boolean undo();
 
     /**
+     * get the current state (the state that is just stored into the history)
+     * @return The current {@link State} or null if no state is stored
+     */
+    State getCurrState();
+
+    /**
      * Get all the history of the game
      * @return A list of states representing all the history of the game
      */

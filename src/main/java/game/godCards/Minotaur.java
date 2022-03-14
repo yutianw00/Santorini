@@ -18,7 +18,7 @@ public class Minotaur implements GodPower{
     private int playerId;
     private int otherPlayerId;
 
-    public Minotaur(Game game, int playerId) {
+    public Minotaur(int playerId, Game game) {
         this.game = game;
         this.playerId = playerId;
         this.otherPlayerId = (playerId == 1) ? 2 : 1;
