@@ -70,6 +70,7 @@ public class GameImpl implements Game {
     }
 
     @Override
+    // TODO: may need to change for the Minotaur case
     public boolean isFinished() {
         Pos p1APos = p1.getWorkerA().getPos();
         Pos p1BPos = p1.getWorkerB().getPos();
@@ -110,7 +111,7 @@ public class GameImpl implements Game {
         } else {
             nextPlayerId = 1;
         }
-        this.setNextAction(MOVE);
+
     }
 
     @Override
@@ -154,15 +155,15 @@ public class GameImpl implements Game {
         return newState;
     }
 
-    @Override
-    public State moveWithoutCheck(int playerId, int workerId, Pos pos) {
-        Board newBoard = board.copyBoard();
-        newBoard.setBoardWorker(playerId, workerId, pos); // delegation
-        this.setNextAction(BUILD);
-        State newState = createState(newBoard);
-        history.addHistory(newState);
-        return newState;
-    }
+//    @Override
+//    public State moveWithoutCheck(int playerId, int workerId, Pos pos) {
+//        Board newBoard = board.copyBoard();
+//        newBoard.setBoardWorker(playerId, workerId, pos); // delegation
+//        this.setNextAction(BUILD);
+//        State newState = createState(newBoard);
+//        history.addHistory(newState);
+//        return newState;
+//    }
 
     @Override
     public State build(int playerId, int workerId, Pos pos) {
@@ -173,7 +174,7 @@ public class GameImpl implements Game {
         Board newBoard = board.build(pos);
         this.board = newBoard;
 
-        this.setNextAction(FLIP);
+        this.setNextAction(MOVE);
         this.flipPlayer();
         State newState = createState(newBoard);
         history.addHistory(newState);
@@ -182,6 +183,7 @@ public class GameImpl implements Game {
 
     @Override
     public State setWorker(int playerId, int workerId, Pos pos) {
+
         if (!board.isInBound(pos)) {
             System.out.println("Game.setWorker: position is out of bound.");
             return null;
@@ -193,13 +195,15 @@ public class GameImpl implements Game {
 
         Player currPlayer = (playerId == 1) ? p1 : p2;
 
+
         currPlayer.setWorker(pos, workerId);
+
+        if (playerId == 2 && playerId == 2) {
+            this.setNextAction(MOVE);
+        }
 
         if (workerId == 2) {
             flipPlayer();
-            if (playerId == 2) {
-                this.setNextAction(MOVE);
-            }
         }
 
         State newState = createState(board.setBoardWorker(playerId, workerId, pos));

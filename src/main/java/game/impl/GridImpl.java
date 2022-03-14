@@ -3,6 +3,8 @@ package game.impl;
 import game.Grid;
 
 public class GridImpl implements Grid {
+
+
     private int levels;
 
     public GridImpl() {
@@ -14,8 +16,8 @@ public class GridImpl implements Grid {
     }
 
     @Override
-    public Grid copy() {
-        return new GridImpl(this.getLevels());
+    public Grid copyGrid() {
+        return new GridImpl(this.levels);
     }
 
     @Override

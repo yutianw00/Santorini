@@ -15,17 +15,17 @@ public class PlayerTest {
 //        player = new PlayerImpl();
     }
 
-    @Test
-    public void setWorkerATest() {
-        player.setWorkerA(new Pos(3,4));
-        assert(player.getWorkerA().getPos().equals(new Pos(3,4)));
-    }
-
-
-    @Test
-    public void setWorkerB() {
-        player.setWorkerB(new Pos(0,0));
-        assert(player.getWorkerB().getPos().equals(new Pos(0,0)));
-    }
+//    @Test
+//    public void setWorkerATest() {
+//        player.setWorkerA(new Pos(3,4));
+//        assert(player.getWorkerA().getPos().equals(new Pos(3,4)));
+//    }
+//
+//
+//    @Test
+//    public void setWorkerB() {
+//        player.setWorkerB(new Pos(0,0));
+//        assert(player.getWorkerB().getPos().equals(new Pos(0,0)));
+//    }
 
 }

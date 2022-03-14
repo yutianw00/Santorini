@@ -12,7 +12,6 @@ public interface Game {
     // action number constants
     int MOVE = 1;
     int BUILD = 2;
-    int FLIP = 3;
     int SETUP = 4;
 
     /**
@@ -105,18 +104,18 @@ public interface Game {
      */
     State move(int playerId, int workerId, Pos pos);
 
-    /**
-     * Perform the move operation without checking validity
-     * This action can be used for a player with some certain God power
-     * in which the move-valid condition is changed
-     *
-     * @param playerId The id of the player
-     * @param workerId The id of the worker
-     * @param pos The position to be moved
-     * @return null if the move is not valid, otherwise the {@link State}
-     *  after the move of the player
-     */
-    State moveWithoutCheck(int playerId, int workerId, Pos pos);
+//    /**
+//     * Perform the move operation without checking validity
+//     * This action can be used for a player with some certain God power
+//     * in which the move-valid condition is changed
+//     *
+//     * @param playerId The id of the player
+//     * @param workerId The id of the worker
+//     * @param pos The position to be moved
+//     * @return null if the move is not valid, otherwise the {@link State}
+//     *  after the move of the player
+//     */
+//    State moveWithoutCheck(int playerId, int workerId, Pos pos);
 
     /**
      * The Worker performs the build operation at position pos.
