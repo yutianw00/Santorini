@@ -24,4 +24,5 @@ public class State {
     public int getNextAction() {
         return nextAction;
     }
+
 }

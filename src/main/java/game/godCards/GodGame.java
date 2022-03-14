@@ -79,20 +79,40 @@ public class GodGame implements Game {
     }
 
     @Override
-    public State move(int playerId, int workerId, Pos pos) {
+    public State getCurrState() {
+        return game.getCurrState();
+    }
+
+    @Override
+    public State usePower(int playerId, int workerId, Pos pos) {
         if (playerId == 1) {
-            if (god1.canDoAction(game.get))
+            if (god1.canDoAction(game.getCurrState())) {
+                return god1.action(workerId, pos);
+            } else {
+                return null;
+            }
+        } else { // playerid = 2
+            if (god2.canDoAction(game.getCurrState())) {
+                return god2.action(workerId, pos);
+            } else {
+                return null;
+            }
         }
+    }
+
+    @Override
+    public State move(int playerId, int workerId, Pos pos) {
+        game.move(playerId, workerId, pos);
         return null;
     }
 
     @Override
     public State build(int playerId, int workerId, Pos pos) {
-        return null;
+        return game.build(playerId, workerId, pos);
     }
 
     @Override
     public State setWorker(int playerId, int workerId, Pos pos) {
-        return null;
+        return game.setWorker(playerId, workerId, pos);
     }
 }

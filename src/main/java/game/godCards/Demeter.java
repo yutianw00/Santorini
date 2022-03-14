@@ -39,6 +39,9 @@ public class Demeter implements GodPower{
          * As a result of the successful build, the player will be switched
          * to the other player, and the action will be set to MOVE
          */
+        if (state == null) {
+            return false;
+        }
         if (state.getPlayerId() == playerId) {
             return false;
         }

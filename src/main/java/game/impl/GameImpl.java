@@ -219,4 +219,10 @@ public class GameImpl implements Game {
         return newState;
 
     }
+
+    @Override
+    public State usePower(int playerId, int workerId, Pos pos) {
+        // in normal mode, no god exists and no power can be used
+        return null;
+    }
 }

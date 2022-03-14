@@ -151,4 +151,17 @@ public interface Game {
      */
     State setWorker(int playerId, int workerId, Pos pos);
 
+    /**
+     * In god mode, a player may have the ability to actively use their god powers
+     * If the god power can be used, the action is performed and a new State is returned
+     * If the god power cannot be used or the game is not in the god mode,
+     * null is returned.
+     * @param playerId the player ID
+     * @param workerId the worker ID
+     * @param pos the position of the action
+     * @return new {@link State} if the god power is used successfully,
+     *  null if no god power can be used
+     */
+    State usePower(int playerId, int workerId, Pos pos);
+
 }

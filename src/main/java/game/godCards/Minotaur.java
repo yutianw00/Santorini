@@ -40,6 +40,9 @@ public class Minotaur implements GodPower{
          * The action can only be performed if it's player's turn and
          * the player is about to perform a move operation
          */
+        if (state == null) {
+            return false;
+        }
         if (state.getNextAction() != Game.MOVE) {
             return false;
         } else if (state.getPlayerId() != this.playerId) {
