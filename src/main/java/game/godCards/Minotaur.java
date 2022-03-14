@@ -6,6 +6,12 @@ import game.Worker;
 import game.utils.Pos;
 import game.utils.State;
 
+/**
+ * Minotaur: Bull-headed Monster
+ *  Your Move: Your Worker may move into an opponent Worker’s space,
+ *  if their Worker can be forced one space straight backwards to an
+ *  unoccupied space at any level
+ */
 public class Minotaur implements GodPower{
 
     private Game game;
@@ -79,13 +85,13 @@ public class Minotaur implements GodPower{
     }
 
     /**
-     * Valid if a board force senario is formed.
-     * Side effect: if a minotaur senario is formed, the forced worker is moved in advance
+     * Valid if a board force scenario is formed.
+     * Side effect: if a minotaur scenario is formed, the forced worker is moved in advance
      *  to give space to the minotaur.
-     * @param board
-     * @param currPos
-     * @param targetPos
-     * @param otherWorker
+     * @param board The board that the valid force condition will be examined on
+     * @param currPos The current position of the worker
+     * @param targetPos The target position that the worker is planning to move to
+     * @param otherWorker The other player's worker that could possibly take the target position's place
      * @return if force condition is not formed, null is returned
      *  otherwise return a new {@link Board} with the forced worker moving to its forced
      *  position in advance

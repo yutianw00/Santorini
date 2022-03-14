@@ -4,6 +4,12 @@ import game.Game;
 import game.utils.Pos;
 import game.utils.State;
 
+/**
+ * Demeter:
+ * Goddess of the Harvest
+ *  Your Build: Your Worker may build one additional time,
+ *  but not on the same space
+ */
 public class Demeter implements GodPower{
     private Game game;
     private int playerId;
