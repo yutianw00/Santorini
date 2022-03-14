@@ -57,7 +57,23 @@ public class GameTest {
     }
 
     @Test
-    public void undo() {
+    public void undoTest1() {
+        game = new GameImpl();
+        assertFalse(game.undo());
+    }
+
+    @Test
+    public void undoTest2() {
+        game = new GameImpl();
+        state = game.setWorker(1, 1, new Pos(0,1));
+        state = game.setWorker(1, 2, new Pos(1,1));
+        assertTrue(game.getHistory().size() == 2);
+        State state0 = game.getHistory().get(0);
+        game.undo();
+        assertTrue(game.getHistory().size() == 1);
+        State state1 = game.getHistory().get(0);
+        assertTrue(state0 == state1);
+
     }
 
     @Test
@@ -92,20 +108,4 @@ public class GameTest {
 //        assertFalse(game.isFinished());
 //    }
 //
-//    @Test
-//    public void flipPlayerTestFalse() {
-//        game = new GameImpl();
-//        Player p1 = game.getCurrPlayer();
-//        game.flipPlayer();
-//        assertFalse(game.getCurrPlayer() == p1);
-//    }
-//
-//    @Test
-//    public void flipPlayerTestTrue() {
-//        game = new GameImpl();
-//        Player p1 = game.getCurrPlayer();
-//        game.flipPlayer();
-//        game.flipPlayer();
-//        assertTrue(game.getCurrPlayer() == p1);
-//    }
 }
