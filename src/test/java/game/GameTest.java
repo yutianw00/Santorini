@@ -90,28 +90,54 @@ public class GameTest {
         assertTrue(game.getNextPlayerId() == 2);
     }
 
-    @Test
-    public void move() {
+    private Game setupGame() {
+        game = new GameImpl();
+        state = game.setWorker(1, 1, new Pos(0,1));
+        state = game.setWorker(1, 2, new Pos(1,1));
+        state = game.setWorker(2, 1, new Pos(1,2));
+        state = game.setWorker(2, 2, new Pos(0,2));
+        return game;
     }
 
     @Test
-    public void build() {
+    public void moveTrueTest() {
+        Game game = setupGame();
+        int prevHistoryLen = game.getHistory().size();
+        State state = game.move(1, 1, new Pos(0,0));
+        assertFalse(state == null);
+        assertTrue(game.getBoard().hasWorker(new Pos(0,0)));
+        assertFalse(game.getBoard().hasWorker(new Pos(0,1)));
+        int currHistoryLen = game.getHistory().size();
+        assertTrue(currHistoryLen == prevHistoryLen + 1);
+    }
+
+    @Test
+    public void moveFalseTest() {
+        Game game = setupGame();
+        State state = game.move(1, 1, new Pos(1,1));
+        assertTrue(state == null);
+    }
+
+    @Test
+    public void buildTrueTest() {
+        Game game = setupGame();
+        int prevHistoryLen = game.getHistory().size();
+        state = game.move(1, 1, new Pos(0,0));
+        state = game.build(1, 1, new Pos(0,1));
+        assertFalse(state == null);
+        assertFalse(game.getBoard().hasWorker(new Pos(0,1)));
+        assertTrue(game.getBoard().getGrid(new Pos(0,1)).getLevels() == 1);
+        int currHistoryLen = game.getHistory().size();
+        assertTrue(currHistoryLen == prevHistoryLen + 2);
+    }
+
+    @Test
+    public void buildTrueFalse() {
+        Game game = setupGame();
+        state = game.move(1, 1, new Pos(0,0));
+        state = game.build(1, 1, new Pos(1,1));
+        assertTrue(state == null);
     }
 
 
-
-//    @Test
-//    public void isFinishedTestFalse() {
-//        game = new GameImpl();
-//        Player p1 = game.getCurrPlayer();
-//        game.flipPlayer();
-//        Player p2 = game.getCurrPlayer();
-//        p1.setWorkerA(new Pos(0,0));
-//        p1.setWorkerB(new Pos(0,1));
-//        p2.setWorkerA(new Pos(1,0));
-//        p2.setWorkerB(new Pos(1,1));
-//
-//        assertFalse(game.isFinished());
-//    }
-//
 }
