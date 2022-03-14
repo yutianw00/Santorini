@@ -72,6 +72,9 @@ public class GameImpl implements Game {
     @Override
     // TODO: may need to change for the Minotaur case
     public boolean isFinished() {
+        if (nextAction == Game.SETUP) {
+            return false;
+        }
         Pos p1APos = p1.getWorkerA().getPos();
         Pos p1BPos = p1.getWorkerB().getPos();
         Pos p2APos = p2.getWorkerA().getPos();

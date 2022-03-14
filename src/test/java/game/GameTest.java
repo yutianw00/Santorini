@@ -77,11 +77,17 @@ public class GameTest {
     }
 
     @Test
-    public void isFinished() {
+    public void isFinishedTestFalse() {
+        game = new GameImpl();
+        assertFalse(game.isFinished());
     }
 
     @Test
     public void flipPlayer() {
+        game = new GameImpl();
+        assertTrue(game.getNextPlayerId() == 1);
+        game.flipPlayer();
+        assertTrue(game.getNextPlayerId() == 2);
     }
 
     @Test
