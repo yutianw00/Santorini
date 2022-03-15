@@ -55,10 +55,7 @@ public class Minotaur implements GodPower{
 
     @Override
     public boolean isFinished() {
-        if (hasFinished) {
-            return true;
-        }
-        return false;
+        return game.isFinished();
     }
 
     /**
