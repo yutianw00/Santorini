@@ -11,6 +11,8 @@ public interface GodPower {
      */
     String description();
 
+    boolean isFinished();
+
     /**
      * check during the current game condition, if the player
      * can use his/her GodPower

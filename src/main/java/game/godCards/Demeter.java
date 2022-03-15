@@ -33,6 +33,11 @@ public class Demeter implements GodPower{
     }
 
     @Override
+    public boolean isFinished() {
+        return game.isFinished();
+    }
+
+    @Override
     public boolean canDoAction(State state) {
         /* The action can only be performed when the player with this
          * god power has just performed a successful build

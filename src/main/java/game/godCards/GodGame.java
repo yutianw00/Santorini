@@ -55,7 +55,7 @@ public class GodGame implements Game {
 
     @Override
     public boolean isFinished() {
-        return game.isFinished();
+        return god1.isFinished() || god2.isFinished();
     }
 
     @Override

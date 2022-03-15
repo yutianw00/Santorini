@@ -16,8 +16,10 @@ public class GameImpl implements Game {
     private Board board;
     private Player p1;
     private Player p2;
-    private Player winner;
+    private int winnerId;
     private int nextPlayerId;
+
+    private boolean hasFinished = false;
 
     @Override
     public void setBoard(Board newBoard) {
@@ -65,9 +67,10 @@ public class GameImpl implements Game {
 
         board = new BoardImpl(w11, w12, w21, w22);
 
-        winner = null;
+        winnerId = -1; // no winner yet
         nextPlayerId = 1;
         nextAction = SETUP;
+        hasFinished = false;
     }
 
     private State createState(Board board) {
@@ -75,31 +78,31 @@ public class GameImpl implements Game {
     }
 
     @Override
-    // TODO: may need to change for the Minotaur case
     public boolean isFinished() {
-        if (nextAction == Game.SETUP) {
-            return false;
-        }
-        Pos p1APos = p1.getWorkerA().getPos();
-        Pos p1BPos = p1.getWorkerB().getPos();
-        Pos p2APos = p2.getWorkerA().getPos();
-        Pos p2BPos = p2.getWorkerB().getPos();
-
-        for (Pos pos : Arrays.asList(p1APos, p1BPos)) {
-            if (board.getGrid(pos).getLevels() == WINTOWERLEVEL) {
-                winner = p1;
-                return true;
-            }
-        }
-
-        for (Pos pos : Arrays.asList(p2APos, p2BPos)) {
-            if (board.getGrid(pos).getLevels() == WINTOWERLEVEL) {
-                winner = p2;
-                return true;
-            }
-        }
-
-        return false;
+//        if (nextAction == Game.SETUP) {
+//            return false;
+//        }
+        return this.hasFinished;
+//        Pos p1APos = p1.getWorkerA().getPos();
+//        Pos p1BPos = p1.getWorkerB().getPos();
+//        Pos p2APos = p2.getWorkerA().getPos();
+//        Pos p2BPos = p2.getWorkerB().getPos();
+//
+//        for (Pos pos : Arrays.asList(p1APos, p1BPos)) {
+//            if (board.getGrid(pos).getLevels() == WINTOWERLEVEL) {
+//                winner = p1;
+//                return true;
+//            }
+//        }
+//
+//        for (Pos pos : Arrays.asList(p2APos, p2BPos)) {
+//            if (board.getGrid(pos).getLevels() == WINTOWERLEVEL) {
+//                winner = p2;
+//                return true;
+//            }
+//        }
+//
+//        return false;
 
     }
 
@@ -124,11 +127,12 @@ public class GameImpl implements Game {
 
     @Override
     public int getWinner() {
-        if (winner == null) {
-            return -1;
-        } else {
-            return (winner == p1) ? 1 : 2;
-        }
+        return winnerId;
+//        if (winner == null) {
+//            return -1;
+//        } else {
+//            return (winner == p1) ? 1 : 2;
+//        }
     }
 
     Worker getWorker(int playerId, int workerId) {
@@ -147,6 +151,14 @@ public class GameImpl implements Game {
         }
     }
 
+    private void checkWinCondition(int playerId, Pos prevPos, Pos nextPos) {
+        if (board.getGrid(prevPos).getLevels() != WINTOWERLEVEL
+                && board.getGrid(nextPos).getLevels() == WINTOWERLEVEL) {
+            this.hasFinished = true;
+            this.winnerId = playerId;
+        }
+    }
+
     @Override
     public State move(int playerId, int workerId, Pos pos) {
         Worker worker = getWorker(playerId, workerId);
@@ -154,8 +166,12 @@ public class GameImpl implements Game {
             return null;
         }
 
+        checkWinCondition(playerId, worker.getPos(), pos);
+
         Board newBoard = board.setBoardWorker(playerId, workerId, pos); // delegation
         this.board = newBoard; // assign the newBoard to be the board of the game
+
+
 
         this.setNextAction(BUILD);
         State newState = createState(newBoard);
