@@ -21,6 +21,12 @@ public class GameImpl implements Game {
 
     private boolean hasFinished = false;
 
+//    @Override
+//    public void setWinner(int playerId) {
+//        this.winnerId = playerId;
+//        this.hasFinished = true;
+//    }
+
     @Override
     public void setBoard(Board newBoard) {
         this.board = newBoard;

@@ -2,6 +2,7 @@ package game.godCards;
 
 import game.Board;
 import game.Game;
+import game.Worker;
 import game.utils.Pos;
 import game.utils.State;
 
@@ -11,6 +12,8 @@ public class GodGame implements Game {
 
     Game game;
     GodPower god1, god2;
+    int winnerId = -1; // no winner yet
+    boolean hasFinished = false;
 
     public GodGame(Game game, String god1, String god2) {
         this.game = game;
@@ -55,7 +58,7 @@ public class GodGame implements Game {
 
     @Override
     public boolean isFinished() {
-        return god1.isFinished() || god2.isFinished();
+        return game.isFinished() || hasFinished;
     }
 
     @Override
@@ -65,7 +68,12 @@ public class GodGame implements Game {
 
     @Override
     public int getWinner() {
-        return game.getWinner();
+        if (game.isFinished()) {
+            return game.getWinner();
+        } else {
+            return this.winnerId;
+        }
+
     }
 
     @Override
@@ -102,8 +110,21 @@ public class GodGame implements Game {
 
     @Override
     public State move(int playerId, int workerId, Pos pos) {
-        game.move(playerId, workerId, pos);
-        return null;
+
+        boolean p1Win = god1.checkWin(playerId, workerId, pos);
+        boolean p2Win = god2.checkWin(playerId, workerId, pos);
+        State res = game.move(playerId, workerId, pos);
+        if (res != null) {
+            // meaning the operation is performed successfully
+            if (p1Win) {
+                winnerId = 1;
+                hasFinished = true;
+            } else if (p2Win) {
+                winnerId = 2;
+                hasFinished = true;
+            }
+        }
+        return res;
     }
 
     @Override

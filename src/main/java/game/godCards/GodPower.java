@@ -11,7 +11,9 @@ public interface GodPower {
      */
     String description();
 
-    boolean isFinished();
+    boolean checkWin(int playerId, int workerId, Pos pos);
+
+
 
     /**
      * check during the current game condition, if the player

@@ -33,8 +33,8 @@ public class Demeter implements GodPower{
     }
 
     @Override
-    public boolean isFinished() {
-        return game.isFinished();
+    public boolean checkWin(int playerId, int workerId, Pos pos) {
+        return false;
     }
 
     @Override

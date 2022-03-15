@@ -14,6 +14,13 @@ public interface Game {
     int BUILD = 2;
     int SETUP = 4;
 
+//    /**
+//     * Set the winner of the game
+//     * This is can be done externally in the god mode
+//     * @param playerId The winner to be set
+//     */
+//    void setWinner(int playerId);
+
     /**
      * Set the board of the game to be a new {@link Board}
      * @param board The new board to set

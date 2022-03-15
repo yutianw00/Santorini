@@ -17,13 +17,11 @@ public class Minotaur implements GodPower{
     private Game game;
     private int playerId;
     private int otherPlayerId;
-    private boolean hasFinished;
 
     public Minotaur(int playerId, Game game) {
         this.game = game;
         this.playerId = playerId;
         this.otherPlayerId = (playerId == 1) ? 2 : 1;
-        this.hasFinished = false;
     }
 
     @Override
@@ -54,8 +52,8 @@ public class Minotaur implements GodPower{
     }
 
     @Override
-    public boolean isFinished() {
-        return game.isFinished();
+    public boolean checkWin(int playerId, int workerId, Pos pos) {
+        return false;
     }
 
     /**
