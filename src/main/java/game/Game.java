@@ -14,13 +14,6 @@ public interface Game {
     int BUILD = 2;
     int SETUP = 4;
 
-//    /**
-//     * Set the winner of the game
-//     * This is can be done externally in the god mode
-//     * @param playerId The winner to be set
-//     */
-//    void setWinner(int playerId);
-
     /**
      * Set the board of the game to be a new {@link Board}
      * @param board The new board to set
@@ -116,19 +109,6 @@ public interface Game {
      *  move is returned
      */
     State move(int playerId, int workerId, Pos pos);
-
-//    /**
-//     * Perform the move operation without checking validity
-//     * This action can be used for a player with some certain God power
-//     * in which the move-valid condition is changed
-//     *
-//     * @param playerId The id of the player
-//     * @param workerId The id of the worker
-//     * @param pos The position to be moved
-//     * @return null if the move is not valid, otherwise the {@link State}
-//     *  after the move of the player
-//     */
-//    State moveWithoutCheck(int playerId, int workerId, Pos pos);
 
     /**
      * The Worker performs the build operation at position pos.

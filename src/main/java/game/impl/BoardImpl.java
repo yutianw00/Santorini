@@ -16,11 +16,6 @@ public class BoardImpl implements Board {
     private List<Worker> workers;
     private Grid[][] grids;
 
-//    private final int idx1A = 0;
-//    private final int idx1B = 1;
-//    private final int idx2A = 2;
-//    private final int idx2B = 3;
-
     private void initGrid() {
         Grid[][] grids = new Grid[NUMROWS][NUMCOLS];
         for (int i = 0; i < NUMROWS; i++) {

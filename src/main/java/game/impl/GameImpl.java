@@ -21,12 +21,6 @@ public class GameImpl implements Game {
 
     private boolean hasFinished = false;
 
-//    @Override
-//    public void setWinner(int playerId) {
-//        this.winnerId = playerId;
-//        this.hasFinished = true;
-//    }
-
     @Override
     public void setBoard(Board newBoard) {
         this.board = newBoard;
@@ -85,31 +79,7 @@ public class GameImpl implements Game {
 
     @Override
     public boolean isFinished() {
-//        if (nextAction == Game.SETUP) {
-//            return false;
-//        }
         return this.hasFinished;
-//        Pos p1APos = p1.getWorkerA().getPos();
-//        Pos p1BPos = p1.getWorkerB().getPos();
-//        Pos p2APos = p2.getWorkerA().getPos();
-//        Pos p2BPos = p2.getWorkerB().getPos();
-//
-//        for (Pos pos : Arrays.asList(p1APos, p1BPos)) {
-//            if (board.getGrid(pos).getLevels() == WINTOWERLEVEL) {
-//                winner = p1;
-//                return true;
-//            }
-//        }
-//
-//        for (Pos pos : Arrays.asList(p2APos, p2BPos)) {
-//            if (board.getGrid(pos).getLevels() == WINTOWERLEVEL) {
-//                winner = p2;
-//                return true;
-//            }
-//        }
-//
-//        return false;
-
     }
 
     @Override
@@ -134,11 +104,6 @@ public class GameImpl implements Game {
     @Override
     public int getWinner() {
         return winnerId;
-//        if (winner == null) {
-//            return -1;
-//        } else {
-//            return (winner == p1) ? 1 : 2;
-//        }
     }
 
     Worker getWorker(int playerId, int workerId) {
@@ -184,16 +149,6 @@ public class GameImpl implements Game {
         history.addHistory(newState);
         return newState;
     }
-
-//    @Override
-//    public State moveWithoutCheck(int playerId, int workerId, Pos pos) {
-//        Board newBoard = board.copyBoard();
-//        newBoard.setBoardWorker(playerId, workerId, pos); // delegation
-//        this.setNextAction(BUILD);
-//        State newState = createState(newBoard);
-//        history.addHistory(newState);
-//        return newState;
-//    }
 
     @Override
     public State build(int playerId, int workerId, Pos pos) {
