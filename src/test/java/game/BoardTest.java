@@ -2,7 +2,9 @@ package game;
 
 import game.impl.BoardImpl;
 import game.impl.GameImpl;
+import game.impl.WorkerImpl;
 import game.utils.Pos;
+import game.utils.State;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,113 +12,68 @@ import static org.junit.Assert.*;
 
 public class BoardTest {
 
-//    Board board;
-//    @Before
-//    public void setup() {
-////        board = new BoardImpl();
-//    }
-//
-//    @Test
-//    public void hasWorkerTestFalse() {
-//        assertFalse(board.hasWorker(new Pos(0,0)));
-//    }
-//
-//    @Test
-//    public void hasWorkerTestTrue() {
-//        GameImpl game = new GameImpl();
-//        Player p1 = game.getCurrPlayer();
-//        p1.setWorkerA(new Pos(1,1));
-//        game.getBoard().setWorker(1,1,p1.getWorkerA());
-//        assertTrue(game.getBoard().hasWorker(new Pos(1,1)));
-//    }
-//
-//    @Test
-//    public void checkMoveTestTrue() {
-//        GameImpl game = new GameImpl();
-//        Player p1 = game.getCurrPlayer();
-//        p1.setWorkerA(new Pos(1,1));
-//        game.getBoard().setWorker(1,1,p1.getWorkerA());
-//        assertTrue(game.getBoard().checkMove(p1.getWorkerA(), new Pos(0,1)));
-//    }
-//
-//    @Test
-//    public void checkMoveTestFalseNotMove() {
-//        GameImpl game = new GameImpl();
-//        Player p1 = game.getCurrPlayer();
-//        p1.setWorkerA(new Pos(1,1));
-//        game.getBoard().setWorker(1,1,p1.getWorkerA());
-//        assertFalse(game.getBoard().checkMove(p1.getWorkerA(), new Pos(1,1)));
-//    }
-//
-//    @Test
-//    public void checkMoveTestFalseMoveFar() {
-//        GameImpl game = new GameImpl();
-//        Player p1 = game.getCurrPlayer();
-//        p1.setWorkerA(new Pos(1,1));
-//        game.getBoard().setWorker(1,1,p1.getWorkerA());
-//        assertFalse(game.getBoard().checkMove(p1.getWorkerA(), new Pos(1,3)));
-//    }
-//
-//    @Test
-//    public void checkMoveTestTrueMoveDiagonal() {
-//        GameImpl game = new GameImpl();
-//        Player p1 = game.getCurrPlayer();
-//        p1.setWorkerA(new Pos(1,1));
-//        game.getBoard().setWorker(1,1,p1.getWorkerA());
-//        assertTrue(game.getBoard().checkMove(p1.getWorkerA(), new Pos(2,2)));
-//    }
-//
-//    @Test
-//    public void checkBuildTestTrueAdjacent() {
-//        GameImpl game = new GameImpl();
-//        Player p1 = game.getCurrPlayer();
-//        p1.setWorkerA(new Pos(1,1));
-//        game.getBoard().setWorker(1,1,p1.getWorkerA());
-//
-//        Board board = game.getBoard();
-//        assertTrue(board.checkBuild(p1.getWorkerA(), new Pos(0,1)));
-//    }
-//
-//    @Test
-//    public void checkBuildTestTrueDiagonal() {
-//        GameImpl game = new GameImpl();
-//        Player p1 = game.getCurrPlayer();
-//        p1.setWorkerA(new Pos(1,1));
-//        game.getBoard().setWorker(1,1,p1.getWorkerA());
-//
-//        Board board = game.getBoard();
-//        assertTrue(board.checkBuild(p1.getWorkerA(), new Pos(2,2)));
-//    }
-//
-//    @Test
-//    public void checkBuildTestFalseHasBuilder() {
-//        GameImpl game = new GameImpl();
-//        Player p1 = game.getCurrPlayer();
-//        p1.setWorkerA(new Pos(1,1));
-//        game.getBoard().setWorker(1,1,p1.getWorkerA());
-//
-//        Board board = game.getBoard();
-//        assertFalse(board.checkBuild(p1.getWorkerA(), new Pos(1,1)));
-//    }
-//
-//    @Test
-//    public void checkBuildTestFalseTooFar() {
-//        GameImpl game = new GameImpl();
-//        Player p1 = game.getCurrPlayer();
-//        p1.setWorkerA(new Pos(1,1));
-//        game.getBoard().setWorker(1,1,p1.getWorkerA());
-//
-//        Board board = game.getBoard();
-//        assertFalse(board.checkBuild(p1.getWorkerA(), new Pos(1,3)));
-//    }
-//
-//    @Test
-//    public void buildTest() {
-//        GameImpl game = new GameImpl();
-//        Board board = game.getBoard();
-//        board.build(new Pos(2,2));
-//        Grid grid = board.getGrid(new Pos(2,2));
-//        assertTrue(grid.getLevels() == 1);
-//    }
+    Board board;
+    Worker w11, w12, w21, w22;
+
+    @Before
+    public void setup() {
+        w11 = new WorkerImpl(new Pos(1,1));
+        w12 = new WorkerImpl(new Pos(1,2));
+        w21 = new WorkerImpl(new Pos(2,1));
+        w22 = new WorkerImpl(new Pos(2,2));
+        board = new BoardImpl(w11, w12, w21, w22);
+    }
+
+    @Test
+    public void hasWorkerTestFalse() {
+        assertFalse(board.hasWorker(new Pos(0,0)));
+    }
+
+    @Test
+    public void hasWorkerTestTrue() {
+        board.hasWorker(new Pos(1,2));
+    }
+
+    @Test
+    public void checkMoveTestFalseNotMove() {
+        assertFalse(board.checkMove(w11, new Pos(1,1)));
+    }
+
+    @Test
+    public void checkMoveTestFalseMoveFar() {
+        assertFalse(board.checkMove(w11, new Pos(1,3)));
+    }
+
+    @Test
+    public void checkMoveTestTrueMoveDiagonal() {
+        assertTrue(board.checkMove(w11, new Pos(0,0)));
+    }
+
+    @Test
+    public void checkBuildTestTrueAdjacent() {
+        assertTrue(board.checkMove(w11, new Pos(0,1)));
+    }
+
+    @Test
+    public void checkBuildTestTrueDiagonal() {
+        assertTrue(board.checkBuild(w11, new Pos(0,0)));
+    }
+
+    @Test
+    public void checkBuildTestFalseHasBuilder() {
+        assertFalse(board.checkBuild(w11, new Pos(1,1)));
+    }
+
+    @Test
+    public void checkBuildTestFalseTooFar() {
+        assertFalse(board.checkBuild(w11, new Pos(4,4)));
+    }
+
+    @Test
+    public void buildTest() {
+        Board newBoard = board.build(new Pos(0,0));
+        Grid grid = newBoard.getGrid(new Pos(0,0));
+        assertTrue(grid.getLevels() == 1);
+    }
 
 }

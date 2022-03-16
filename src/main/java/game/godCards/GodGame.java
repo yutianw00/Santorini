@@ -15,7 +15,7 @@ public class GodGame implements Game {
     int winnerId = -1; // no winner yet
     boolean hasFinished = false;
 
-    public GodGame(Game game, String god1, String god2) {
+    public GodGame(Game game, String god1, String god2) { // strategy pattern here
         this.game = game;
 
         this.god1 = newGod(1, god1);
