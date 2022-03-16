@@ -13,8 +13,6 @@ public interface GodPower {
 
     boolean checkWin(int playerId, int workerId, Pos pos);
 
-
-
     /**
      * check during the current game condition, if the player
      * can use his/her GodPower

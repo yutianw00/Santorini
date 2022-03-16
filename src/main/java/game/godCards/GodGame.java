@@ -27,8 +27,12 @@ public class GodGame implements Game {
             return new Demeter(playerId, game);
         } else if (godName.equals("Minotaur")) {
             return new Minotaur(playerId, game);
+        } else if (godName.equals("Pan")) {
+            return new Pan(playerId, game);
+        } else {
+            System.out.println("Error: God not exist!");
+            return null;
         }
-        return null; // shouldn't reach here
     }
 
     @Override

@@ -12,10 +12,10 @@ public class Pan implements GodPower{
     private int playerId;
     private int otherPlayerId;
 
-    public Pan(Game game, int playerId, int otherPlayerId) {
+    public Pan(int playerId, Game game) {
         this.game = game;
         this.playerId = playerId;
-        this.otherPlayerId = otherPlayerId;
+        this.otherPlayerId = (playerId == 1) ? 2 : 1;
     }
 
     @Override
