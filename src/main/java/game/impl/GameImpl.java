@@ -228,7 +228,7 @@ public class GameImpl implements Game {
 
         currPlayer.setWorker(pos, workerId);
 
-        if (playerId == 2 && playerId == 2) {
+        if (playerId == 2 && workerId == 2) {
             this.setNextAction(MOVE);
         }
 

@@ -71,6 +71,7 @@ public class Demeter implements GodPower{
         game.setNextAction(Game.BUILD);
         game.flipPlayer();
         State newState = game.build(this.playerId, workerId, pos);
+
         return newState;
     }
 }
