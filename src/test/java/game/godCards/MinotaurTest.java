@@ -1,5 +1,6 @@
 package game.godCards;
 
+import game.Board;
 import game.Game;
 import game.impl.GameImpl;
 import game.utils.Pos;
@@ -50,45 +51,42 @@ public class MinotaurTest {
         state = game.setWorker(1, 2, new Pos(0,1));
         state = game.setWorker(2, 1, new Pos(0,2));
         state = game.setWorker(2, 2, new Pos(0,3));
-        assertFalse(demeter.canDoAction(state));
+        assertTrue(demeter.canDoAction(state));
     }
 
     @Test
     public void actionInValid() {
-        Game game = new GameImpl();
+        Game game = new GodGame(new GameImpl(), "Minotaur", "Demeter");
         GodPower demeter = new Demeter(1, game);
         state = game.setWorker(1, 1, new Pos(0,0));
         state = game.setWorker(1, 2, new Pos(0,1));
         state = game.setWorker(2, 1, new Pos(0,2));
         state = game.setWorker(2, 2, new Pos(0,3));
 
-        // move to invalid position
-        state = game.usePower(1, 1, new Pos(3,3));
+        // move to invalid position (0,2) is occupied
+        state = game.usePower(1, 1, new Pos(0,1));
         assert(state == null);
     }
 
     @Test
     public void actionValid() {
-        Game game = new GodGame(new GameImpl(), "Demeter", "Minotaur");
+        Game game = new GodGame(new GameImpl(), "Minotaur", "Demeter");
         GodPower demeter = new Demeter(1, game);
         state = game.setWorker(1, 1, new Pos(0,0));
         state = game.setWorker(1, 2, new Pos(0,1));
         state = game.setWorker(2, 1, new Pos(0,2));
-        state = game.setWorker(2, 2, new Pos(0,3));
-        state = game.move(1, 1, new Pos(1,1));
-        state = game.build(1,1, new Pos(0,0));
+        state = game.setWorker(2, 2, new Pos(3,3));
 
-        // build one more time
-        state = game.usePower(1, 1, new Pos(1,0));
-        assert(state.getNextAction() == Game.MOVE);
-        assert(state.getPlayerId() == 2);
+        state = game.usePower(1, 2, new Pos(0,2));
+        assert(state != null);
+        assert(state.getPlayerId() == 1);
+        assert(state.getNextAction() == Game.BUILD);
+
+        Board board = game.getBoard();
+        assert(board.hasWorker(new Pos(0,3)));
+        assert(board.hasWorker(new Pos(0,2)));
+        assertFalse(board.hasWorker(new Pos(0,1)));
+
     }
 
-    @Test
-    public void canDoAction() {
-    }
-
-    @Test
-    public void action() {
-    }
 }

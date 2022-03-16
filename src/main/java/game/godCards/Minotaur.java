@@ -58,12 +58,15 @@ public class Minotaur implements GodPower{
 
     /**
      * checking the condition of if a move is valid in the Minotaur case
+     * Side effect: if a minotaur scenario is formed, the forced worker is moved in advance
+     *      *  to give space to the minotaur.
      *
      * @param game The current Game
      * @param workerId The id of the worker that will perform the move
      * @param pos The position to be moved
-     * @return -1 if invalid, 0 if normal move condition, 1 if other player's
-     *  worker is forced backward
+     * @return if force condition is not formed, null is returned
+     *  otherwise return a new {@link Board} with the forced worker moving to its forced
+     *  position in advance
      */
     private Board checkMinotaurCondition(Game game, int workerId, Pos pos) {
         Board board = game.getBoard();
@@ -93,7 +96,7 @@ public class Minotaur implements GodPower{
     }
 
     /**
-     * Valid if a board force scenario is formed.
+     * Valid if a board force scenario is formed for the other worker.
      * Side effect: if a minotaur scenario is formed, the forced worker is moved in advance
      *  to give space to the minotaur.
      * @param board The board that the valid force condition will be examined on
