@@ -53,15 +53,30 @@ public class DemeterTest {
     }
 
     @Test
-    public void actionInValid() {
+    public void canDoActionTestTrue() {
         Game game = new GameImpl();
         GodPower demeter = new Demeter(1, game);
         state = game.setWorker(1, 1, new Pos(0,0));
         state = game.setWorker(1, 2, new Pos(0,1));
         state = game.setWorker(2, 1, new Pos(0,2));
         state = game.setWorker(2, 2, new Pos(0,3));
+        state = game.move(1, 1, new Pos(1,1));
+        state = game.build(1,1, new Pos(0,0));
+        assertTrue(demeter.canDoAction(state));
+    }
 
-        // move to invalid position
+    @Test
+    public void actionInValid() {
+        Game game = new GodGame(new GameImpl(), "Demeter", "Minotaur");
+        GodPower demeter = new Demeter(1, game);
+        state = game.setWorker(1, 1, new Pos(0,0));
+        state = game.setWorker(1, 2, new Pos(0,1));
+        state = game.setWorker(2, 1, new Pos(0,2));
+        state = game.setWorker(2, 2, new Pos(0,3));
+        state = game.move(1, 1, new Pos(1,1));
+        state = game.build(1,1, new Pos(0,0));
+
+        // build to invalid position
         state = game.usePower(1, 1, new Pos(3,3));
         assert(state == null);
     }
