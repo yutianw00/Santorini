@@ -15,13 +15,19 @@ public class GodGame implements Game {
     int winnerId = -1; // no winner yet
     boolean hasFinished = false;
 
-    public GodGame(Game game, String god1, String god2) { // strategy pattern here
+    public GodGame(Game game, String god1, String god2) {
         this.game = game;
 
         this.god1 = newGod(1, god1);
         this.god2 = newGod(2, god2);
     }
 
+    /**
+     * create a new GodPower object based on the god name, using strategy pattern
+     * @param playerId The player id that has the god power
+     * @param godName the name of the god power
+     * @return the newly created god power class
+     */
     private GodPower newGod(int playerId, String godName) {
         if (godName.equals("Demeter")) {
             return new Demeter(playerId, game);
