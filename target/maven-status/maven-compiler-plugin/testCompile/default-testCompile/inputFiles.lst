@@ -1,6 +1,10 @@
-/Users/yutianw/Desktop/17214hw3/hw3-santorini-yutianw00/src/test/java/game/GameTest.java
-/Users/yutianw/Desktop/17214hw3/hw3-santorini-yutianw00/src/test/java/cli/MainTest.java
-/Users/yutianw/Desktop/17214hw3/hw3-santorini-yutianw00/src/test/java/game/GridTest.java
-/Users/yutianw/Desktop/17214hw3/hw3-santorini-yutianw00/src/test/java/game/PlayerTest.java
-/Users/yutianw/Desktop/17214hw3/hw3-santorini-yutianw00/src/test/java/game/WorkerTest.java
-/Users/yutianw/Desktop/17214hw3/hw3-santorini-yutianw00/src/test/java/game/BoardTest.java
+/Users/yutianw/Documents/academic/S22/17214/17214hw3/hw3-santorini-yutianw00/src/test/java/game/WorkerTest.java
+/Users/yutianw/Documents/academic/S22/17214/17214hw3/hw3-santorini-yutianw00/src/test/java/cli/MainTest.java
+/Users/yutianw/Documents/academic/S22/17214/17214hw3/hw3-santorini-yutianw00/src/test/java/game/godCards/GodGameTest.java
+/Users/yutianw/Documents/academic/S22/17214/17214hw3/hw3-santorini-yutianw00/src/test/java/game/BoardTest.java
+/Users/yutianw/Documents/academic/S22/17214/17214hw3/hw3-santorini-yutianw00/src/test/java/game/GameTest.java
+/Users/yutianw/Documents/academic/S22/17214/17214hw3/hw3-santorini-yutianw00/src/test/java/game/godCards/MinotaurTest.java
+/Users/yutianw/Documents/academic/S22/17214/17214hw3/hw3-santorini-yutianw00/src/test/java/game/godCards/PanTest.java
+/Users/yutianw/Documents/academic/S22/17214/17214hw3/hw3-santorini-yutianw00/src/test/java/game/GridTest.java
+/Users/yutianw/Documents/academic/S22/17214/17214hw3/hw3-santorini-yutianw00/src/test/java/game/godCards/DemeterTest.java
+/Users/yutianw/Documents/academic/S22/17214/17214hw3/hw3-santorini-yutianw00/src/test/java/game/PlayerTest.java

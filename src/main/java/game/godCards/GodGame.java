@@ -10,10 +10,10 @@ import java.util.List;
 
 public class GodGame implements Game {
 
-    Game game;
-    GodPower god1, god2;
-    int winnerId = -1; // no winner yet
-    boolean hasFinished = false;
+    private Game game;
+    private GodPower god1, god2;
+    private int winnerId = -1; // no winner yet
+    private boolean hasFinished = false;
 
     public GodGame(Game game, String god1, String god2) {
         this.game = game;

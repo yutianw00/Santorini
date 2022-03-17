@@ -11,9 +11,9 @@ import game.Board;
  * replay functionalities
  */
 public class State {
-    Board board;
-    int playerId;
-    int nextAction;
+    private Board board;
+    private int playerId;
+    private int nextAction;
 
     public State(Board board, int playerId, int nextAction) {
         this.board = board;

@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="8.45">
-<file name="/Users/yutianw/Desktop/17214hw3/hw3-santorini-yutianw00/src/main/java/game/impl/BoardImpl.java">
+<file name="/Users/yutianw/Documents/academic/S22/17214/17214hw3/hw3-santorini-yutianw00/src/main/java/game/utils/State.java">
+</file>
+<file name="/Users/yutianw/Documents/academic/S22/17214/17214hw3/hw3-santorini-yutianw00/src/main/java/game/godCards/GodPower.java">
+</file>
+<file name="/Users/yutianw/Documents/academic/S22/17214/17214hw3/hw3-santorini-yutianw00/src/main/java/game/godCards/GodGame.java">
 </file>
 </checkstyle>

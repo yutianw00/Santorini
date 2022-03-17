@@ -34,9 +34,14 @@ public interface Grid {
      * the previous fromLevel
      *
      * @param fromLevel the level to check
-     * @return
+     * @return true if moving from previous level to current level is valid,
+     *  false otherwise
      */
     boolean isValidLevel(int fromLevel);
 
+    /**
+     * Copy the current grid to a new {@link Grid} object
+     * @return the newly created copied {@link Grid}
+     */
     Grid copyGrid();
 }

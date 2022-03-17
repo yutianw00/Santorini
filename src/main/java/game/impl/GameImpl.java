@@ -1,6 +1,10 @@
 package game.impl;
 
-import game.*;
+import game.Board;
+import game.Game;
+import game.History;
+import game.Player;
+import game.Worker;
 import game.utils.Pos;
 import game.utils.State;
 
@@ -11,7 +15,7 @@ public class GameImpl implements Game {
 
     private int nextAction;
 
-    History<State> history = new HistoryImpl<>();
+    private History<State> history = new HistoryImpl<>();
 
     private Board board;
     private Player p1;

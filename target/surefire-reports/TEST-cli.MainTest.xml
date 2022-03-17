@@ -5,7 +5,7 @@
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="java.vm.version" value="17.0.2+8-86"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk-17.0.2.jdk/Contents/Home/lib"/>
-    <property name="maven.multiModuleProjectDirectory" value="/Users/yutianw/Desktop/17214hw3/hw3-santorini-yutianw00"/>
+    <property name="maven.multiModuleProjectDirectory" value="/Users/yutianw/Documents/academic/S22/17214/17214hw3/hw3-santorini-yutianw00"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="java.vendor.url" value="https://java.oracle.com/"/>
     <property name="path.separator" value=":"/>
@@ -14,7 +14,7 @@
     <property name="user.country" value="CN"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="/Users/yutianw/Desktop/17214hw3/hw3-santorini-yutianw00"/>
+    <property name="user.dir" value="/Users/yutianw/Documents/academic/S22/17214/17214hw3/hw3-santorini-yutianw00"/>
     <property name="java.vm.compressedOopsMode" value="Zero based"/>
     <property name="java.runtime.version" value="17.0.2+8-86"/>
     <property name="os.arch" value="x86_64"/>
@@ -32,7 +32,7 @@
     <property name="java.class.version" value="61.0"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="os.version" value="11.6"/>
+    <property name="os.version" value="11.6.4"/>
     <property name="user.home" value="/Users/yutianw"/>
     <property name="user.timezone" value="America/New_York"/>
     <property name="file.encoding" value="UTF-8"/>

@@ -28,7 +28,8 @@ public interface GodPower {
      * based on the ability of the god power
      * @param workerId The worker id
      * @param pos The position that the action would be performed on
-     * @return
+     * @return the State result in preforming the action if the action is valid,
+     *  otherwise null is returned
      */
     State action(int workerId, Pos pos);
 }
