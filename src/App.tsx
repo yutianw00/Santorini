@@ -26,12 +26,32 @@ class App extends Component<Props, Cells> {
         { text: "", clazz: "playable", link: "/play?x=0&y=0" },
         { text: "", clazz: "playable", link: "/play?x=1&y=0" },
         { text: "", clazz: "playable", link: "/play?x=2&y=0" },
+        { text: "", clazz: "playable", link: "/play?x=3&y=0" },
+        { text: "", clazz: "playable", link: "/play?x=4&y=0" },
+
         { text: "", clazz: "playable", link: "/play?x=0&y=1" },
         { text: "", clazz: "playable", link: "/play?x=1&y=1" },
         { text: "", clazz: "playable", link: "/play?x=2&y=1" },
+        { text: "", clazz: "playable", link: "/play?x=3&y=1" },
+        { text: "", clazz: "playable", link: "/play?x=4&y=1" },
+
         { text: "", clazz: "playable", link: "/play?x=0&y=2" },
         { text: "", clazz: "playable", link: "/play?x=1&y=2" },
         { text: "", clazz: "playable", link: "/play?x=2&y=2" },
+        { text: "", clazz: "playable", link: "/play?x=3&y=2" },
+        { text: "", clazz: "playable", link: "/play?x=4&y=2" },
+
+        { text: "", clazz: "playable", link: "/play?x=0&y=3" },
+        { text: "", clazz: "playable", link: "/play?x=1&y=3" },
+        { text: "", clazz: "playable", link: "/play?x=2&y=3" },
+        { text: "", clazz: "playable", link: "/play?x=3&y=3" },
+        { text: "", clazz: "playable", link: "/play?x=4&y=3" },
+
+        { text: "", clazz: "playable", link: "/play?x=0&y=4" },
+        { text: "", clazz: "playable", link: "/play?x=1&y=4" },
+        { text: "", clazz: "playable", link: "/play?x=2&y=4" },
+        { text: "", clazz: "playable", link: "/play?x=3&y=4" },
+        { text: "", clazz: "playable", link: "/play?x=4&y=4" },
       ],
       template: this.loadTemplate()
     };
@@ -94,8 +114,9 @@ class App extends Component<Props, Cells> {
   };
 
   render() {
-    this.switch();
+    // this.switch();
     return (
+    
       <div className="App">
         <div
           dangerouslySetInnerHTML={{
