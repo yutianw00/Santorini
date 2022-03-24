@@ -46,4 +46,11 @@ public class GridImpl implements Grid {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "GridImpl{" +
+                "levels=" + levels +
+                '}';
+    }
 }

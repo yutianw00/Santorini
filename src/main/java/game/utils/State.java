@@ -2,6 +2,8 @@ package game.utils;
 
 import game.Board;
 
+import java.util.Arrays;
+
 
 /**
  * An object that passes to the frontend incidating what is the next action,
@@ -31,6 +33,15 @@ public class State {
 
     public int getNextAction() {
         return nextAction;
+    }
+
+    @Override
+    public String toString() {
+        String myjsonstr = "{ \"playerId\": \"" + playerId + "\"," +
+                " \"nextAction\": \"" + nextAction + "\"," +
+                " \"board\": "  + board.toString() + "}";
+
+        return myjsonstr;
     }
 
 }

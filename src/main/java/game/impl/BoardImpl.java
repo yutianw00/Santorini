@@ -4,6 +4,7 @@ import game.Board;
 import game.Game;
 import game.Grid;
 import game.Worker;
+import game.utils.GridState;
 import game.utils.Pos;
 
 import java.util.ArrayList;
@@ -175,34 +176,66 @@ public class BoardImpl implements Board {
         return workers.get(workerIdx);
     }
 
+
+//    public String toString() {
+//        StringBuilder sb = new StringBuilder();
+//        for (int i = 0; i < NUMROWS; i++) {
+//            for (int j = 0; j < NUMCOLS; j++) {
+//
+//                Pos pos = new Pos(i, j);
+//
+//                // figure out levels
+//                String levels = Integer.toString(getGrid(pos).getLevels());
+//
+//                // figure out workers
+//                char leftSign = ' ';
+//                char rightSign = ' ';
+//                if (hasWorker(pos)) {
+//                    if (workers.get(0).getPos().equals(pos)
+//                    || workers.get(1).getPos().equals(pos)) {
+//                        leftSign = '(';
+//                        rightSign = ')';
+//                    } else {
+//                        leftSign = '[';
+//                        rightSign = ']';
+//                    }
+//                }
+//                sb.append(" " + leftSign + levels + rightSign + " ");
+//            }
+//            sb.append("\n");
+//        }
+//        return sb.toString();
+//    }
+
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
+
+        GridState[] gridStates = new GridState[NUMCOLS * NUMROWS];
         for (int i = 0; i < NUMROWS; i++) {
             for (int j = 0; j < NUMCOLS; j++) {
 
                 Pos pos = new Pos(i, j);
 
                 // figure out levels
-                String levels = Integer.toString(getGrid(pos).getLevels());
+                int levels = getGrid(pos).getLevels();
 
                 // figure out workers
-                char leftSign = ' ';
-                char rightSign = ' ';
+                int occWorker = 0;
+
                 if (hasWorker(pos)) {
                     if (workers.get(0).getPos().equals(pos)
-                    || workers.get(1).getPos().equals(pos)) {
-                        leftSign = '(';
-                        rightSign = ')';
+                            || workers.get(1).getPos().equals(pos)) {
+                        occWorker = 1;
                     } else {
-                        leftSign = '[';
-                        rightSign = ']';
+                        occWorker = 2;
                     }
                 }
-                sb.append(" " + leftSign + levels + rightSign + " ");
+
+                int idx = i * NUMCOLS + j;
+                gridStates[idx] = new GridState(levels, occWorker);
             }
-            sb.append("\n");
         }
-        return sb.toString();
+
+        return Arrays.toString(gridStates);
     }
 }
