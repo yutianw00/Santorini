@@ -5,14 +5,16 @@ import './App.css'
 var oldHref = "http://localhost:3000"
 
 interface Cell {
-  text: String;
-  clazz: String;
-  link: String;
+  levels: number;
+  player: number;
+  pos: String;
 }
 
 interface Cells {
   cells: Array<Cell>,
-  template: HandlebarsTemplateDelegate<any>
+  template: HandlebarsTemplateDelegate<any>,
+  nextPlayer: number,
+  nextMove: number
 }
 
 interface Props {
@@ -23,37 +25,40 @@ class App extends Component<Props, Cells> {
     super(props);
     this.state = {
       cells: [
-        { text: "", clazz: "playable", link: "/play?x=0&y=0" },
-        { text: "", clazz: "playable", link: "/play?x=1&y=0" },
-        { text: "", clazz: "playable", link: "/play?x=2&y=0" },
-        { text: "", clazz: "playable", link: "/play?x=3&y=0" },
-        { text: "", clazz: "playable", link: "/play?x=4&y=0" },
+        { levels: 0, player: 0, pos: "?x=0&y=0" },
+        { levels: 0, player: 0, pos: "?x=1&y=0" },
+        { levels: 0, player: 0, pos: "?x=2&y=0" },
+        { levels: 0, player: 0, pos: "?x=3&y=0" },
+        { levels: 0, player: 0, pos: "?x=4&y=0" },
 
-        { text: "", clazz: "playable", link: "/play?x=0&y=1" },
-        { text: "", clazz: "playable", link: "/play?x=1&y=1" },
-        { text: "", clazz: "playable", link: "/play?x=2&y=1" },
-        { text: "", clazz: "playable", link: "/play?x=3&y=1" },
-        { text: "", clazz: "playable", link: "/play?x=4&y=1" },
+        { levels: 0, player: 0, pos: "?x=0&y=1" },
+        { levels: 0, player: 0, pos: "?x=1&y=1" },
+        { levels: 0, player: 0, pos: "?x=2&y=1" },
+        { levels: 0, player: 0, pos: "?x=3&y=1" },
+        { levels: 0, player: 0, pos: "?x=4&y=1" },
 
-        { text: "", clazz: "playable", link: "/play?x=0&y=2" },
-        { text: "", clazz: "playable", link: "/play?x=1&y=2" },
-        { text: "", clazz: "playable", link: "/play?x=2&y=2" },
-        { text: "", clazz: "playable", link: "/play?x=3&y=2" },
-        { text: "", clazz: "playable", link: "/play?x=4&y=2" },
+        { levels: 0, player: 0, pos: "?x=0&y=2" },
+        { levels: 0, player: 0, pos: "?x=1&y=2" },
+        { levels: 0, player: 0, pos: "?x=2&y=2" },
+        { levels: 0, player: 0, pos: "?x=3&y=2" },
+        { levels: 0, player: 0, pos: "?x=4&y=2" },
 
-        { text: "", clazz: "playable", link: "/play?x=0&y=3" },
-        { text: "", clazz: "playable", link: "/play?x=1&y=3" },
-        { text: "", clazz: "playable", link: "/play?x=2&y=3" },
-        { text: "", clazz: "playable", link: "/play?x=3&y=3" },
-        { text: "", clazz: "playable", link: "/play?x=4&y=3" },
+        { levels: 0, player: 0, pos: "?x=0&y=3" },
+        { levels: 0, player: 0, pos: "?x=1&y=3" },
+        { levels: 0, player: 0, pos: "?x=2&y=3" },
+        { levels: 0, player: 0, pos: "?x=3&y=3" },
+        { levels: 0, player: 0, pos: "?x=4&y=3" },
 
-        { text: "", clazz: "playable", link: "/play?x=0&y=4" },
-        { text: "", clazz: "playable", link: "/play?x=1&y=4" },
-        { text: "", clazz: "playable", link: "/play?x=2&y=4" },
-        { text: "", clazz: "playable", link: "/play?x=3&y=4" },
-        { text: "", clazz: "playable", link: "/play?x=4&y=4" },
+        { levels: 0, player: 0, pos: "?x=0&y=4" },
+        { levels: 0, player: 0, pos: "?x=1&y=4" },
+        { levels: 0, player: 0, pos: "?x=2&y=4" },
+        { levels: 0, player: 0, pos: "?x=3&y=4" },
+        { levels: 0, player: 0, pos: "?x=4&y=4" },
       ],
-      template: this.loadTemplate()
+      nextPlayer: 1,
+      nextMove: 0,
+      template: this.loadTemplate(),
+      
     };
   }
 
@@ -62,13 +67,19 @@ class App extends Component<Props, Cells> {
     return Handlebars.compile(src?.innerHTML, {});
   }
 
+  /* modified */ 
   convertToCell(p: any): Array<Cell> {
+    // TODO
+    // var NUMROWS: number = 5;
+    var NUMCOLS: number = 5;
     const newCells: Array<Cell> = [];
     for (var i = 0; i < p["cells"].length; i++) {
+      var x: number = i / NUMCOLS;
+      var y: number = i % NUMCOLS;
       var c: Cell = {
-        text: p["cells"][i]["text"],
-        clazz: p["cells"][i]["clazz"],
-        link: p["cells"][i]["link"],
+        levels: p[i]["levels"],
+        player: p[i]["player"],
+        pos: "?x=" + x + "&y=" + y
       };
       newCells.push(c);
     }
@@ -113,12 +124,39 @@ class App extends Component<Props, Cells> {
     }
   };
 
+  /* new */
   async testAPI() {
     console.log("testing API connection...");
     const response = await fetch("test");
     const json = await response.json();
     console.log(json);
   };
+
+  /* new */
+  async setUp(url: String) {
+    const href = "setup?" + url.split("?")[1];
+    const response = await fetch(href);
+    const json = await response.json();
+
+    console.log(json);
+
+    const newCells: Array<Cell> = this.convertToCell(json["board"]);
+    this.setState({ cells: newCells });
+    this.setState({ nextPlayer: json["playerId"]});
+    this.setState({ nextMove: json["nextAction"]});
+
+  }
+
+  /* new */
+  async step() {
+    if (
+      window.location.href.split("?")[0] === "http://localhost:3000/setup" &&
+      oldHref !== window.location.href
+    ) {
+      this.setUp(window.location.href);
+      oldHref = window.location.href;
+    }
+  }
 
 
 
