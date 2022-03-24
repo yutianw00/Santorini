@@ -10,7 +10,7 @@ interface Cell {
   pos: String;
 }
 
-interface Cells {
+interface GameCells {
   cells: Array<Cell>,
   template: HandlebarsTemplateDelegate<any>,
   nextPlayer: number,
@@ -20,7 +20,7 @@ interface Cells {
 interface Props {
 }
 
-class App extends Component<Props, Cells> {
+class App extends Component<Props, GameCells> {
   constructor(props: Props) {
     super(props);
     this.state = {
