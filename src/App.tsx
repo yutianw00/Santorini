@@ -113,8 +113,18 @@ class App extends Component<Props, Cells> {
     }
   };
 
+  async testAPI() {
+    console.log("testing API connection...");
+    const response = await fetch("test");
+    const json = await response.json();
+    console.log(json);
+  };
+
+
+
   render() {
     // this.switch();
+    this.testAPI();
     return (
     
       <div className="App">
