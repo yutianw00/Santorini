@@ -25,6 +25,25 @@ public class GameImpl implements Game {
 
     private boolean hasFinished = false;
 
+    public GameImpl() {
+        Worker w11 = new WorkerImpl();
+        Worker w12 = new WorkerImpl();
+        p1 = new PlayerImpl(w11, w12);
+
+        Worker w21 = new WorkerImpl();
+        Worker w22 = new WorkerImpl();
+        p2 = new PlayerImpl(w21, w22);
+
+        board = new BoardImpl(w11, w12, w21, w22);
+
+        winnerId = -1; // no winner yet
+        nextPlayerId = 1;
+        nextAction = SETUP;
+        hasFinished = false;
+
+        history.addHistory(createState(board));
+    }
+
     @Override
     public void setBoard(Board newBoard) {
         this.board = newBoard;
@@ -58,23 +77,6 @@ public class GameImpl implements Game {
     @Override
     public Board getBoard() {
         return this.board;
-    }
-
-    public GameImpl() {
-        Worker w11 = new WorkerImpl();
-        Worker w12 = new WorkerImpl();
-        p1 = new PlayerImpl(w11, w12);
-
-        Worker w21 = new WorkerImpl();
-        Worker w22 = new WorkerImpl();
-        p2 = new PlayerImpl(w21, w22);
-
-        board = new BoardImpl(w11, w12, w21, w22);
-
-        winnerId = -1; // no winner yet
-        nextPlayerId = 1;
-        nextAction = SETUP;
-        hasFinished = false;
     }
 
     private State createState(Board board) {

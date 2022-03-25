@@ -16,7 +16,7 @@ public class GridState {
 
     @Override
     public String toString() {
-        return "{ \"levels\": \"" + levels + "\"," +
-                        " \"player\": \"" + player + "\"}";
+        return "{ \"levels\": " + levels + "," +
+                        " \"player\": " + player + "}";
     }
 }

@@ -25,7 +25,10 @@ public class State {
         this.status = 0;
     }
 
-    public State(int status) {
+    public State(State otherState, int status) {
+        this.board = otherState.getBoard();
+        this.playerId = otherState.getPlayerId();
+        this.nextAction = otherState.getNextAction();
         this.status = status;
     }
 
@@ -44,15 +47,10 @@ public class State {
     @Override
     public String toString() {
         String myjsonstr;
-        if (status == 0) {
-            myjsonstr = "{ " + "\"status\": \"" + status + "\"," +
-                    "\"playerId\": \"" + playerId + "\"," +
-                    " \"nextAction\": \"" + nextAction + "\"," +
-                    " \"board\": "  + board.toString() + "}";
-        } else {
-            myjsonstr = "{ " + "\"status\": \"" + -1 + "\"" + "}";
-        }
-
+        myjsonstr = "{ " + "\"status\": \"" + status + "\"," +
+                "\"playerId\": \"" + playerId + "\"," +
+                " \"nextAction\": \"" + nextAction + "\"," +
+                " \"board\": "  + board.toString() + "}";
 
         return myjsonstr;
     }

@@ -41,13 +41,14 @@ public class App extends NanoHTTPD {
 
             return newFixedLengthResponse(myjsonstr);
         } else if (uri.equals("/setup")) {
-            int x = Integer.valueOf(params.get("x"));
-            int y = Integer.valueOf(params.get("y"));
             System.out.println(params.get("x"));
             System.out.println(params.get("y"));
+            int x = Integer.valueOf(params.get("x"));
+            int y = Integer.valueOf(params.get("y"));
+
             State state = game.setWorker(1, 1, new Pos(x, y));
             if (state == null) {
-                return newFixedLengthResponse(new State(-1).toString());
+                return newFixedLengthResponse(new State(game.getCurrState(), -1).toString());
             }
             return newFixedLengthResponse(state.toString());
         }
