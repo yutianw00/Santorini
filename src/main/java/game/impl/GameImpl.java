@@ -47,6 +47,11 @@ public class GameImpl implements Game {
     }
 
     @Override
+    public int getChosenWorkerId() {
+        return this.chosenWorkerId;
+    }
+
+    @Override
     public State chooseMove(Pos pos) {
         Worker w1 = getWorker(nextPlayerId, 1);
         Worker w2 = getWorker(nextPlayerId, 2);
@@ -187,10 +192,13 @@ public class GameImpl implements Game {
 
         checkWinCondition(playerId, worker.getPos(), pos);
 
+        this.chosenWorkerId = workerId;
         Board newBoard = board.setBoardWorker(playerId, workerId, pos); // delegation
+        newBoard = newBoard.chooseGrid(pos); // highlight the moved position
+
         this.board = newBoard; // assign the newBoard to be the board of the game
 
-        this.setNextAction(CHOOSEBUILD);
+        this.setNextAction(BUILD);
         State newState = createState(newBoard);
         history.addHistory(newState);
         return newState;

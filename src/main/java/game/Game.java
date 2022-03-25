@@ -13,8 +13,14 @@ public interface Game {
     int SETUP = 0;
     int CHOOSEMOVE = 1;
     int MOVE = 2;
-    int CHOOSEBUILD = 3;
+//    int CHOOSEBUILD = 3;
     int BUILD = 4;
+
+    /**
+     * get the worker chosen at the chooseMove or chooseBuild operation
+     * @return The id of the chosen worker
+     */
+    int getChosenWorkerId();
 
     /**
      * Choose the worker to move by position

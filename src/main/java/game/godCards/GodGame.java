@@ -22,6 +22,11 @@ public class GodGame implements Game {
         this.god2 = newGod(2, god2);
     }
 
+    @Override
+    public int getChosenWorkerId() {
+        return game.getChosenWorkerId();
+    }
+
     /**
      * create a new GodPower object based on the god name, using strategy pattern
      * @param playerId The player id that has the god power
