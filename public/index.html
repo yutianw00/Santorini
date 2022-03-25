@@ -21,7 +21,7 @@
         {{instruction}}
         <h1 class="{{showError}}">Oops, something goes wrong. Please try again.</h1>
       </div>
-      <div id="board">
+      <div id="board" class="{{player}}">
         {{#each cells}}
           {{#if pos}}
             <a href={{../linkheader}}{{pos}}><div class="cell {{clazz}}">{{text}}</div></a>

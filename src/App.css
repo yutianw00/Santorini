@@ -1,7 +1,7 @@
 #board {
   display: grid;
   grid-template-columns: 15vmin 15vmin 15vmin 15vmin 15vmin;
-  background-color: #76c1ff;
+  /* background-color: #76c1ff; */
   justify-content: center;
   /* align-content: center; */
   padding-top: 5vmin;
@@ -57,3 +57,11 @@ body {
 .error {background-color: rgb(255, 0, 0)}
 
 .noerror {display: none}
+
+.player1 {
+  background-color: #76c1ff;
+}
+
+.player2 {
+  background-color: #57f89f;
+}

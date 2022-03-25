@@ -197,7 +197,8 @@ class App extends Component<Props, GameCells> {
               cells: this.state.cells, 
               linkheader: this.state.linkheader, 
               showError: this.state.showError ? "error" : "noerror",
-              instruction: this.state.instruction
+              instruction: this.state.instruction,
+              player: this.state.nextPlayer === 1 ? "player1" : "player2"
             }), 
           }}
         />
