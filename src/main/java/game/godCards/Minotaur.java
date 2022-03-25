@@ -153,4 +153,9 @@ public class Minotaur implements GodPower{
         return game.move(playerId, workerId, pos);
 
     }
+
+    @Override
+    public void storeInfo(Pos pos) {
+        // no need to store, dummy function
+    }
 }

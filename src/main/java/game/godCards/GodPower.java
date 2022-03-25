@@ -32,4 +32,11 @@ public interface GodPower {
      *  otherwise null is returned
      */
     State action(int workerId, Pos pos);
+
+    /**
+     * Used by the demeter god to store the previous build position
+     * to avoid building at the same place again
+     * @param pos The position of the previous build
+     */
+    void storeInfo(Pos pos);
 }

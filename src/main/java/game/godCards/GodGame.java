@@ -42,6 +42,16 @@ public class GodGame implements Game {
     }
 
     @Override
+    public State chooseMove(Pos pos) {
+        return game.chooseMove(pos);
+    }
+
+    @Override
+    public State chooseBuild(Pos pos) {
+        return game.chooseBuild(pos);
+    }
+
+    @Override
     public void setBoard(Board board) {
         game.setBoard(board);
     }
@@ -139,7 +149,15 @@ public class GodGame implements Game {
 
     @Override
     public State build(int playerId, int workerId, Pos pos) {
-        return game.build(playerId, workerId, pos);
+        State res = game.build(playerId, workerId, pos);
+        if (res != null) {
+            if (playerId == 1) {
+                god1.storeInfo(pos);
+            } else if (playerId == 2) {
+                god2.storeInfo(pos);
+            }
+        }
+        return res;
     }
 
     @Override

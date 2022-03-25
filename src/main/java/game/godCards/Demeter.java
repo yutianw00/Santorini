@@ -13,6 +13,7 @@ import game.utils.State;
 public class Demeter implements GodPower{
     private Game game;
     private int playerId;
+    private Pos prevBuildPos;
 
     public Demeter(int playerId, Game game) {
         this.game = game;
@@ -68,10 +69,19 @@ public class Demeter implements GodPower{
      */
     @Override
     public State action(int workerId, Pos pos) {
+        if (pos.equals(prevBuildPos)) {
+            System.out.println("Demeter extra build: cannot build on the same position twice!");
+            return null; // cannot build on the previous build position
+        }
         game.setNextAction(Game.BUILD);
         game.flipPlayer();
         State newState = game.build(this.playerId, workerId, pos);
 
         return newState;
+    }
+
+    @Override
+    public void storeInfo(Pos pos) {
+        this.prevBuildPos = pos;
     }
 }

@@ -190,7 +190,7 @@ public class GameImpl implements Game {
         Board newBoard = board.setBoardWorker(playerId, workerId, pos); // delegation
         this.board = newBoard; // assign the newBoard to be the board of the game
 
-        this.setNextAction(BUILD);
+        this.setNextAction(CHOOSEBUILD);
         State newState = createState(newBoard);
         history.addHistory(newState);
         return newState;
@@ -230,7 +230,7 @@ public class GameImpl implements Game {
         currPlayer.setWorker(pos, workerId);
 
         if (playerId == 2 && workerId == 2) {
-            this.setNextAction(MOVE);
+            this.setNextAction(CHOOSEMOVE);
         }
 
         if (workerId == 2) {

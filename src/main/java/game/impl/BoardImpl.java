@@ -234,6 +234,7 @@ public class BoardImpl implements Board {
 
                 // figure out levels
                 int levels = getGrid(pos).getLevels();
+                int chosen = getGrid(pos).isChosen() ? 1 : 0;
 
                 // figure out workers
                 int occWorker = 0;
@@ -248,7 +249,7 @@ public class BoardImpl implements Board {
                 }
 
                 int idx = i * NUMCOLS + j;
-                gridStates[idx] = new GridState(levels, occWorker);
+                gridStates[idx] = new GridState(levels, occWorker, chosen);
             }
         }
 

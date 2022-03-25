@@ -46,4 +46,9 @@ public class Pan implements GodPower{
         /* Pan has no active actions */
         return null;
     }
+
+    @Override
+    public void storeInfo(Pos pos) {
+        // no need to store, dummy
+    }
 }
