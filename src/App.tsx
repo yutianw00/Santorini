@@ -16,6 +16,7 @@ interface GameCells {
   nextPlayer: number,
   nextMove: number,
   linkheader: String,
+  showError: boolean
 }
 
 interface Props {
@@ -56,6 +57,7 @@ class App extends Component<Props, GameCells> {
         { levels: 0, player: 0, pos: "?x=3&y=4" },
         { levels: 0, player: 0, pos: "?x=4&y=4" },
       ],
+      showError: false,
       nextPlayer: 1,
       nextMove: 0,
       template: this.loadTemplate(),
@@ -74,7 +76,7 @@ class App extends Component<Props, GameCells> {
     // var NUMROWS: number = 5;
     var NUMCOLS: number = 5;
     const newCells: Array<Cell> = [];
-    for (var i = 0; i < p["cells"].length; i++) {
+    for (var i = 0; i < p.length; i++) {
       var x: number = i / NUMCOLS;
       var y: number = i % NUMCOLS;
       var c: Cell = {
@@ -141,14 +143,21 @@ class App extends Component<Props, GameCells> {
 
     console.log(json);
 
+    if (json["status"] !== "0") {
+      this.setState({showError: true});
+      return;
+    }
+
     const newCells: Array<Cell> = this.convertToCell(json["board"]);
     this.setState({ cells: newCells });
     this.setState({ nextPlayer: json["playerId"]});
     this.setState({ nextMove: json["nextAction"]});
+    this.setState({ showError: false});
   }
 
   /* new */
   async step() {
+    // this.setState({showError: false});
     if (
       window.location.href.split("?")[0] === "http://localhost:3000/setup" &&
       oldHref !== window.location.href
@@ -162,12 +171,16 @@ class App extends Component<Props, GameCells> {
     // this.switch();
     // this.testAPI();
     this.step()
+    console.log(this.state.showError);
     return (
     
       <div className="App">
         <div
           dangerouslySetInnerHTML={{
-            __html: this.state.template({ cells: this.state.cells, linkheader: this.state.linkheader }),
+            __html: this.state.template({ 
+              cells: this.state.cells, 
+              linkheader: this.state.linkheader, 
+              showError: this.state.showError ? "error" : "noerror" }),
           }}
         />
       </div>

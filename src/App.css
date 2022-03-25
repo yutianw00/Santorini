@@ -53,3 +53,7 @@ body {
 }
 
 .playable { background-color: rgb(252, 214, 112);}
+
+.error {background-color: rgb(255, 0, 0)}
+
+.noerror {display: none}
