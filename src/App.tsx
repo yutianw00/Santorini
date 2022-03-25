@@ -158,6 +158,7 @@ class App extends Component<Props, GameCells> {
     console.log(json);
   };
 
+  /* new */
   async setAllStates(json: any) {
     console.log(json);
 
@@ -226,6 +227,17 @@ class App extends Component<Props, GameCells> {
   }
 
   /* new */
+  async build(url: String) {
+    const href = "build?" + url.split("?")[1];
+    console.log(href);
+    const response = await fetch(href);
+    const json = await response.json();
+
+    this.setAllStates(json);
+
+  }
+
+  /* new */
   async step() {
     // this.setState({showError: false});
     if (
@@ -245,6 +257,12 @@ class App extends Component<Props, GameCells> {
       oldHref !== window.location.href
     ) {
       this.move(window.location.href);
+      oldHref = window.location.href;
+    } else if (
+      window.location.href.split("?")[0] === "http://localhost:3000/build" &&
+      oldHref !== window.location.href
+    ) {
+      this.build(window.location.href);
       oldHref = window.location.href;
     } 
   }
