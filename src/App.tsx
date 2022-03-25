@@ -17,7 +17,8 @@ interface GameCells {
   nextPlayer: number,
   nextMove: number,
   linkheader: String,
-  showError: boolean
+  showError: boolean,
+  instruction: String
 }
 
 interface Props {
@@ -28,41 +29,42 @@ class App extends Component<Props, GameCells> {
     super(props);
     this.state = {
       cells: [
-        { levels: 0, player: 0, pos: "?x=0&y=0", text: "" },
-        { levels: 0, player: 0, pos: "?x=1&y=0", text: "" },
-        { levels: 0, player: 0, pos: "?x=2&y=0", text: "" },
-        { levels: 0, player: 0, pos: "?x=3&y=0", text: "" },
-        { levels: 0, player: 0, pos: "?x=4&y=0", text: "" },
+        { levels: 0, player: 0, pos: "x=0&y=0", text: "" },
+        { levels: 0, player: 0, pos: "x=1&y=0", text: "" },
+        { levels: 0, player: 0, pos: "x=2&y=0", text: "" },
+        { levels: 0, player: 0, pos: "x=3&y=0", text: "" },
+        { levels: 0, player: 0, pos: "x=4&y=0", text: "" },
 
-        { levels: 0, player: 0, pos: "?x=0&y=1", text: "" },
-        { levels: 0, player: 0, pos: "?x=1&y=1", text: "" },
-        { levels: 0, player: 0, pos: "?x=2&y=1", text: "" },
-        { levels: 0, player: 0, pos: "?x=3&y=1", text: "" },
-        { levels: 0, player: 0, pos: "?x=4&y=1", text: "" },
+        { levels: 0, player: 0, pos: "x=0&y=1", text: "" },
+        { levels: 0, player: 0, pos: "x=1&y=1", text: "" },
+        { levels: 0, player: 0, pos: "x=2&y=1", text: "" },
+        { levels: 0, player: 0, pos: "x=3&y=1", text: "" },
+        { levels: 0, player: 0, pos: "x=4&y=1", text: "" },
 
-        { levels: 0, player: 0, pos: "?x=0&y=2", text: "" },
-        { levels: 0, player: 0, pos: "?x=1&y=2", text: "" },
-        { levels: 0, player: 0, pos: "?x=2&y=2", text: "" },
-        { levels: 0, player: 0, pos: "?x=3&y=2", text: "" },
-        { levels: 0, player: 0, pos: "?x=4&y=2", text: "" },
+        { levels: 0, player: 0, pos: "x=0&y=2", text: "" },
+        { levels: 0, player: 0, pos: "x=1&y=2", text: "" },
+        { levels: 0, player: 0, pos: "x=2&y=2", text: "" },
+        { levels: 0, player: 0, pos: "x=3&y=2", text: "" },
+        { levels: 0, player: 0, pos: "x=4&y=2", text: "" },
 
-        { levels: 0, player: 0, pos: "?x=0&y=3", text: "" },
-        { levels: 0, player: 0, pos: "?x=1&y=3", text: "" },
-        { levels: 0, player: 0, pos: "?x=2&y=3", text: "" },
-        { levels: 0, player: 0, pos: "?x=3&y=3", text: "" },
-        { levels: 0, player: 0, pos: "?x=4&y=3", text: "" },
+        { levels: 0, player: 0, pos: "x=0&y=3", text: "" },
+        { levels: 0, player: 0, pos: "x=1&y=3", text: "" },
+        { levels: 0, player: 0, pos: "x=2&y=3", text: "" },
+        { levels: 0, player: 0, pos: "x=3&y=3", text: "" },
+        { levels: 0, player: 0, pos: "x=4&y=3", text: "" },
 
-        { levels: 0, player: 0, pos: "?x=0&y=4", text: "" },
-        { levels: 0, player: 0, pos: "?x=1&y=4", text: "" },
-        { levels: 0, player: 0, pos: "?x=2&y=4", text: "" },
-        { levels: 0, player: 0, pos: "?x=3&y=4", text: "" },
-        { levels: 0, player: 0, pos: "?x=4&y=4", text: "" },
+        { levels: 0, player: 0, pos: "x=0&y=4", text: "" },
+        { levels: 0, player: 0, pos: "x=1&y=4", text: "" },
+        { levels: 0, player: 0, pos: "x=2&y=4", text: "" },
+        { levels: 0, player: 0, pos: "x=3&y=4", text: "" },
+        { levels: 0, player: 0, pos: "x=4&y=4", text: "" },
       ],
       showError: false,
       nextPlayer: 1,
       nextMove: 0,
       template: this.loadTemplate(),
-      linkheader: "setup",
+      linkheader: "setup?",
+      instruction: "choose the position of your worker ",
     };
   }
 
@@ -96,7 +98,7 @@ class App extends Component<Props, GameCells> {
       var c: Cell = {
         levels: gridLevels,
         player: gridPlayer,
-        pos: "?x=" + x + "&y=" + y,
+        pos: "x=" + x + "&y=" + y,
         text: gridText
       };
       newCells.push(c);
@@ -151,6 +153,7 @@ class App extends Component<Props, GameCells> {
   /* new */
   async setUp(url: String) {
     const href = "setup?" + url.split("?")[1];
+    console.log(href);
     const response = await fetch(href);
     const json = await response.json();
 
@@ -166,6 +169,7 @@ class App extends Component<Props, GameCells> {
     this.setState({ cells: newCells });
     this.setState({ nextPlayer: json["playerId"]});
     this.setState({ nextMove: json["nextAction"]});
+
   }
 
   /* new */
@@ -192,7 +196,9 @@ class App extends Component<Props, GameCells> {
             __html: this.state.template({ 
               cells: this.state.cells, 
               linkheader: this.state.linkheader, 
-              showError: this.state.showError ? "error" : "noerror" }),
+              showError: this.state.showError ? "error" : "noerror",
+              instruction: this.state.instruction
+            }), 
           }}
         />
       </div>
