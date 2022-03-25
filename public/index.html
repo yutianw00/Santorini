@@ -17,14 +17,13 @@
     <div id="handlebars">
       <div id="header">
         <h1>This is a header</h1>
-        {{showError}}
-        {{instruction}}
+        <h2>{{instruction}}</h2>
         <h1 class="{{showError}}">Oops, something goes wrong. Please try again.</h1>
       </div>
       <div id="board" class="{{player}}">
         {{#each cells}}
           {{#if pos}}
-            <a href={{../linkheader}}{{pos}}><div class="cell {{clazz}}">{{text}}</div></a>
+            <a href={{../linkheader}}{{pos}}><div class="cell chosen{{chosen}}">{{text}}</div></a>
           {{else}}
             <div class="cell {{clazz}}">{{text}}</div>
           {{/if}}

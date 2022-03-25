@@ -9,6 +9,7 @@ interface Cell {
   player: number;
   pos: String;
   text: String;
+  chosen: number
 }
 
 interface GameCells {
@@ -29,35 +30,35 @@ class App extends Component<Props, GameCells> {
     super(props);
     this.state = {
       cells: [
-        { levels: 0, player: 0, pos: "x=0&y=0", text: "" },
-        { levels: 0, player: 0, pos: "x=1&y=0", text: "" },
-        { levels: 0, player: 0, pos: "x=2&y=0", text: "" },
-        { levels: 0, player: 0, pos: "x=3&y=0", text: "" },
-        { levels: 0, player: 0, pos: "x=4&y=0", text: "" },
+        { levels: 0, player: 0, pos: "x=0&y=0", text: "", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=1&y=0", text: "", chosen: 1 },
+        { levels: 0, player: 0, pos: "x=2&y=0", text: "", chosen: 2 },
+        { levels: 0, player: 0, pos: "x=3&y=0", text: "", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=4&y=0", text: "", chosen: 0 },
 
-        { levels: 0, player: 0, pos: "x=0&y=1", text: "" },
-        { levels: 0, player: 0, pos: "x=1&y=1", text: "" },
-        { levels: 0, player: 0, pos: "x=2&y=1", text: "" },
-        { levels: 0, player: 0, pos: "x=3&y=1", text: "" },
-        { levels: 0, player: 0, pos: "x=4&y=1", text: "" },
+        { levels: 0, player: 0, pos: "x=0&y=1", text: "", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=1&y=1", text: "", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=2&y=1", text: "", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=3&y=1", text: "", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=4&y=1", text: "", chosen: 0 },
 
-        { levels: 0, player: 0, pos: "x=0&y=2", text: "" },
-        { levels: 0, player: 0, pos: "x=1&y=2", text: "" },
-        { levels: 0, player: 0, pos: "x=2&y=2", text: "" },
-        { levels: 0, player: 0, pos: "x=3&y=2", text: "" },
-        { levels: 0, player: 0, pos: "x=4&y=2", text: "" },
+        { levels: 0, player: 0, pos: "x=0&y=2", text: "", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=1&y=2", text: "", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=2&y=2", text: "", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=3&y=2", text: "", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=4&y=2", text: "", chosen: 0 },
 
-        { levels: 0, player: 0, pos: "x=0&y=3", text: "" },
-        { levels: 0, player: 0, pos: "x=1&y=3", text: "" },
-        { levels: 0, player: 0, pos: "x=2&y=3", text: "" },
-        { levels: 0, player: 0, pos: "x=3&y=3", text: "" },
-        { levels: 0, player: 0, pos: "x=4&y=3", text: "" },
+        { levels: 0, player: 0, pos: "x=0&y=3", text: "", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=1&y=3", text: "", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=2&y=3", text: "", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=3&y=3", text: "", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=4&y=3", text: "", chosen: 0 },
 
-        { levels: 0, player: 0, pos: "x=0&y=4", text: "" },
-        { levels: 0, player: 0, pos: "x=1&y=4", text: "" },
-        { levels: 0, player: 0, pos: "x=2&y=4", text: "" },
-        { levels: 0, player: 0, pos: "x=3&y=4", text: "" },
-        { levels: 0, player: 0, pos: "x=4&y=4", text: "" },
+        { levels: 0, player: 0, pos: "x=0&y=4", text: "", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=1&y=4", text: "", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=2&y=4", text: "", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=3&y=4", text: "", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=4&y=4", text: "", chosen: 0 },
       ],
       showError: false,
       nextPlayer: 1,
@@ -99,7 +100,8 @@ class App extends Component<Props, GameCells> {
         levels: gridLevels,
         player: gridPlayer,
         pos: "x=" + x + "&y=" + y,
-        text: gridText
+        text: gridText,
+        chosen: 0
       };
       newCells.push(c);
     }

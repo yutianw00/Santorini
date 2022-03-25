@@ -52,7 +52,9 @@ body {
   padding: 0;
 }
 
-.playable { background-color: rgb(252, 214, 112);}
+.chosen1 { background-color: rgba(144, 160, 255, 0.8);}
+
+.chosen2 { background-color: rgba(140, 255, 150, 0.8);}
 
 .error {background-color: rgb(255, 0, 0)}
 
