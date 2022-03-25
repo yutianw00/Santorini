@@ -14,7 +14,8 @@ interface GameCells {
   cells: Array<Cell>,
   template: HandlebarsTemplateDelegate<any>,
   nextPlayer: number,
-  nextMove: number
+  nextMove: number,
+  linkheader: String,
 }
 
 interface Props {
@@ -58,7 +59,7 @@ class App extends Component<Props, GameCells> {
       nextPlayer: 1,
       nextMove: 0,
       template: this.loadTemplate(),
-      
+      linkheader: "setup",
     };
   }
 
@@ -144,7 +145,6 @@ class App extends Component<Props, GameCells> {
     this.setState({ cells: newCells });
     this.setState({ nextPlayer: json["playerId"]});
     this.setState({ nextMove: json["nextAction"]});
-
   }
 
   /* new */
@@ -155,20 +155,19 @@ class App extends Component<Props, GameCells> {
     ) {
       this.setUp(window.location.href);
       oldHref = window.location.href;
-    }
+    } 
   }
-
-
 
   render() {
     // this.switch();
-    this.testAPI();
+    // this.testAPI();
+    this.step()
     return (
     
       <div className="App">
         <div
           dangerouslySetInnerHTML={{
-            __html: this.state.template({ cells: this.state.cells }),
+            __html: this.state.template({ cells: this.state.cells, linkheader: this.state.linkheader }),
           }}
         />
       </div>

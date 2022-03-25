@@ -20,8 +20,8 @@
       </div>
       <div id="board">
         {{#each cells}}
-          {{#if link}}
-            <a href={{link}}><div class="cell {{clazz}}">{{text}}</div></a>
+          {{#if pos}}
+            <a href={{../linkheader}}{{pos}}><div class="cell {{clazz}}">{{text}}</div></a>
           {{else}}
             <div class="cell {{clazz}}">{{text}}</div>
           {{/if}}
