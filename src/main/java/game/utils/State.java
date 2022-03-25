@@ -16,11 +16,17 @@ public class State {
     private Board board;
     private int playerId;
     private int nextAction;
+    private int status;
 
     public State(Board board, int playerId, int nextAction) {
         this.board = board;
         this.playerId = playerId;
         this.nextAction = nextAction;
+        this.status = 0;
+    }
+
+    public State(int status) {
+        this.status = status;
     }
 
     public Board getBoard() {
@@ -37,9 +43,16 @@ public class State {
 
     @Override
     public String toString() {
-        String myjsonstr = "{ \"playerId\": \"" + playerId + "\"," +
-                " \"nextAction\": \"" + nextAction + "\"," +
-                " \"board\": "  + board.toString() + "}";
+        String myjsonstr;
+        if (status == 0) {
+            myjsonstr = "{ " + "\"status\": \"" + status + "\"," +
+                    "\"playerId\": \"" + playerId + "\"," +
+                    " \"nextAction\": \"" + nextAction + "\"," +
+                    " \"board\": "  + board.toString() + "}";
+        } else {
+            myjsonstr = "{ " + "\"status\": \"" + -1 + "\"" + "}";
+        }
+
 
         return myjsonstr;
     }
