@@ -158,13 +158,7 @@ class App extends Component<Props, GameCells> {
     console.log(json);
   };
 
-  /* new */
-  async setUp(url: String) {
-    const href = "setup?" + url.split("?")[1];
-    console.log(href);
-    const response = await fetch(href);
-    const json = await response.json();
-
+  async setAllStates(json: any) {
     console.log(json);
 
     if (json["status"] !== "0") {
@@ -196,6 +190,16 @@ class App extends Component<Props, GameCells> {
     } else {
       console.log("err: nextAction not specified or unexpected value!")
     }
+  }
+
+  /* new */
+  async setUp(url: String) {
+    const href = "setup?" + url.split("?")[1];
+    console.log(href);
+    const response = await fetch(href);
+    const json = await response.json();
+
+    this.setAllStates(json);
 
   }
 
@@ -206,37 +210,7 @@ class App extends Component<Props, GameCells> {
     const response = await fetch(href);
     const json = await response.json();
 
-    console.log(json);
-
-    if (json["status"] !== "0") {
-      this.setState({showError: true});
-    } else {
-      this.setState({showError: false});
-    }
-
-    var playerId = json["playerId"];
-    var nextAction = json["nextAction"];
-
-    const newCells: Array<Cell> = this.convertToCell(json["board"], playerId);
-    this.setState({ cells: newCells });
-    this.setState({ nextPlayer: playerId});
-    this.setState({ nextMove: nextAction});
-
-    if (nextAction === SETUP) {
-      this.setState({ linkheader: "setup?"});
-      this.setState({ instruction: "choose the position of your worker"});
-    } else if (nextAction === CHOOSEMOVE) {
-      this.setState({ linkheader: "choosemove?"});
-      this.setState({ instruction: "select one of your workers to move"});
-    } else if (nextAction === MOVE) {
-      this.setState({ linkheader: "move?"});
-      this.setState({ instruction: "select the target position of your move"});
-    } else if (nextAction === BUILD) {
-      this.setState({ linkheader: "build?"});
-      this.setState({ instruction: "select the target position of your build"});
-    } else {
-      console.log("err: nextAction not specified or unexpected value!")
-    }
+    this.setAllStates(json);
 
   }
 
@@ -247,37 +221,7 @@ class App extends Component<Props, GameCells> {
     const response = await fetch(href);
     const json = await response.json();
 
-    console.log(json);
-
-    if (json["status"] !== "0") {
-      this.setState({showError: true});
-    } else {
-      this.setState({showError: false});
-    }
-
-    var playerId = json["playerId"];
-    var nextAction = json["nextAction"];
-
-    const newCells: Array<Cell> = this.convertToCell(json["board"], playerId);
-    this.setState({ cells: newCells });
-    this.setState({ nextPlayer: playerId});
-    this.setState({ nextMove: nextAction});
-
-    if (nextAction === SETUP) {
-      this.setState({ linkheader: "setup?"});
-      this.setState({ instruction: "choose the position of your worker"});
-    } else if (nextAction === CHOOSEMOVE) {
-      this.setState({ linkheader: "choosemove?"});
-      this.setState({ instruction: "select one of your workers to move"});
-    } else if (nextAction === MOVE) {
-      this.setState({ linkheader: "move?"});
-      this.setState({ instruction: "select the target position of your move"});
-    } else if (nextAction === BUILD) {
-      this.setState({ linkheader: "build?"});
-      this.setState({ instruction: "select the target position of your build"});
-    } else {
-      console.log("err: nextAction not specified or unexpected value!")
-    }
+    this.setAllStates(json);
 
   }
 
