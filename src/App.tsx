@@ -4,6 +4,12 @@ import './App.css'
 
 var oldHref = "http://localhost:3000"
 
+var SETUP = 0;
+var CHOOSEMOVE = 1;
+var MOVE = 2;
+var CHOOSEBUILD = 3;
+var BUILD = 4;
+
 interface Cell {
   levels: number;
   player: number;
@@ -31,8 +37,8 @@ class App extends Component<Props, GameCells> {
     this.state = {
       cells: [
         { levels: 0, player: 0, pos: "x=0&y=0", text: "", chosen: 0 },
-        { levels: 0, player: 0, pos: "x=1&y=0", text: "", chosen: 1 },
-        { levels: 0, player: 0, pos: "x=2&y=0", text: "", chosen: 2 },
+        { levels: 0, player: 0, pos: "x=1&y=0", text: "", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=2&y=0", text: "", chosen: 0 },
         { levels: 0, player: 0, pos: "x=3&y=0", text: "", chosen: 0 },
         { levels: 0, player: 0, pos: "x=4&y=0", text: "", chosen: 0 },
 
@@ -75,7 +81,7 @@ class App extends Component<Props, GameCells> {
   }
 
   /* modified */ 
-  convertToCell(p: any): Array<Cell> {
+  convertToCell(p: any, playerId: number): Array<Cell> {
     var NUMCOLS: number = 5;
     const newCells: Array<Cell> = [];
     for (var i = 0; i < p.length; i++) {
@@ -95,13 +101,14 @@ class App extends Component<Props, GameCells> {
         textRight = "]";
       } 
       var gridText = textLeft + gridLevels.toString() + textRight;
+      var chosenVal = p[i]["chosen"] === 1 ? playerId : 0; 
       
       var c: Cell = {
         levels: gridLevels,
         player: gridPlayer,
         pos: "x=" + x + "&y=" + y,
         text: gridText,
-        chosen: 0
+        chosen: chosenVal
       };
       newCells.push(c);
     }
@@ -113,7 +120,7 @@ class App extends Component<Props, GameCells> {
     const response = await fetch("newgame");
     const json = await response.json();
 
-    const newCells: Array<Cell> = this.convertToCell(json);
+    const newCells: Array<Cell> = this.convertToCell(json, 0); // TOFIX
     this.setState({ cells: newCells });
   }
 
@@ -124,7 +131,7 @@ class App extends Component<Props, GameCells> {
 
     console.log(json);
 
-    const newCells: Array<Cell> = this.convertToCell(json);
+    const newCells: Array<Cell> = this.convertToCell(json, 0); // TOFIX
     this.setState({ cells: newCells });
   }
 
@@ -167,10 +174,28 @@ class App extends Component<Props, GameCells> {
       this.setState({showError: false});
     }
 
-    const newCells: Array<Cell> = this.convertToCell(json["board"]);
+    var playerId = json["playerId"];
+    var nextAction = json["nextAction"];
+
+    const newCells: Array<Cell> = this.convertToCell(json["board"], playerId);
     this.setState({ cells: newCells });
-    this.setState({ nextPlayer: json["playerId"]});
-    this.setState({ nextMove: json["nextAction"]});
+    this.setState({ nextPlayer: playerId});
+    this.setState({ nextMove: nextAction});
+
+    if (nextAction === SETUP) {
+      this.setState({ linkheader: "setup?"});
+    } else if (nextAction === CHOOSEMOVE) {
+      this.setState({ linkheader: "choosemove?"});
+    } else if (nextAction === MOVE) {
+      this.setState({ linkheader: "move?"});
+    } else if (nextAction === CHOOSEBUILD) {
+      this.setState({ linkheader: "choosebuild?"});
+    } else if (nextAction === BUILD) {
+      this.setState({ linkheader: "build?"});
+    } else {
+      console.log("err: nextAction not specified or unexpected value!")
+    }
+    
 
   }
 
