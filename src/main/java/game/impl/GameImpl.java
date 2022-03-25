@@ -193,7 +193,11 @@ public class GameImpl implements Game {
         checkWinCondition(playerId, worker.getPos(), pos);
 
         this.chosenWorkerId = workerId;
+
         Board newBoard = board.setBoardWorker(playerId, workerId, pos); // delegation
+        Player currPlayer = playerId == 1 ? p1 : p2;
+        currPlayer.setWorker(pos, workerId);
+
         newBoard = newBoard.chooseGrid(pos); // highlight the moved position
 
         this.board = newBoard; // assign the newBoard to be the board of the game
@@ -208,6 +212,8 @@ public class GameImpl implements Game {
     public State build(int playerId, int workerId, Pos pos) {
         Worker worker = getWorker(playerId, workerId);
         if (!board.checkBuild(worker, pos)) {
+            System.out.println("Board checkBuild: build with worker" + workerId + "at pos "
+                    + worker.getPos() + "and pos " + pos.toString() + " invalid!");
             return null;
         }
         Board newBoard = board.build(pos);

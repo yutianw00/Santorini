@@ -102,22 +102,27 @@ public class BoardImpl implements Board {
     public boolean checkBuild(Worker worker, Pos pos) {
         // cannot build out of bound
         if (!isInBound(pos)) {
+            System.out.println("checkBuild error: not in bound!");
             return false;
         }
 
         Pos currPos = worker.getPos();
         // cannot build to non-adjacent places
         if (!Board.isAdjacent(currPos, pos)) {
+            System.out.println(currPos + " " + pos);
+            System.out.println("checkBuild error: not adjacent to worker position!");
             return false;
         }
 
         // place cannot be occupied already
         if (hasWorker(pos)) {
+            System.out.println("checkBuild error: position occupied by other worker!");
             return false;
         }
 
         // the tower cannot be already completed (with a dome on it)
         if (getGrid(pos).isComplete()) {
+            System.out.println("checkBuild error: tower has a dome, cannot build further!");
             return false;
         }
 
