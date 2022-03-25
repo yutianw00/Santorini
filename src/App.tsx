@@ -71,7 +71,7 @@ class App extends Component<Props, GameCells> {
       nextMove: 0,
       template: this.loadTemplate(),
       linkheader: "setup?",
-      instruction: "choose the position of your worker ",
+      instruction: "choose the position of your worker",
     };
   }
 
@@ -184,18 +184,65 @@ class App extends Component<Props, GameCells> {
 
     if (nextAction === SETUP) {
       this.setState({ linkheader: "setup?"});
+      this.setState({ instruction: "choose the position of your worker"});
     } else if (nextAction === CHOOSEMOVE) {
       this.setState({ linkheader: "choosemove?"});
+      this.setState({ instruction: "select one of your workers to move"});
     } else if (nextAction === MOVE) {
       this.setState({ linkheader: "move?"});
+      this.setState({ instruction: "select the target position of your move"});
     } else if (nextAction === CHOOSEBUILD) {
       this.setState({ linkheader: "choosebuild?"});
+      this.setState({ instruction: "select one of your workers to build"});
     } else if (nextAction === BUILD) {
       this.setState({ linkheader: "build?"});
+      this.setState({ instruction: "select the target position of your build"});
     } else {
       console.log("err: nextAction not specified or unexpected value!")
     }
-    
+
+  }
+
+  async chooseMove(url: String) {
+    const href = "choosemove?" + url.split("?")[1];
+    console.log(href);
+    const response = await fetch(href);
+    const json = await response.json();
+
+    console.log(json);
+
+    if (json["status"] !== "0") {
+      this.setState({showError: true});
+    } else {
+      this.setState({showError: false});
+    }
+
+    var playerId = json["playerId"];
+    var nextAction = json["nextAction"];
+
+    const newCells: Array<Cell> = this.convertToCell(json["board"], playerId);
+    this.setState({ cells: newCells });
+    this.setState({ nextPlayer: playerId});
+    this.setState({ nextMove: nextAction});
+
+    if (nextAction === SETUP) {
+      this.setState({ linkheader: "setup?"});
+      this.setState({ instruction: "choose the position of your worker"});
+    } else if (nextAction === CHOOSEMOVE) {
+      this.setState({ linkheader: "choosemove?"});
+      this.setState({ instruction: "select one of your workers to move"});
+    } else if (nextAction === MOVE) {
+      this.setState({ linkheader: "move?"});
+      this.setState({ instruction: "select the target position of your move"});
+    } else if (nextAction === CHOOSEBUILD) {
+      this.setState({ linkheader: "choosebuild?"});
+      this.setState({ instruction: "select one of your workers to build"});
+    } else if (nextAction === BUILD) {
+      this.setState({ linkheader: "build?"});
+      this.setState({ instruction: "select the target position of your build"});
+    } else {
+      console.log("err: nextAction not specified or unexpected value!")
+    }
 
   }
 
@@ -207,6 +254,12 @@ class App extends Component<Props, GameCells> {
       oldHref !== window.location.href
     ) {
       this.setUp(window.location.href);
+      oldHref = window.location.href;
+    } else if (
+      window.location.href.split("?")[0] === "http://localhost:3000/choosemove" &&
+      oldHref !== window.location.href
+    ) {
+      this.chooseMove(window.location.href);
       oldHref = window.location.href;
     } 
   }
