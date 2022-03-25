@@ -148,8 +148,6 @@ public class GameImpl implements Game {
         Board newBoard = board.setBoardWorker(playerId, workerId, pos); // delegation
         this.board = newBoard; // assign the newBoard to be the board of the game
 
-
-
         this.setNextAction(BUILD);
         State newState = createState(newBoard);
         history.addHistory(newState);
@@ -197,7 +195,10 @@ public class GameImpl implements Game {
             flipPlayer();
         }
 
-        State newState = createState(board.setBoardWorker(playerId, workerId, pos));
+        Board newBoard = board.setBoardWorker(playerId, workerId, pos);
+        this.board = newBoard;
+
+        State newState = createState(newBoard);
         history.addHistory(newState);
         return newState;
 

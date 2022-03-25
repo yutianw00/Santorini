@@ -20,6 +20,8 @@ public class App extends NanoHTTPD {
 
     private Game game;
 
+    private int setWorkerId = 1;
+
     public App() throws IOException {
         super(8080);
 
@@ -41,15 +43,21 @@ public class App extends NanoHTTPD {
 
             return newFixedLengthResponse(myjsonstr);
         } else if (uri.equals("/setup")) {
+            System.out.println("uri" + uri);
             System.out.println(params.get("x"));
             System.out.println(params.get("y"));
+            System.out.println("workerId:" + setWorkerId);
+
             int x = Integer.valueOf(params.get("x"));
             int y = Integer.valueOf(params.get("y"));
+            int playerId = game.getNextPlayerId();
+            System.out.println("playerId:" + playerId);
 
-            State state = game.setWorker(1, 1, new Pos(x, y));
+            State state = game.setWorker(playerId, setWorkerId, new Pos(x, y));
             if (state == null) {
                 return newFixedLengthResponse(new State(game.getCurrState(), -1).toString());
             }
+            this.setWorkerId = (this.setWorkerId == 1) ? 2 : 1;
             return newFixedLengthResponse(state.toString());
         }
         return null;

@@ -48,8 +48,8 @@ public class State {
     public String toString() {
         String myjsonstr;
         myjsonstr = "{ " + "\"status\": \"" + status + "\"," +
-                "\"playerId\": \"" + playerId + "\"," +
-                " \"nextAction\": \"" + nextAction + "\"," +
+                "\"playerId\": " + playerId + "," +
+                " \"nextAction\": " + nextAction + "," +
                 " \"board\": "  + board.toString() + "}";
 
         return myjsonstr;
