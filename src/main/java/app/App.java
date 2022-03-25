@@ -91,6 +91,21 @@ public class App extends NanoHTTPD {
                 return newFixedLengthResponse(new State(game.getCurrState(), -1).toString());
             }
             return newFixedLengthResponse(state.toString());
+        } else if (uri.equals("/build")) {
+            System.out.println("App: Build request received!");
+            System.out.println("uri" + uri);
+            System.out.println(params.get("x"));
+            System.out.println(params.get("y"));
+
+            int x = Integer.valueOf(params.get("x"));
+            int y = Integer.valueOf(params.get("y"));
+            int playerId = game.getNextPlayerId();
+
+            State state = game.build(playerId, setWorkerId, new Pos(x, y));
+            if (state == null) {
+                return newFixedLengthResponse(new State(game.getCurrState(), -1).toString());
+            }
+            return newFixedLengthResponse(state.toString());
         }
         return null;
 //        if (uri.equals("/newgame")) {

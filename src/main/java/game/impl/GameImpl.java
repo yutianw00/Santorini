@@ -213,7 +213,7 @@ public class GameImpl implements Game {
         Board newBoard = board.build(pos);
         this.board = newBoard;
 
-        this.setNextAction(MOVE);
+        this.setNextAction(CHOOSEMOVE);
         this.flipPlayer();
         State newState = createState(newBoard);
         history.addHistory(newState);
