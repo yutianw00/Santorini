@@ -23,6 +23,8 @@ public class GameImpl implements Game {
     private int winnerId;
     private int nextPlayerId;
 
+    private int chosenWorkerId = 0;
+
     private boolean hasFinished = false;
 
     public GameImpl() {
@@ -42,6 +44,46 @@ public class GameImpl implements Game {
         hasFinished = false;
 
         history.addHistory(createState(board));
+    }
+
+    @Override
+    public State chooseMove(Pos pos) {
+        Worker w1 = getWorker(nextPlayerId, 1);
+        Worker w2 = getWorker(nextPlayerId, 2);
+        if (w1.getPos().equals(pos)) {
+            chosenWorkerId = 1;
+        } else if (w2.getPos().equals(pos)) {
+            chosenWorkerId = 2;
+        } else {
+            System.out.println("ChooseMove error: the pos is not player worker's position!");
+            return null;
+        }
+        Board newBoard = board.chooseGrid(pos);
+        this.board = newBoard;
+        this.nextAction = MOVE;
+        State newState = createState(board);
+        history.addHistory(newState);
+        return newState;
+    }
+
+    @Override
+    public State chooseBuild(Pos pos) {
+        Worker w1 = getWorker(nextPlayerId, 1);
+        Worker w2 = getWorker(nextPlayerId, 2);
+        if (w1.getPos().equals(pos)) {
+            chosenWorkerId = 1;
+        } else if (w2.getPos().equals(pos)) {
+            chosenWorkerId = 2;
+        } else {
+            System.out.println("ChooseBuild error: the pos is not player worker's position!");
+            return null;
+        }
+        Board newBoard = board.chooseGrid(pos);
+        this.board = newBoard;
+        this.nextAction = BUILD;
+        State newState = createState(board);
+        history.addHistory(newState);
+        return newState;
     }
 
     @Override

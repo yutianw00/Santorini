@@ -10,9 +10,29 @@ public interface Game {
     int NUMPLAYERS = 2;
 
     // action number constants
-    int MOVE = 1;
-    int BUILD = 2;
-    int SETUP = 4;
+    int SETUP = 0;
+    int CHOOSEMOVE = 1;
+    int MOVE = 2;
+    int CHOOSEBUILD = 3;
+    int BUILD = 4;
+
+    /**
+     * Choose the worker to move by position
+     * Also switch the next action to MOVE on success
+     * @param pos The position of the worker
+     * @return new State with the position chosen if the pos contains a worker
+     *  of the nextPlayer, null otherwise
+     */
+    State chooseMove(Pos pos);
+
+    /**
+     * Choose the worker to build by position
+     * Also switch the next action to BUILD on success
+     * @param pos The position of the worker
+     * @return new State with the position chosen if the pos contains a worker
+     *  of the nextPlayer, null otherwise
+     */
+    State chooseBuild(Pos pos);
 
     /**
      * Set the board of the game to be a new {@link Board}

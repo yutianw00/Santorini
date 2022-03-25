@@ -24,6 +24,18 @@ public interface Board {
     boolean isInBound(Pos pos);
 
     /**
+     * choose a grid
+     * @param pos The pos of the grid
+     */
+    Board chooseGrid(Pos pos);
+
+    /**
+     * unchoose a grid
+     * @param pos The pos of the grid
+     */
+    Board unchooseGrid(Pos pos);
+
+    /**
      * Check if a move is valid (meaning moving to an adjacent empty blocks without workers,
      * and the worker is going up at most by 1 level during the move
      * Note that this function only checks for validity but not perform the move operation

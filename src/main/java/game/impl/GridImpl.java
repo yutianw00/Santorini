@@ -6,6 +6,7 @@ public class GridImpl implements Grid {
 
 
     private int levels;
+    private boolean isChoosen;
 
     public GridImpl() {
         this.levels = 0;
@@ -52,5 +53,20 @@ public class GridImpl implements Grid {
         return "GridImpl{" +
                 "levels=" + levels +
                 '}';
+    }
+
+    @Override
+    public boolean isChosen() {
+        return this.isChoosen;
+    }
+
+    @Override
+    public void choose() {
+        this.isChoosen = true;
+    }
+
+    @Override
+    public void unChoose() {
+        this.isChoosen = false;
     }
 }

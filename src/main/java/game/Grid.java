@@ -44,4 +44,20 @@ public interface Grid {
      * @return the newly created copied {@link Grid}
      */
     Grid copyGrid();
+
+    /**
+     * Decide if a grid is choosen by player during a CHOOSEMOVE or CHOOSEBUILD
+     * @return true if chosen, false otherwise
+     */
+    boolean isChosen();
+
+    /**
+     * choose the grid
+     */
+    void choose();
+
+    /**
+     * if the grid is chosen, un-choose the grid
+     */
+    void unChoose();
 }
