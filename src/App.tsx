@@ -8,6 +8,7 @@ interface Cell {
   levels: number;
   player: number;
   pos: String;
+  text: String;
 }
 
 interface GameCells {
@@ -27,35 +28,35 @@ class App extends Component<Props, GameCells> {
     super(props);
     this.state = {
       cells: [
-        { levels: 0, player: 0, pos: "?x=0&y=0" },
-        { levels: 0, player: 0, pos: "?x=1&y=0" },
-        { levels: 0, player: 0, pos: "?x=2&y=0" },
-        { levels: 0, player: 0, pos: "?x=3&y=0" },
-        { levels: 0, player: 0, pos: "?x=4&y=0" },
+        { levels: 0, player: 0, pos: "?x=0&y=0", text: "" },
+        { levels: 0, player: 0, pos: "?x=1&y=0", text: "" },
+        { levels: 0, player: 0, pos: "?x=2&y=0", text: "" },
+        { levels: 0, player: 0, pos: "?x=3&y=0", text: "" },
+        { levels: 0, player: 0, pos: "?x=4&y=0", text: "" },
 
-        { levels: 0, player: 0, pos: "?x=0&y=1" },
-        { levels: 0, player: 0, pos: "?x=1&y=1" },
-        { levels: 0, player: 0, pos: "?x=2&y=1" },
-        { levels: 0, player: 0, pos: "?x=3&y=1" },
-        { levels: 0, player: 0, pos: "?x=4&y=1" },
+        { levels: 0, player: 0, pos: "?x=0&y=1", text: "" },
+        { levels: 0, player: 0, pos: "?x=1&y=1", text: "" },
+        { levels: 0, player: 0, pos: "?x=2&y=1", text: "" },
+        { levels: 0, player: 0, pos: "?x=3&y=1", text: "" },
+        { levels: 0, player: 0, pos: "?x=4&y=1", text: "" },
 
-        { levels: 0, player: 0, pos: "?x=0&y=2" },
-        { levels: 0, player: 0, pos: "?x=1&y=2" },
-        { levels: 0, player: 0, pos: "?x=2&y=2" },
-        { levels: 0, player: 0, pos: "?x=3&y=2" },
-        { levels: 0, player: 0, pos: "?x=4&y=2" },
+        { levels: 0, player: 0, pos: "?x=0&y=2", text: "" },
+        { levels: 0, player: 0, pos: "?x=1&y=2", text: "" },
+        { levels: 0, player: 0, pos: "?x=2&y=2", text: "" },
+        { levels: 0, player: 0, pos: "?x=3&y=2", text: "" },
+        { levels: 0, player: 0, pos: "?x=4&y=2", text: "" },
 
-        { levels: 0, player: 0, pos: "?x=0&y=3" },
-        { levels: 0, player: 0, pos: "?x=1&y=3" },
-        { levels: 0, player: 0, pos: "?x=2&y=3" },
-        { levels: 0, player: 0, pos: "?x=3&y=3" },
-        { levels: 0, player: 0, pos: "?x=4&y=3" },
+        { levels: 0, player: 0, pos: "?x=0&y=3", text: "" },
+        { levels: 0, player: 0, pos: "?x=1&y=3", text: "" },
+        { levels: 0, player: 0, pos: "?x=2&y=3", text: "" },
+        { levels: 0, player: 0, pos: "?x=3&y=3", text: "" },
+        { levels: 0, player: 0, pos: "?x=4&y=3", text: "" },
 
-        { levels: 0, player: 0, pos: "?x=0&y=4" },
-        { levels: 0, player: 0, pos: "?x=1&y=4" },
-        { levels: 0, player: 0, pos: "?x=2&y=4" },
-        { levels: 0, player: 0, pos: "?x=3&y=4" },
-        { levels: 0, player: 0, pos: "?x=4&y=4" },
+        { levels: 0, player: 0, pos: "?x=0&y=4", text: "" },
+        { levels: 0, player: 0, pos: "?x=1&y=4", text: "" },
+        { levels: 0, player: 0, pos: "?x=2&y=4", text: "" },
+        { levels: 0, player: 0, pos: "?x=3&y=4", text: "" },
+        { levels: 0, player: 0, pos: "?x=4&y=4", text: "" },
       ],
       showError: false,
       nextPlayer: 1,
@@ -72,17 +73,31 @@ class App extends Component<Props, GameCells> {
 
   /* modified */ 
   convertToCell(p: any): Array<Cell> {
-    // TODO
-    // var NUMROWS: number = 5;
     var NUMCOLS: number = 5;
     const newCells: Array<Cell> = [];
     for (var i = 0; i < p.length; i++) {
-      var x: number = i / NUMCOLS;
+      var x: number = Math.floor(i / NUMCOLS);
       var y: number = i % NUMCOLS;
+      
+      var gridLevels: number = p[i]["levels"];
+      var gridPlayer: number = p[i]["player"];
+
+      var textLeft: String = "";
+      var textRight: String = "";
+      if (gridPlayer === 1) {
+        textLeft = "(";
+        textRight = ")";
+      } else if (gridPlayer === 2) {
+        textLeft = "[";
+        textRight = "]";
+      } 
+      var gridText = textLeft + gridLevels.toString() + textRight;
+      
       var c: Cell = {
-        levels: p[i]["levels"],
-        player: p[i]["player"],
-        pos: "?x=" + x + "&y=" + y
+        levels: gridLevels,
+        player: gridPlayer,
+        pos: "?x=" + x + "&y=" + y,
+        text: gridText
       };
       newCells.push(c);
     }
@@ -102,8 +117,6 @@ class App extends Component<Props, GameCells> {
     const href = "play?" + url.split("?")[1];
     const response = await fetch(href);
     const json = await response.json();
-
-    console.log("here");
 
     console.log(json);
 
@@ -145,14 +158,14 @@ class App extends Component<Props, GameCells> {
 
     if (json["status"] !== "0") {
       this.setState({showError: true});
-      return;
+    } else {
+      this.setState({showError: false});
     }
 
     const newCells: Array<Cell> = this.convertToCell(json["board"]);
     this.setState({ cells: newCells });
     this.setState({ nextPlayer: json["playerId"]});
     this.setState({ nextMove: json["nextAction"]});
-    this.setState({ showError: false});
   }
 
   /* new */
@@ -171,7 +184,6 @@ class App extends Component<Props, GameCells> {
     // this.switch();
     // this.testAPI();
     this.step()
-    console.log(this.state.showError);
     return (
     
       <div className="App">
