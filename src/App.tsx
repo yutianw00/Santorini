@@ -7,7 +7,6 @@ var oldHref = "http://localhost:3000"
 var SETUP = 0;
 var CHOOSEMOVE = 1;
 var MOVE = 2;
-var CHOOSEBUILD = 3;
 var BUILD = 4;
 
 interface Cell {
@@ -37,33 +36,33 @@ class App extends Component<Props, GameCells> {
     this.state = {
       cells: [
         { levels: 0, player: 0, pos: "x=0&y=0", text: "", chosen: 0 },
-        { levels: 0, player: 0, pos: "x=1&y=0", text: "", chosen: 0 },
-        { levels: 0, player: 0, pos: "x=2&y=0", text: "", chosen: 0 },
-        { levels: 0, player: 0, pos: "x=3&y=0", text: "", chosen: 0 },
-        { levels: 0, player: 0, pos: "x=4&y=0", text: "", chosen: 0 },
-
         { levels: 0, player: 0, pos: "x=0&y=1", text: "", chosen: 0 },
-        { levels: 0, player: 0, pos: "x=1&y=1", text: "", chosen: 0 },
-        { levels: 0, player: 0, pos: "x=2&y=1", text: "", chosen: 0 },
-        { levels: 0, player: 0, pos: "x=3&y=1", text: "", chosen: 0 },
-        { levels: 0, player: 0, pos: "x=4&y=1", text: "", chosen: 0 },
-
         { levels: 0, player: 0, pos: "x=0&y=2", text: "", chosen: 0 },
-        { levels: 0, player: 0, pos: "x=1&y=2", text: "", chosen: 0 },
-        { levels: 0, player: 0, pos: "x=2&y=2", text: "", chosen: 0 },
-        { levels: 0, player: 0, pos: "x=3&y=2", text: "", chosen: 0 },
-        { levels: 0, player: 0, pos: "x=4&y=2", text: "", chosen: 0 },
-
         { levels: 0, player: 0, pos: "x=0&y=3", text: "", chosen: 0 },
-        { levels: 0, player: 0, pos: "x=1&y=3", text: "", chosen: 0 },
-        { levels: 0, player: 0, pos: "x=2&y=3", text: "", chosen: 0 },
-        { levels: 0, player: 0, pos: "x=3&y=3", text: "", chosen: 0 },
-        { levels: 0, player: 0, pos: "x=4&y=3", text: "", chosen: 0 },
-
         { levels: 0, player: 0, pos: "x=0&y=4", text: "", chosen: 0 },
+
+        { levels: 0, player: 0, pos: "x=1&y=0", text: "", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=1&y=1", text: "", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=1&y=2", text: "", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=1&y=3", text: "", chosen: 0 },
         { levels: 0, player: 0, pos: "x=1&y=4", text: "", chosen: 0 },
+
+        { levels: 0, player: 0, pos: "x=2&y=0", text: "", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=2&y=1", text: "", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=2&y=2", text: "", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=2&y=3", text: "", chosen: 0 },
         { levels: 0, player: 0, pos: "x=2&y=4", text: "", chosen: 0 },
+
+        { levels: 0, player: 0, pos: "x=3&y=0", text: "", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=3&y=1", text: "", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=3&y=2", text: "", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=3&y=3", text: "", chosen: 0 },
         { levels: 0, player: 0, pos: "x=3&y=4", text: "", chosen: 0 },
+
+        { levels: 0, player: 0, pos: "x=4&y=0", text: "", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=4&y=1", text: "", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=4&y=2", text: "", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=4&y=3", text: "", chosen: 0 },
         { levels: 0, player: 0, pos: "x=4&y=4", text: "", chosen: 0 },
       ],
       showError: false,
@@ -191,9 +190,6 @@ class App extends Component<Props, GameCells> {
     } else if (nextAction === MOVE) {
       this.setState({ linkheader: "move?"});
       this.setState({ instruction: "select the target position of your move"});
-    } else if (nextAction === CHOOSEBUILD) {
-      this.setState({ linkheader: "choosebuild?"});
-      this.setState({ instruction: "select one of your workers to build"});
     } else if (nextAction === BUILD) {
       this.setState({ linkheader: "build?"});
       this.setState({ instruction: "select the target position of your build"});
@@ -203,6 +199,7 @@ class App extends Component<Props, GameCells> {
 
   }
 
+  /* new */
   async chooseMove(url: String) {
     const href = "choosemove?" + url.split("?")[1];
     console.log(href);
@@ -234,9 +231,47 @@ class App extends Component<Props, GameCells> {
     } else if (nextAction === MOVE) {
       this.setState({ linkheader: "move?"});
       this.setState({ instruction: "select the target position of your move"});
-    } else if (nextAction === CHOOSEBUILD) {
-      this.setState({ linkheader: "choosebuild?"});
-      this.setState({ instruction: "select one of your workers to build"});
+    } else if (nextAction === BUILD) {
+      this.setState({ linkheader: "build?"});
+      this.setState({ instruction: "select the target position of your build"});
+    } else {
+      console.log("err: nextAction not specified or unexpected value!")
+    }
+
+  }
+
+  /* new */
+  async move(url: String) {
+    const href = "move?" + url.split("?")[1];
+    console.log(href);
+    const response = await fetch(href);
+    const json = await response.json();
+
+    console.log(json);
+
+    if (json["status"] !== "0") {
+      this.setState({showError: true});
+    } else {
+      this.setState({showError: false});
+    }
+
+    var playerId = json["playerId"];
+    var nextAction = json["nextAction"];
+
+    const newCells: Array<Cell> = this.convertToCell(json["board"], playerId);
+    this.setState({ cells: newCells });
+    this.setState({ nextPlayer: playerId});
+    this.setState({ nextMove: nextAction});
+
+    if (nextAction === SETUP) {
+      this.setState({ linkheader: "setup?"});
+      this.setState({ instruction: "choose the position of your worker"});
+    } else if (nextAction === CHOOSEMOVE) {
+      this.setState({ linkheader: "choosemove?"});
+      this.setState({ instruction: "select one of your workers to move"});
+    } else if (nextAction === MOVE) {
+      this.setState({ linkheader: "move?"});
+      this.setState({ instruction: "select the target position of your move"});
     } else if (nextAction === BUILD) {
       this.setState({ linkheader: "build?"});
       this.setState({ instruction: "select the target position of your build"});
@@ -260,6 +295,12 @@ class App extends Component<Props, GameCells> {
       oldHref !== window.location.href
     ) {
       this.chooseMove(window.location.href);
+      oldHref = window.location.href;
+    } else if (
+      window.location.href.split("?")[0] === "http://localhost:3000/move" &&
+      oldHref !== window.location.href
+    ) {
+      this.move(window.location.href);
       oldHref = window.location.href;
     } 
   }
