@@ -128,6 +128,19 @@ public class App extends NanoHTTPD {
             setWorkerId = 1;
 
             return null;
+        } else if (uri.equals("/preparepower1")) {
+            System.out.println("App: God Game player 1 use power request received!");
+
+            State state = game.setupPower(1, setWorkerId);
+
+            return newFixedLengthResponse(state.toString());
+        } else if (uri.equals("/preparepower2")) { // TODO
+            System.out.println("App: God Game player 2 use power request received!");
+
+//            this.game = new GodGame(new GameImpl(), god1, god2); //TODO
+//            setWorkerId = 1;
+
+            return null;
         }
         return null;
 //        if (uri.equals("/newgame")) {

@@ -24,6 +24,8 @@ public class State {
     private int nextAction;
     private int status; // 0 means ok, -1 means error,
     private String god1 = "", god2 = "";
+    private boolean canUse1 = false, canUse2 = false; // whether the player can use power
+    private boolean usePower1 = false, usePower2 = false; // whether the player is using power
 
     public State(Board board, int playerId, int nextAction) {
         this.board = board;
@@ -42,6 +44,20 @@ public class State {
     public void addGod(GodPower god1, GodPower god2) {
         this.god1 = god1.description();
         this.god2 = god2.description();
+        if (god1.canDoAction(this)) {
+            canUse1 = true;
+        }
+        if (god2.canDoAction(this)) {
+            canUse2 = true;
+        }
+
+        if (god1.isUsing()) {
+            usePower1 = true;
+        }
+        if (god2.isUsing()) {
+            usePower2 = true;
+        }
+
     }
 
     public Board getBoard() {
@@ -54,6 +70,22 @@ public class State {
 
     public int getNextAction() {
         return nextAction;
+    }
+
+    public void inspect() {
+        System.out.println(this.playerId);
+        System.out.println(this.nextAction);
+        System.out.println(this.getBoard().toString());
+        System.out.println(this.god1);
+        System.out.println(this.god2);
+    }
+
+    public void usePower(int powerId) {
+        if (powerId == 1) {
+            this.usePower1 = true;
+        } else if (powerId == 2) {
+            this.usePower2 = true;
+        }
     }
 
     @Override
@@ -70,10 +102,11 @@ public class State {
                     " \"nextAction\": " + nextAction + "," +
                     " \"board\": "  + board.toString() + "," +
                     " \"god1\": \""  + god1 + "\"," +
-                    " \"god2\": \""  + god2 + "\"" + "}";
+                    " \"god2\": \""  + god2 + "\"," +
+                    " \"canUse1\": "  + canUse1 + "," +
+                    " \"canUse2\": "  + canUse2 + "" +
+                    "}";
         }
-
-
         return myjsonstr;
     }
 

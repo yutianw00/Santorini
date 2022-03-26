@@ -196,4 +196,13 @@ public class GodGame implements Game {
         }
         return res;
     }
+
+    @Override
+    public State setupPower(int playerId, int workerId) {
+        if (playerId == 1){
+            return god1.setupPower(workerId);
+        } else {
+            return god2.setupPower(workerId);
+        }
+    }
 }

@@ -39,4 +39,17 @@ public interface GodPower {
      * @param pos The position of the previous build
      */
     void storeInfo(Pos pos);
+
+    /**
+     * Return the state for setting up to use god power
+     * @param workerId The worker id that's currently selected
+     * @return The state for using the god power
+     */
+    State setupPower(int workerId);
+
+    /**
+     * check whether in the current state the god is using power
+     * @return true if god is using power, false otherwise
+     */
+    boolean isUsing();
 }

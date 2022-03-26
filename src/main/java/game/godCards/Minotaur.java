@@ -17,6 +17,7 @@ public class Minotaur implements GodPower{
     private Game game;
     private int playerId;
     private int otherPlayerId;
+    private boolean isUsing = false;
 
     public Minotaur(int playerId, Game game) {
         this.game = game;
@@ -35,6 +36,7 @@ public class Minotaur implements GodPower{
          * The action can only be performed if it's player's turn and
          * the player is about to perform a move operation
          */
+        this.isUsing = false;
         if (state == null) {
             return false;
         }
@@ -145,6 +147,7 @@ public class Minotaur implements GodPower{
         if (newBoard != null) {
             game.setBoard(newBoard);
         }
+        this.isUsing = false;
         return game.move(playerId, workerId, pos);
 
     }
@@ -152,5 +155,18 @@ public class Minotaur implements GodPower{
     @Override
     public void storeInfo(Pos pos) {
         // no need to store, dummy function
+    }
+
+    @Override
+    public State setupPower(int workerId) {
+        this.isUsing = true;
+        State state = game.getCurrState();
+        state.usePower(game.getNextPlayerId());
+        return state;
+    }
+
+    @Override
+    public boolean isUsing() {
+        return this.isUsing;
     }
 }

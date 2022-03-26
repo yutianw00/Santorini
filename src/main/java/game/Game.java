@@ -15,6 +15,7 @@ public interface Game {
     int MOVE = 2;
     int BUILD = 4;
     int FINISH = 5;
+    int USEPOWER = 6;
 
     /**
      * get the worker chosen at the chooseMove or chooseBuild operation
@@ -176,5 +177,14 @@ public interface Game {
      *  null if no god power can be used
      */
     State usePower(int playerId, int workerId, Pos pos);
+
+    /**
+     * Set up the state for using power if power can be used
+     * Prerequisite: {@link game.godCards.GodPower} canDoAction return true at this time
+     * @param playerId The player with the playerId is about to use power
+     * @param workerId The player is currently dealing with the worker of workerId
+     * @return The setup state preparing to using the power next time
+     */
+    State setupPower(int playerId, int workerId);
 
 }

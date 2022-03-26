@@ -1,6 +1,9 @@
 package game.godCards;
 
+import game.Board;
 import game.Game;
+import game.History;
+import game.Worker;
 import game.utils.Pos;
 import game.utils.State;
 
@@ -14,6 +17,7 @@ public class Demeter implements GodPower{
     private Game game;
     private int playerId;
     private Pos prevBuildPos;
+    private boolean isUsing = false;
 
     public Demeter(int playerId, Game game) {
         this.game = game;
@@ -42,13 +46,17 @@ public class Demeter implements GodPower{
          * As a result of the successful build, the player will be switched
          * to the other player, and the action will be set to MOVE
          */
+        if (this.isUsing) {
+            this.isUsing = false;
+            return false;
+        }
         if (state == null) {
             return false;
         }
         if (state.getPlayerId() == playerId) {
             return false;
         }
-        if (state.getNextAction() != Game.MOVE) {
+        if (state.getNextAction() != Game.CHOOSEMOVE) {
             return false;
         }
         return true;
@@ -70,6 +78,7 @@ public class Demeter implements GodPower{
             System.out.println("Demeter extra build: cannot build on the same position twice!");
             return null; // cannot build on the previous build position
         }
+
         game.setNextAction(Game.BUILD);
         game.flipPlayer();
         State newState = game.build(this.playerId, workerId, pos);
@@ -78,7 +87,30 @@ public class Demeter implements GodPower{
     }
 
     @Override
+    public State setupPower(int workerId) {
+        game.setNextAction(Game.USEPOWER);
+        game.flipPlayer();
+
+        Board board = game.getBoard();
+        int playerId = game.getNextPlayerId();
+        Worker selectedWorker = board.getWorker(playerId, workerId);
+        Board newBoard = board.chooseGrid(selectedWorker.getPos());
+
+        this.isUsing = true;
+        State newState = new State(newBoard, playerId, game.getNextAction());
+        newState.usePower(game.getNextPlayerId());
+
+        game.getHistory().add(newState);
+        return newState;
+    }
+
+    @Override
     public void storeInfo(Pos pos) {
         this.prevBuildPos = pos;
+    }
+
+    @Override
+    public boolean isUsing() {
+        return this.isUsing;
     }
 }

@@ -48,4 +48,14 @@ public class Pan implements GodPower{
     public void storeInfo(Pos pos) {
         // no need to store, dummy
     }
+
+    @Override
+    public State setupPower(int workerId) {
+        return null;
+    }
+
+    @Override
+    public boolean isUsing() {
+        return false;
+    }
 }
