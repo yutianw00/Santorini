@@ -9,6 +9,7 @@ var CHOOSEMOVE = 1;
 var MOVE = 2;
 var BUILD = 4;
 var FINISH = 5;
+var USEPOWER = 6;
 
 interface Cell {
   levels: number;
@@ -33,6 +34,10 @@ interface GameCells {
 
   god1msg: String,
   god2msg: String,
+
+  canUse1: boolean,
+  canUse2: boolean,
+
 }
 
 interface Props {
@@ -86,6 +91,9 @@ class App extends Component<Props, GameCells> {
 
       god1msg: "No God Mode",
       god2msg: "No God Mode",
+
+      canUse1: false,
+      canUse2: false,
 
     };
   }
@@ -235,6 +243,9 @@ class App extends Component<Props, GameCells> {
       this.setState({ linkheader: ""});
       this.setState({ instruction: "YOU WON!"});
       this.setState({ finish: true});
+    } else if (nextAction === USEPOWER) {
+      this.setState({ linkheader: "usepower?"});
+      this.setState({ instruction: "Player Using God Power..."});
     } else {
       console.log("err: nextAction not specified or unexpected value!")
     }
@@ -245,6 +256,15 @@ class App extends Component<Props, GameCells> {
     if (json.hasOwnProperty('god2')) {
       this.setState({ god2msg: json["god2"]});
     }
+
+    if (json.hasOwnProperty('canUse1')) {
+      this.setState({ canUse1: json["canUse1"]});
+    }
+    if (json.hasOwnProperty('canUse2')) {
+      this.setState({ canUse2: json["canUse2"]});
+    }
+
+
   }
 
   /* new */
@@ -292,6 +312,26 @@ class App extends Component<Props, GameCells> {
   }
 
   /* new */
+  async preparePower1() {
+    const href = "preparepower1"
+    const response = await fetch(href);
+    const json = await response.json();
+
+    this.setAllStates(json);
+  }
+
+  /* new */
+  async preparePower2() {
+    const href = "preparepower2"
+    const response = await fetch(href);
+    const json = await response.json();
+
+    this.setAllStates(json);
+  }
+
+  
+
+  /* new */
   async step() {
     // this.setState({showError: false});
     if (
@@ -337,6 +377,18 @@ class App extends Component<Props, GameCells> {
     ) {
       this.newGodGame(window.location.href);
       oldHref = window.location.href;
+    } else if (
+      window.location.href.split("?")[0] === "http://localhost:3000/usepower1" &&
+      oldHref !== window.location.href
+    ) {
+      this.preparePower1();
+      oldHref = window.location.href;
+    } else if (
+      window.location.href.split("?")[0] === "http://localhost:3000/usepower2" &&
+      oldHref !== window.location.href
+    ) {
+      this.preparePower2();
+      oldHref = window.location.href;
     } 
   }
 
@@ -362,6 +414,9 @@ class App extends Component<Props, GameCells> {
 
               god1msg: this.state.god1msg,
               god2msg: this.state.god2msg,
+
+              canUse1: this.state.canUse1 ? "appear" : "disappear",
+              canUse2: this.state.canUse2 ? "appear" : "disappear",
 
             }), 
           }}
