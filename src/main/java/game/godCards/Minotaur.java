@@ -159,10 +159,19 @@ public class Minotaur implements GodPower{
 
     @Override
     public State setupPower(int workerId) {
+        game.setNextAction(Game.USEPOWER);
+
+        Board board = game.getBoard();
+        int playerId = game.getNextPlayerId();
+        Worker selectedWorker = board.getWorker(playerId, workerId);
+        Board newBoard = board.chooseGrid(selectedWorker.getPos());
+
         this.isUsing = true;
-        State state = game.getCurrState();
-        state.usePower(game.getNextPlayerId());
-        return state;
+        State newState = new State(newBoard, playerId, game.getNextAction());
+        newState.usePower(game.getNextPlayerId());
+
+        game.getHistory().add(newState);
+        return newState;
     }
 
     @Override
