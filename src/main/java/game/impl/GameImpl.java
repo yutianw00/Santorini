@@ -202,8 +202,14 @@ public class GameImpl implements Game {
 
         this.board = newBoard; // assign the newBoard to be the board of the game
 
-        this.setNextAction(BUILD);
+        if (this.hasFinished) {
+            this.setNextAction(FINISH);
+        } else {
+            this.setNextAction(BUILD);
+        }
+
         State newState = createState(newBoard);
+
         history.addHistory(newState);
         return newState;
     }

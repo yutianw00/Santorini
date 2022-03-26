@@ -13,8 +13,8 @@ public interface Game {
     int SETUP = 0;
     int CHOOSEMOVE = 1;
     int MOVE = 2;
-//    int CHOOSEBUILD = 3;
     int BUILD = 4;
+    int FINISH = 5;
 
     /**
      * get the worker chosen at the chooseMove or chooseBuild operation

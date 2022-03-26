@@ -13,16 +13,20 @@ import java.util.Arrays;
  * replay functionalities
  */
 public class State {
+
+    public static final int STOK = 0;
+    public static final int STERR = -1;
+
     private Board board;
     private int playerId;
     private int nextAction;
-    private int status;
+    private int status; // 0 means ok, -1 means error,
 
     public State(Board board, int playerId, int nextAction) {
         this.board = board;
         this.playerId = playerId;
         this.nextAction = nextAction;
-        this.status = 0;
+        this.status = STOK;
     }
 
     public State(State otherState, int status) {
@@ -47,7 +51,7 @@ public class State {
     @Override
     public String toString() {
         String myjsonstr;
-        myjsonstr = "{ " + "\"status\": \"" + status + "\"," +
+        myjsonstr = "{ " + "\"status\": " + status + "," +
                 "\"playerId\": " + playerId + "," +
                 " \"nextAction\": " + nextAction + "," +
                 " \"board\": "  + board.toString() + "}";
