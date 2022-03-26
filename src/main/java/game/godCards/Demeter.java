@@ -22,10 +22,7 @@ public class Demeter implements GodPower{
 
     @Override
     public String description() {
-        return "Demeter: Goddess of the Harvest\n" +
-                "Your Build: Your Worker may " +
-                "build one additional time, but not " +
-                "on the same space.";
+        return "Demeter";
     }
 
     @Override

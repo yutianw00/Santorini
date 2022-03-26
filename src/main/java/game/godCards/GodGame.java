@@ -48,12 +48,20 @@ public class GodGame implements Game {
 
     @Override
     public State chooseMove(Pos pos) {
-        return game.chooseMove(pos);
+        State res = game.chooseMove(pos);
+        if (res != null) {
+            res.addGod(god1, god2);
+        }
+        return res;
     }
 
     @Override
     public State chooseBuild(Pos pos) {
-        return game.chooseBuild(pos);
+        State res = game.chooseBuild(pos);
+        if (res != null) {
+            res.addGod(god1, god2);
+        }
+        return res;
     }
 
     @Override
@@ -113,24 +121,33 @@ public class GodGame implements Game {
 
     @Override
     public State getCurrState() {
-        return game.getCurrState();
+        State res = game.getCurrState();
+        if (res != null) {
+            res.addGod(god1, god2);
+        }
+        return res;
     }
 
     @Override
     public State usePower(int playerId, int workerId, Pos pos) {
+        State res;
         if (playerId == 1) {
             if (god1.canDoAction(game.getCurrState())) {
-                return god1.action(workerId, pos);
+                res = god1.action(workerId, pos);
             } else {
                 return null;
             }
         } else { // playerid = 2
             if (god2.canDoAction(game.getCurrState())) {
-                return god2.action(workerId, pos);
+                res = god2.action(workerId, pos);
             } else {
                 return null;
             }
         }
+        if (res != null) {
+            res.addGod(god1, god2);
+        }
+        return res;
     }
 
     @Override
@@ -149,6 +166,9 @@ public class GodGame implements Game {
                 hasFinished = true;
             }
         }
+        if (res != null) {
+            res.addGod(god1, god2);
+        }
         return res;
     }
 
@@ -162,11 +182,18 @@ public class GodGame implements Game {
                 god2.storeInfo(pos);
             }
         }
+        if (res != null) {
+            res.addGod(god1, god2);
+        }
         return res;
     }
 
     @Override
     public State setWorker(int playerId, int workerId, Pos pos) {
-        return game.setWorker(playerId, workerId, pos);
+        State res = game.setWorker(playerId, workerId, pos);
+        if (res != null) {
+            res.addGod(god1, god2);
+        }
+        return res;
     }
 }

@@ -51,7 +51,7 @@ public interface Game {
      * @return true if the undo is successful, false if
      *  no previous board state is recorded in history
      */
-    boolean undo();
+    boolean undo(); // TODO: shouldn't be a boolean type, but should be a State type
 
     /**
      * get the current state (the state that is just stored into the history)

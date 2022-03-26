@@ -26,12 +26,7 @@ public class Minotaur implements GodPower{
 
     @Override
     public String description() {
-        return "Minotaur: Bull-headed Monster\n" +
-                "Your Move: Your Worker may " +
-                "move into an opponent Worker’s " +
-                "space, if their Worker can be " +
-                "forced one space straight backwards to an " +
-                "unoccupied space at any level.";
+        return "Minotaur";
     }
 
     @Override

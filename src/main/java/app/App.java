@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Map;
 import fi.iki.elonen.NanoHTTPD;
 import game.Game;
+import game.godCards.GodGame;
 import game.impl.GameImpl;
 import game.utils.Pos;
 import game.utils.State;
@@ -59,6 +60,9 @@ public class App extends NanoHTTPD {
                 return newFixedLengthResponse(new State(game.getCurrState(), -1).toString());
             }
             this.setWorkerId = (this.setWorkerId == 1) ? 2 : 1;
+
+            System.out.println(state.toString());
+
             return newFixedLengthResponse(state.toString());
         } else if (uri.equals("/choosemove")) {
             System.out.println("App: chooseMove request received!");
@@ -73,7 +77,7 @@ public class App extends NanoHTTPD {
             setWorkerId = game.getChosenWorkerId();
 
             if (state == null) {
-                return newFixedLengthResponse(new State(game.getCurrState(), -1).toString());
+                return newFixedLengthResponse(new State(game.getCurrState(), State.STERR).toString());
             }
             return newFixedLengthResponse(state.toString());
         } else if (uri.equals("/move")) {
@@ -111,6 +115,16 @@ public class App extends NanoHTTPD {
             System.out.println("uri" + uri);
 
             this.game = new GameImpl();
+            setWorkerId = 1;
+
+            return null;
+        } else if (uri.equals("/newgodgame")) {
+            System.out.println("App: New God Game request received!");
+            System.out.println("uri" + uri);
+            String god1 = params.get("god1");
+            String god2 = params.get("god2");
+
+            this.game = new GodGame(new GameImpl(), god1, god2);
             setWorkerId = 1;
 
             return null;

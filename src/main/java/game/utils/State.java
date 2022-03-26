@@ -1,6 +1,8 @@
 package game.utils;
 
 import game.Board;
+import game.godCards.GodGame;
+import game.godCards.GodPower;
 
 import java.util.Arrays;
 
@@ -21,6 +23,7 @@ public class State {
     private int playerId;
     private int nextAction;
     private int status; // 0 means ok, -1 means error,
+    private String god1 = "", god2 = "";
 
     public State(Board board, int playerId, int nextAction) {
         this.board = board;
@@ -34,6 +37,11 @@ public class State {
         this.playerId = otherState.getPlayerId();
         this.nextAction = otherState.getNextAction();
         this.status = status;
+    }
+
+    public void addGod(GodPower god1, GodPower god2) {
+        this.god1 = god1.description();
+        this.god2 = god2.description();
     }
 
     public Board getBoard() {
@@ -51,10 +59,20 @@ public class State {
     @Override
     public String toString() {
         String myjsonstr;
-        myjsonstr = "{ " + "\"status\": " + status + "," +
-                "\"playerId\": " + playerId + "," +
-                " \"nextAction\": " + nextAction + "," +
-                " \"board\": "  + board.toString() + "}";
+        if (god1.equals("") || god2.equals("")) {
+            myjsonstr = "{ " + "\"status\": " + status + "," +
+                    "\"playerId\": " + playerId + "," +
+                    " \"nextAction\": " + nextAction + "," +
+                    " \"board\": "  + board.toString() + "}";
+        } else {
+            myjsonstr = "{ " + "\"status\": " + status + "," +
+                    "\"playerId\": " + playerId + "," +
+                    " \"nextAction\": " + nextAction + "," +
+                    " \"board\": "  + board.toString() + "," +
+                    " \"god1\": \""  + god1 + "\"," +
+                    " \"god2\": \""  + god2 + "\"" + "}";
+        }
+
 
         return myjsonstr;
     }

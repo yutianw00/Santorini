@@ -20,10 +20,7 @@ public class Pan implements GodPower{
 
     @Override
     public String description() {
-        return "Pan: God of the Wild\n" +
-                "Win Condition: You also win if " +
-                "your Worker moves down two or " +
-                "more levels.";
+        return "Pan";
     }
 
     @Override
