@@ -36,12 +36,12 @@
 }
 
 #bottombar button {
-  width: 50%;
+  width: 33.33%;
   height: 100%;
-  margin: 0;
+  margin: auto;
   padding: 0;
   position: relative;
-  float: left;
+  float:left;
   font-size: 2vw
 }
 

@@ -119,12 +119,16 @@ class App extends Component<Props, GameCells> {
     return newCells;
   }
 
+  /* new */
   async newGame() {
-    const response = await fetch("newgame");
-    const json = await response.json();
 
-    const newCells: Array<Cell> = this.convertToCell(json, 0); // TOFIX
-    this.setState({ cells: newCells });
+    const href = "newgame";
+    console.log(href);
+    await fetch(href);
+    // const _ = await fetch(href);
+    // const json = await response.json();
+
+    // this.setAllStates(json);
   }
 
   async play(url: String) {
@@ -273,6 +277,12 @@ class App extends Component<Props, GameCells> {
     ) {
       this.build(window.location.href);
       oldHref = window.location.href;
+    } else if (
+      window.location.href.split("?")[0] === "http://localhost:3000/newgame" &&
+      oldHref !== window.location.href
+    ) {
+      this.newGame();
+      oldHref = "http://localhost:3000";
     } 
   }
 
