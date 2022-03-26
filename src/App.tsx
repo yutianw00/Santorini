@@ -27,6 +27,12 @@ interface GameCells {
   showError: boolean,
   instruction: String,
   finish: boolean,
+
+  selectGod: boolean,
+  selectGodError: boolean,
+
+  god1msg: String,
+  god2msg: String,
 }
 
 interface Props {
@@ -75,6 +81,12 @@ class App extends Component<Props, GameCells> {
       instruction: "choose the position of your worker",
       finish: false,
 
+      selectGod: false,
+      selectGodError: false,
+
+      god1msg: "No God Mode",
+      god2msg: "No God Mode",
+
     };
   }
 
@@ -121,14 +133,36 @@ class App extends Component<Props, GameCells> {
 
   /* new */
   async newGame() {
-
     const href = "newgame";
     console.log(href);
     await fetch(href);
-    // const _ = await fetch(href);
-    // const json = await response.json();
+  }
 
-    // this.setAllStates(json);
+  /* new */
+  async selectGod(err: boolean) {
+    console.log("entered");
+    this.setState({selectGod: true})
+    if (err) {
+      this.setState({selectGodError: true})
+    }
+  }
+
+  /* new */
+  async newGodGame(url: String) {
+    const params = (url.split("?")[1]).split("&");
+    var godName1 = params[0].split("=")[1];
+    var godName2 = params[1].split("=")[1];
+    if (godName1 === godName2) {
+      this.selectGod(true);
+    } else {
+      const href = "newgodgame?" + url.split("?")[1];
+      console.log(href);
+      await fetch(href);
+      this.setState({ god1msg: godName1 })
+      this.setState({ god2msg: godName2 })
+
+    }
+    
   }
 
   async play(url: String) {
@@ -203,6 +237,13 @@ class App extends Component<Props, GameCells> {
       this.setState({ finish: true});
     } else {
       console.log("err: nextAction not specified or unexpected value!")
+    }
+
+    if (json.hasOwnProperty('god1')) {
+      this.setState({ god1msg: json["god1"]});
+    }
+    if (json.hasOwnProperty('god2')) {
+      this.setState({ god2msg: json["god2"]});
     }
   }
 
@@ -282,7 +323,20 @@ class App extends Component<Props, GameCells> {
       oldHref !== window.location.href
     ) {
       this.newGame();
-      oldHref = "http://localhost:3000";
+      oldHref = window.location.href;
+    } else if (
+      window.location.href.split("?")[0] === "http://localhost:3000/newgodgame" &&
+      oldHref !== window.location.href
+    ) {
+      console.log("new god game!");
+      this.selectGod(false);
+      oldHref = window.location.href;
+    } else if (
+      window.location.href.split("?")[0] === "http://localhost:3000/startGodGame" &&
+      oldHref !== window.location.href
+    ) {
+      this.newGodGame(window.location.href);
+      oldHref = window.location.href;
     } 
   }
 
@@ -302,6 +356,12 @@ class App extends Component<Props, GameCells> {
               instruction: this.state.instruction,
               player: this.state.nextPlayer === 1 ? "player1" : "player2",
               finish: this.state.finish,
+
+              selectGod: this.state.selectGod ? "appear" : "disappear",
+              selectGodError: this.state.selectGodError ? "appear" : "disappear",
+
+              god1msg: this.state.god1msg,
+              god2msg: this.state.god2msg,
 
             }), 
           }}

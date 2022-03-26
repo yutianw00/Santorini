@@ -17,8 +17,8 @@
     <div id="handlebars">
       <div id="header">
         <h1 style="text-align: center">Welcome to Santorini !</h1>
-          <div class="player1 grid"> Player 1: blue player</div>
-          <div class="player2 grid"> Player 2: green player</div>
+          <div class="player1 grid"> Player 1: blue player - {{god1msg}}</div>
+          <div class="player2 grid"> Player 2: green player - {{god2msg}}</div>
       
         <h3 style="text-align: center">{{instruction}}</h2>
         <h1 class="{{showError}}">Oops, something goes wrong. Please try again.</h1>
@@ -35,8 +35,34 @@
       </div>
       <div id="bottombar">
         <a href="/newgame"><button>New Game: Normal Mode</button></a>
-        <button>New Game: God Mode</button>
+        <a href="/newgodgame"><button>New Game: God Mode</button></a>
         <button>Undo</button>
+      </div>
+
+      <div id="choosegod" class="{{selectGod}}">
+        <h2>Choose your god!</h2>
+        <h3 class="{{selectGodError}}">Error: two players cannot select the same god!</h3>
+        <br>
+        <form action="/startGodGame">
+          <p>Player 1: choose your god: 
+            <select name="god1" id="god1">
+              <option value="Minotaur">Minotaur</option>
+              <option value="Demeter">Demeter</option>
+              <option value="Pan">Pan</option>
+            </select>
+          </p>
+          <br>
+          <p>Player 2: choose your god: 
+            <select name="god2" id="god2">
+              <option value="Minotaur">Minotaur</option>
+              <option value="Demeter">Demeter</option>
+              <option value="Pan">Pan</option>
+            </select>
+          </p>
+          <br><br>
+          <input type="submit" value="Start Game!">
+        </form>
+        
       </div>
     </div>
 
