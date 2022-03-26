@@ -45,6 +45,13 @@
   font-size: 2vw
 }
 
+.grid {
+  text-align: center;
+  margin: auto;
+  width: 15%;
+  font-size: large;
+}
+
 html,
 body {
   height: 100%;

@@ -8,6 +8,7 @@ var SETUP = 0;
 var CHOOSEMOVE = 1;
 var MOVE = 2;
 var BUILD = 4;
+var FINISH = 5;
 
 interface Cell {
   levels: number;
@@ -24,7 +25,8 @@ interface GameCells {
   nextMove: number,
   linkheader: String,
   showError: boolean,
-  instruction: String
+  instruction: String,
+  finish: boolean,
 }
 
 interface Props {
@@ -35,35 +37,35 @@ class App extends Component<Props, GameCells> {
     super(props);
     this.state = {
       cells: [
-        { levels: 0, player: 0, pos: "x=0&y=0", text: "", chosen: 0 },
-        { levels: 0, player: 0, pos: "x=0&y=1", text: "", chosen: 0 },
-        { levels: 0, player: 0, pos: "x=0&y=2", text: "", chosen: 0 },
-        { levels: 0, player: 0, pos: "x=0&y=3", text: "", chosen: 0 },
-        { levels: 0, player: 0, pos: "x=0&y=4", text: "", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=0&y=0", text: "0", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=0&y=1", text: "0", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=0&y=2", text: "0", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=0&y=3", text: "0", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=0&y=4", text: "0", chosen: 0 },
 
-        { levels: 0, player: 0, pos: "x=1&y=0", text: "", chosen: 0 },
-        { levels: 0, player: 0, pos: "x=1&y=1", text: "", chosen: 0 },
-        { levels: 0, player: 0, pos: "x=1&y=2", text: "", chosen: 0 },
-        { levels: 0, player: 0, pos: "x=1&y=3", text: "", chosen: 0 },
-        { levels: 0, player: 0, pos: "x=1&y=4", text: "", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=1&y=0", text: "0", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=1&y=1", text: "0", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=1&y=2", text: "0", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=1&y=3", text: "0", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=1&y=4", text: "0", chosen: 0 },
 
-        { levels: 0, player: 0, pos: "x=2&y=0", text: "", chosen: 0 },
-        { levels: 0, player: 0, pos: "x=2&y=1", text: "", chosen: 0 },
-        { levels: 0, player: 0, pos: "x=2&y=2", text: "", chosen: 0 },
-        { levels: 0, player: 0, pos: "x=2&y=3", text: "", chosen: 0 },
-        { levels: 0, player: 0, pos: "x=2&y=4", text: "", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=2&y=0", text: "0", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=2&y=1", text: "0", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=2&y=2", text: "0", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=2&y=3", text: "0", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=2&y=4", text: "0", chosen: 0 },
 
-        { levels: 0, player: 0, pos: "x=3&y=0", text: "", chosen: 0 },
-        { levels: 0, player: 0, pos: "x=3&y=1", text: "", chosen: 0 },
-        { levels: 0, player: 0, pos: "x=3&y=2", text: "", chosen: 0 },
-        { levels: 0, player: 0, pos: "x=3&y=3", text: "", chosen: 0 },
-        { levels: 0, player: 0, pos: "x=3&y=4", text: "", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=3&y=0", text: "0", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=3&y=1", text: "0", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=3&y=2", text: "0", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=3&y=3", text: "0", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=3&y=4", text: "0", chosen: 0 },
 
-        { levels: 0, player: 0, pos: "x=4&y=0", text: "", chosen: 0 },
-        { levels: 0, player: 0, pos: "x=4&y=1", text: "", chosen: 0 },
-        { levels: 0, player: 0, pos: "x=4&y=2", text: "", chosen: 0 },
-        { levels: 0, player: 0, pos: "x=4&y=3", text: "", chosen: 0 },
-        { levels: 0, player: 0, pos: "x=4&y=4", text: "", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=4&y=0", text: "0", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=4&y=1", text: "0", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=4&y=2", text: "0", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=4&y=3", text: "0", chosen: 0 },
+        { levels: 0, player: 0, pos: "x=4&y=4", text: "0", chosen: 0 },
       ],
       showError: false,
       nextPlayer: 1,
@@ -71,6 +73,8 @@ class App extends Component<Props, GameCells> {
       template: this.loadTemplate(),
       linkheader: "setup?",
       instruction: "choose the position of your worker",
+      finish: false,
+
     };
   }
 
@@ -162,7 +166,7 @@ class App extends Component<Props, GameCells> {
   async setAllStates(json: any) {
     console.log(json);
 
-    if (json["status"] !== "0") {
+    if (json["status"] !== 0) {
       this.setState({showError: true});
     } else {
       this.setState({showError: false});
@@ -175,6 +179,7 @@ class App extends Component<Props, GameCells> {
     this.setState({ cells: newCells });
     this.setState({ nextPlayer: playerId});
     this.setState({ nextMove: nextAction});
+    this.setState({ finish: false});
 
     if (nextAction === SETUP) {
       this.setState({ linkheader: "setup?"});
@@ -188,6 +193,10 @@ class App extends Component<Props, GameCells> {
     } else if (nextAction === BUILD) {
       this.setState({ linkheader: "build?"});
       this.setState({ instruction: "select the target position of your build"});
+    } else if (nextAction === FINISH) {
+      this.setState({ linkheader: ""});
+      this.setState({ instruction: "YOU WON!"});
+      this.setState({ finish: true});
     } else {
       console.log("err: nextAction not specified or unexpected value!")
     }
@@ -281,7 +290,9 @@ class App extends Component<Props, GameCells> {
               linkheader: this.state.linkheader, 
               showError: this.state.showError ? "error" : "noerror",
               instruction: this.state.instruction,
-              player: this.state.nextPlayer === 1 ? "player1" : "player2"
+              player: this.state.nextPlayer === 1 ? "player1" : "player2",
+              finish: this.state.finish,
+
             }), 
           }}
         />

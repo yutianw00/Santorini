@@ -16,16 +16,20 @@
 
     <div id="handlebars">
       <div id="header">
-        <h1>This is a header</h1>
-        <h2>{{instruction}}</h2>
+        <h1 style="text-align: center">Welcome to Santorini !</h1>
+          <div class="player1 grid"> Player 1: blue player</div>
+          <div class="player2 grid"> Player 2: green player</div>
+      
+        <h3 style="text-align: center">{{instruction}}</h2>
         <h1 class="{{showError}}">Oops, something goes wrong. Please try again.</h1>
       </div>
+      
       <div id="board" class="{{player}}">
         {{#each cells}}
-          {{#if pos}}
-            <a href={{../linkheader}}{{pos}}><div class="cell chosen{{chosen}}">{{text}}</div></a>
+          {{#if ../finish}}
+            <div class="cell chosen{{chosen}}">{{text}}</div>
           {{else}}
-            <div class="cell {{clazz}}">{{text}}</div>
+            <a href={{../linkheader}}{{pos}}><div class="cell chosen{{chosen}}">{{text}}</div></a>
           {{/if}}
         {{/each}}
       </div>
