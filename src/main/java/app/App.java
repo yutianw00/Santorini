@@ -20,6 +20,7 @@ public class App extends NanoHTTPD {
     }
 
     private Game game;
+    private boolean inGodMode = false;
 
     private int setWorkerId = 1;
 
@@ -111,6 +112,7 @@ public class App extends NanoHTTPD {
             }
             return newFixedLengthResponse(state.toString());
         } else if (uri.equals("/newgame")) {
+            this.inGodMode = false;
             System.out.println("App: New Game request received!");
             System.out.println("uri" + uri);
 
@@ -119,6 +121,7 @@ public class App extends NanoHTTPD {
 
             return null;
         } else if (uri.equals("/newgodgame")) {
+            this.inGodMode = true;
             System.out.println("App: New God Game request received!");
             System.out.println("uri" + uri);
             String god1 = params.get("god1");

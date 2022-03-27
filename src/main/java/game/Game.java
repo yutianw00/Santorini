@@ -18,6 +18,13 @@ public interface Game {
     int USEPOWER = 6;
 
     /**
+     * get player by id
+     * @param playerId the player id
+     * @return The player
+     */
+    Player getPlayer(int playerId);
+
+    /**
      * get the worker chosen at the chooseMove or chooseBuild operation
      * @return The id of the chosen worker
      */

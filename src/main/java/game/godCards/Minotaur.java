@@ -2,6 +2,7 @@ package game.godCards;
 
 import game.Board;
 import game.Game;
+import game.Player;
 import game.Worker;
 import game.utils.Pos;
 import game.utils.State;
@@ -136,6 +137,10 @@ public class Minotaur implements GodPower{
          * to its forced place to give space to the minotaur worker
          */
         Board newBoard = board.setBoardWorker(otherPlayerId, otherWorkerId, forcedPos);
+        game.getPlayer(1).linkWorker(newBoard, 1);
+        game.getPlayer(2).linkWorker(newBoard, 2);
+
+        game.setBoard(newBoard);
 
         return newBoard;
 

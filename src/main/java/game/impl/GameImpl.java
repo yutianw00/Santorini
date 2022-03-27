@@ -47,6 +47,11 @@ public class GameImpl implements Game {
     }
 
     @Override
+    public Player getPlayer(int playerId) {
+        return (playerId == 1 ) ? p1 : p2;
+    }
+
+    @Override
     public int getChosenWorkerId() {
         return this.chosenWorkerId;
     }
@@ -183,6 +188,10 @@ public class GameImpl implements Game {
         }
     }
 
+    private void linkWorker() {
+
+    }
+
     @Override
     public State move(int playerId, int workerId, Pos pos) {
         Worker worker = getWorker(playerId, workerId);
@@ -195,8 +204,10 @@ public class GameImpl implements Game {
         this.chosenWorkerId = workerId;
 
         Board newBoard = board.setBoardWorker(playerId, workerId, pos); // delegation
-        Player currPlayer = playerId == 1 ? p1 : p2;
-        currPlayer.setWorker(pos, workerId);
+        p1.linkWorker(newBoard, 1);
+        p2.linkWorker(newBoard, 2);
+//        Player currPlayer = playerId == 1 ? p1 : p2;
+//        currPlayer.setWorker(pos, workerId);
 
         newBoard = newBoard.chooseGrid(pos); // highlight the moved position
 
@@ -246,8 +257,7 @@ public class GameImpl implements Game {
 
         Player currPlayer = (playerId == 1) ? p1 : p2;
 
-
-        currPlayer.setWorker(pos, workerId);
+        currPlayer.setWorker(pos, workerId); // TODO: may need to change!
 
         if (playerId == 2 && workerId == 2) {
             this.setNextAction(CHOOSEMOVE);
@@ -258,6 +268,8 @@ public class GameImpl implements Game {
         }
 
         Board newBoard = board.setBoardWorker(playerId, workerId, pos);
+        p1.linkWorker(newBoard, 1);
+        p2.linkWorker(newBoard, 2);
         this.board = newBoard;
 
         State newState = createState(newBoard);

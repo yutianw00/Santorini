@@ -5,9 +5,23 @@ import game.Player;
 import game.Worker;
 import game.utils.Pos;
 
+import java.util.List;
+
 public class PlayerImpl implements Player {
     private Worker w1;
     private Worker w2;
+
+    @Override
+    public void linkWorker(Board board, int playerId) {
+        List<Worker> workerList = board.getWorkers();
+        if (playerId == 1) {
+            w1 = workerList.get(0);
+            w2 = workerList.get(1);
+        } else {
+            w1 = workerList.get(2);
+            w2 = workerList.get(3);
+        }
+    }
 
     public PlayerImpl(Worker w1, Worker w2) {
         this.w1 = w1;

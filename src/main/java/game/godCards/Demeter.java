@@ -47,7 +47,6 @@ public class Demeter implements GodPower{
          * to the other player, and the action will be set to MOVE
          */
         if (this.isUsing) {
-            this.isUsing = false;
             return false;
         }
         if (state == null) {
@@ -57,6 +56,9 @@ public class Demeter implements GodPower{
             return false;
         }
         if (state.getNextAction() != Game.CHOOSEMOVE) {
+            return false;
+        }
+        if (prevBuildPos == null) { // still at the setup stage
             return false;
         }
         return true;
@@ -105,6 +107,7 @@ public class Demeter implements GodPower{
 
     @Override
     public void storeInfo(Pos pos) {
+        this.isUsing = false;
         this.prevBuildPos = pos;
     }
 

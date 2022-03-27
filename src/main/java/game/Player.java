@@ -5,7 +5,15 @@ import game.utils.Pos;
 public interface Player {
 
     /**
-     * Set the second worker for the player
+     * After board is copied, link the new copied worker under the original player
+     * to persist consistency
+     * @param board The new copied board
+     * @param playerId The playerId of the current player
+     */
+    void linkWorker(Board board, int playerId);
+
+    /**
+     * Set the worker for the player
      * Effect: update that worker's position
      * Precondition: pos is a valid position
      *

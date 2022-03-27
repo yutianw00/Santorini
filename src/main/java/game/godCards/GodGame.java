@@ -2,6 +2,7 @@ package game.godCards;
 
 import game.Board;
 import game.Game;
+import game.Player;
 import game.Worker;
 import game.utils.Pos;
 import game.utils.State;
@@ -20,6 +21,11 @@ public class GodGame implements Game {
 
         this.god1 = newGod(1, god1);
         this.god2 = newGod(2, god2);
+    }
+
+    @Override
+    public Player getPlayer(int playerId) {
+        return game.getPlayer(playerId);
     }
 
     @Override
@@ -204,10 +210,13 @@ public class GodGame implements Game {
 
     @Override
     public State setupPower(int playerId, int workerId) {
+        State res;
         if (playerId == 1){
-            return god1.setupPower(workerId);
+            res = god1.setupPower(workerId);
         } else {
-            return god2.setupPower(workerId);
+            res = god2.setupPower(workerId);
         }
+        res.addGod(god1, god2);
+        return res;
     }
 }
