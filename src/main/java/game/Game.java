@@ -39,14 +39,14 @@ public interface Game {
      */
     State chooseMove(Pos pos);
 
-    /**
-     * Choose the worker to build by position
-     * Also switch the next action to BUILD on success
-     * @param pos The position of the worker
-     * @return new State with the position chosen if the pos contains a worker
-     *  of the nextPlayer, null otherwise
-     */
-    State chooseBuild(Pos pos);
+//    /**
+//     * Choose the worker to build by position
+//     * Also switch the next action to BUILD on success
+//     * @param pos The position of the worker
+//     * @return new State with the position chosen if the pos contains a worker
+//     *  of the nextPlayer, null otherwise
+//     */
+//    State chooseBuild(Pos pos);
 
     /**
      * Create a new state from the current board and game settings

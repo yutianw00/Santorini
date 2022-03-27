@@ -46,10 +46,8 @@ public class App extends NanoHTTPD {
             return newFixedLengthResponse(myjsonstr);
         } else if (uri.equals("/setup")) {
             System.out.println("App: Setup request received!");
-            System.out.println("uri" + uri);
             System.out.println(params.get("x"));
             System.out.println(params.get("y"));
-            System.out.println("workerId:" + setWorkerId);
 
             int x = Integer.valueOf(params.get("x"));
             int y = Integer.valueOf(params.get("y"));
@@ -62,12 +60,9 @@ public class App extends NanoHTTPD {
             }
             this.setWorkerId = (this.setWorkerId == 1) ? 2 : 1;
 
-            System.out.println(state.toString());
-
             return newFixedLengthResponse(state.toString());
         } else if (uri.equals("/choosemove")) {
             System.out.println("App: chooseMove request received!");
-            System.out.println("uri" + uri);
             System.out.println(params.get("x"));
             System.out.println(params.get("y"));
 
@@ -83,7 +78,6 @@ public class App extends NanoHTTPD {
             return newFixedLengthResponse(state.toString());
         } else if (uri.equals("/move")) {
             System.out.println("App: move request received!");
-            System.out.println("uri" + uri);
             System.out.println(params.get("x"));
             System.out.println(params.get("y"));
 
@@ -98,7 +92,6 @@ public class App extends NanoHTTPD {
             return newFixedLengthResponse(state.toString());
         } else if (uri.equals("/build")) {
             System.out.println("App: Build request received!");
-            System.out.println("uri" + uri);
             System.out.println(params.get("x"));
             System.out.println(params.get("y"));
 
@@ -114,7 +107,6 @@ public class App extends NanoHTTPD {
         } else if (uri.equals("/newgame")) {
             this.inGodMode = false;
             System.out.println("App: New Game request received!");
-            System.out.println("uri" + uri);
 
             this.game = new GameImpl();
             setWorkerId = 1;
@@ -123,7 +115,6 @@ public class App extends NanoHTTPD {
         } else if (uri.equals("/newgodgame")) {
             this.inGodMode = true;
             System.out.println("App: New God Game request received!");
-            System.out.println("uri" + uri);
             String god1 = params.get("god1");
             String god2 = params.get("god2");
 
@@ -141,7 +132,6 @@ public class App extends NanoHTTPD {
             return newFixedLengthResponse(state.toString());
         } else if (uri.equals("/usepower")) {
             System.out.println("App: Use Power Action request received!");
-            System.out.println("uri" + uri);
             System.out.println(params.get("x"));
             System.out.println(params.get("y"));
 

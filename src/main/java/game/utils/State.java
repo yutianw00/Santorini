@@ -27,6 +27,34 @@ public class State {
     private boolean canUse1 = false, canUse2 = false; // whether the player can use power
     private boolean usePower1 = false, usePower2 = false; // whether the player is using power
 
+    public int getStatus() {
+        return status;
+    }
+
+    public String getGod1() {
+        return god1;
+    }
+
+    public String getGod2() {
+        return god2;
+    }
+
+    public boolean getCanUse1() {
+        return canUse1;
+    }
+
+    public boolean getCanUse2() {
+        return canUse2;
+    }
+
+    public boolean getUsePower1() {
+        return usePower1;
+    }
+
+    public boolean getUsePower2() {
+        return usePower2;
+    }
+
     public State(Board board, int playerId, int nextAction) {
         this.board = board;
         this.playerId = playerId;
@@ -38,6 +66,12 @@ public class State {
         this.board = otherState.getBoard();
         this.playerId = otherState.getPlayerId();
         this.nextAction = otherState.getNextAction();
+        this.god1 = otherState.getGod1();
+        this.god2 = otherState.getGod2();
+        this.canUse1 = otherState.getCanUse1();
+        this.canUse2 = otherState.getCanUse2();
+        this.usePower1 = otherState.getUsePower1();
+        this.usePower2 = otherState.getUsePower2();
         this.status = status;
     }
 
@@ -70,14 +104,6 @@ public class State {
 
     public int getNextAction() {
         return nextAction;
-    }
-
-    public void inspect() {
-        System.out.println(this.playerId);
-        System.out.println(this.nextAction);
-        System.out.println(this.getBoard().toString());
-        System.out.println(this.god1);
-        System.out.println(this.god2);
     }
 
     public void usePower(int powerId) {
