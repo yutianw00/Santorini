@@ -244,7 +244,7 @@ class App extends Component<Props, GameCells> {
       this.setState({ instruction: "YOU WON!"});
       this.setState({ finish: true});
     } else if (nextAction === USEPOWER) {
-      this.setState({ linkheader: "usepower?"});
+      this.setState({ linkheader: "usepoweraction?"});
       this.setState({ instruction: "Player Using God Power..."});
     } else {
       console.log("err: nextAction not specified or unexpected value!")
@@ -329,6 +329,16 @@ class App extends Component<Props, GameCells> {
     this.setAllStates(json);
   }
 
+  /* new */
+  async usePower(url: String) {
+    const href = "usepower?" + url.split("?")[1];
+    console.log(href);
+    const response = await fetch(href);
+    const json = await response.json();
+
+    this.setAllStates(json);
+
+  }
   
 
   /* new */
@@ -388,6 +398,12 @@ class App extends Component<Props, GameCells> {
       oldHref !== window.location.href
     ) {
       this.preparePower2();
+      oldHref = window.location.href;
+    } else if (
+      window.location.href.split("?")[0] === "http://localhost:3000/usepoweraction" &&
+      oldHref !== window.location.href
+    ) {
+      this.usePower(window.location.href);
       oldHref = window.location.href;
     } 
   }
