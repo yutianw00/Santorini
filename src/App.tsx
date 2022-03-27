@@ -312,6 +312,17 @@ class App extends Component<Props, GameCells> {
     this.setAllStates(json);
 
   }
+
+  /* new */
+  async undo(url: String) {
+    const href = "undo";
+    console.log(href);
+    const response = await fetch(href);
+    const json = await response.json();
+
+    this.setAllStates(json);
+
+  }
   
 
   /* new */
@@ -376,6 +387,12 @@ class App extends Component<Props, GameCells> {
       oldHref !== window.location.href
     ) {
       this.usePower(window.location.href);
+      oldHref = window.location.href;
+    } else if (
+      window.location.href.split("?")[0] === "http://localhost:3000/undo" &&
+      oldHref !== window.location.href
+    ) {
+      this.undo(window.location.href);
       oldHref = window.location.href;
     } 
   }
