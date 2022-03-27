@@ -130,17 +130,27 @@ public class App extends NanoHTTPD {
             return null;
         } else if (uri.equals("/preparepower1")) {
             System.out.println("App: God Game player 1 use power request received!");
-
             State state = game.setupPower(1, setWorkerId);
-
             return newFixedLengthResponse(state.toString());
         } else if (uri.equals("/preparepower2")) { // TODO
             System.out.println("App: God Game player 2 use power request received!");
+            State state = game.setupPower(2, setWorkerId);
+            return newFixedLengthResponse(state.toString());
+        } else if (uri.equals("/usepower")) {
+            System.out.println("App: Use Power Action request received!");
+            System.out.println("uri" + uri);
+            System.out.println(params.get("x"));
+            System.out.println(params.get("y"));
 
-//            this.game = new GodGame(new GameImpl(), god1, god2); //TODO
-//            setWorkerId = 1;
+            int x = Integer.valueOf(params.get("x"));
+            int y = Integer.valueOf(params.get("y"));
+            int playerId = game.getNextPlayerId();
 
-            return null;
+            State state = game.usePower(playerId, setWorkerId, new Pos(x, y));
+            if (state == null) {
+                return newFixedLengthResponse(new State(game.getCurrState(), State.STERR).toString());
+            }
+            return newFixedLengthResponse(state.toString());
         }
         return null;
 //        if (uri.equals("/newgame")) {

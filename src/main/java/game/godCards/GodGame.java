@@ -131,18 +131,23 @@ public class GodGame implements Game {
     @Override
     public State usePower(int playerId, int workerId, Pos pos) {
         State res;
+//        if (playerId == 1) {
+//            if (god1.canDoAction(game.getCurrState())) {
+//                res = god1.action(workerId, pos);
+//            } else {
+//                return null;
+//            }
+//        } else { // playerid = 2
+//            if (god2.canDoAction(game.getCurrState())) {
+//                res = god2.action(workerId, pos);
+//            } else {
+//                return null;
+//            }
+//        }
         if (playerId == 1) {
-            if (god1.canDoAction(game.getCurrState())) {
-                res = god1.action(workerId, pos);
-            } else {
-                return null;
-            }
+            res = god1.action(workerId, pos);
         } else { // playerid = 2
-            if (god2.canDoAction(game.getCurrState())) {
-                res = god2.action(workerId, pos);
-            } else {
-                return null;
-            }
+            res = god2.action(workerId, pos);
         }
         if (res != null) {
             res.addGod(god1, god2);
