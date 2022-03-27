@@ -173,33 +173,6 @@ class App extends Component<Props, GameCells> {
     
   }
 
-  async play(url: String) {
-    const href = "play?" + url.split("?")[1];
-    const response = await fetch(href);
-    const json = await response.json();
-
-    console.log(json);
-
-    const newCells: Array<Cell> = this.convertToCell(json, 0); // TOFIX
-    this.setState({ cells: newCells });
-  }
-
-  async switch() {
-    if (
-      window.location.href === "http://localhost:3000/newgame" &&
-      oldHref !== window.location.href
-    ) {
-      this.newGame();
-      oldHref = window.location.href;
-    } else if (
-      window.location.href.split("?")[0] === "http://localhost:3000/play" &&
-      oldHref !== window.location.href
-    ) {
-      this.play(window.location.href);
-      oldHref = window.location.href;
-    }
-  };
-
   /* new */
   async testAPI() {
     console.log("testing API connection...");
@@ -343,7 +316,6 @@ class App extends Component<Props, GameCells> {
 
   /* new */
   async step() {
-    // this.setState({showError: false});
     if (
       window.location.href.split("?")[0] === "http://localhost:3000/setup" &&
       oldHref !== window.location.href
@@ -409,8 +381,7 @@ class App extends Component<Props, GameCells> {
   }
 
   render() {
-    // this.switch();
-    // this.testAPI();
+  
     this.step()
     return (
     
