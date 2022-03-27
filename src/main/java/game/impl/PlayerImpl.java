@@ -1,6 +1,7 @@
 package game.impl;
 
 import game.Board;
+import game.Game;
 import game.Player;
 import game.Worker;
 import game.utils.Pos;
@@ -11,15 +12,21 @@ public class PlayerImpl implements Player {
     private Worker w1;
     private Worker w2;
 
+
+    private final int p1w1Idx = 0;
+    private final int p1w2Idx = 1;
+    private final int p2w1Idx = 2;
+    private final int p2w2Idx = 3;
+
     @Override
     public void linkWorker(Board board, int playerId) {
         List<Worker> workerList = board.getWorkers();
         if (playerId == 1) {
-            w1 = workerList.get(0);
-            w2 = workerList.get(1);
+            w1 = workerList.get(p1w1Idx);
+            w2 = workerList.get(p1w2Idx);
         } else {
-            w1 = workerList.get(2);
-            w2 = workerList.get(3);
+            w1 = workerList.get(p2w1Idx);
+            w2 = workerList.get(p2w2Idx);
         }
     }
 

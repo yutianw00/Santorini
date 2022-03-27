@@ -21,11 +21,12 @@ public class App extends NanoHTTPD {
 
     private Game game;
     private boolean inGodMode = false;
+    private static final int PORT = 8080;
 
     private int setWorkerId = 1;
 
     public App() throws IOException {
-        super(8080);
+        super(PORT);
 
         this.game = new GameImpl();
 
@@ -40,8 +41,8 @@ public class App extends NanoHTTPD {
         if (uri.equals("/test")) {
             System.out.println("Testing connection: server side received!");
             String myjsonstr = "{ \"test1\": \"" + 1 + "\"," +
-                    " \"test2\": \"" + 2 + "\"," +
-                    " \"test3\": \"" + 3 + "\"}";
+                    " \"test2\": \"" + 0 + "\"," +
+                    " \"test3\": \"" + 1 + "\"}";
 
             return newFixedLengthResponse(myjsonstr);
         } else if (uri.equals("/setup")) {
@@ -126,7 +127,7 @@ public class App extends NanoHTTPD {
             System.out.println("App: God Game player 1 use power request received!");
             State state = game.setupPower(1, setWorkerId);
             return newFixedLengthResponse(state.toString());
-        } else if (uri.equals("/preparepower2")) { // TODO
+        } else if (uri.equals("/preparepower2")) {
             System.out.println("App: God Game player 2 use power request received!");
             State state = game.setupPower(2, setWorkerId);
             return newFixedLengthResponse(state.toString());

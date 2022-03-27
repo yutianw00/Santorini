@@ -88,8 +88,13 @@ public class GameImpl implements Game {
     }
 
     @Override
-    public boolean undo() {
+    public State undo() {
         return history.undo();
+    }
+
+    @Override
+    public void setWinner(int playerId) {
+        this.winnerId = playerId;
     }
 
     @Override
@@ -234,10 +239,6 @@ public class GameImpl implements Game {
             System.out.println("Game.setWorker: position is occupied.");
             return null;
         }
-
-        Player currPlayer = (playerId == 1) ? p1 : p2;
-
-        currPlayer.setWorker(pos, workerId); // TODO: may need to change!
 
         if (playerId == 2 && workerId == 2) {
             this.setNextAction(CHOOSEMOVE);

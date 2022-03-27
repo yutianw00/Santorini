@@ -168,13 +168,6 @@ public class BoardImpl implements Board {
     }
 
     @Override
-    public Board unchooseGrid(Pos pos) {
-        Board newBoard = copyBoard();
-        newBoard.getGrid(pos).unChoose();
-        return newBoard;
-    }
-
-    @Override
     public List<Worker> getWorkers() {
         return this.workers;
     }

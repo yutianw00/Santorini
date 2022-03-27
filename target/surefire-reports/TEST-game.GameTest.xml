@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="12" failures="0" name="game.GameTest" time="0" errors="0" skipped="0">
+<testsuite tests="12" failures="0" name="game.GameTest" time="0.005" errors="0" skipped="0">
   <properties>
     <property name="idea.version" value="2021.1.3"/>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
@@ -56,7 +56,7 @@
     <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
     <property name="sun.cpu.endian" value="little"/>
   </properties>
-  <testcase classname="game.GameTest" name="buildTrueFalse" time="0"/>
+  <testcase classname="game.GameTest" name="buildTrueFalse" time="0.004"/>
   <testcase classname="game.GameTest" name="setWorkerTest1" time="0"/>
   <testcase classname="game.GameTest" name="setWorkerTest2" time="0"/>
   <testcase classname="game.GameTest" name="setWorkerTest3" time="0"/>
@@ -66,6 +66,6 @@
   <testcase classname="game.GameTest" name="setWorkerTest2Fail" time="0"/>
   <testcase classname="game.GameTest" name="isFinishedTestFalse" time="0"/>
   <testcase classname="game.GameTest" name="flipPlayer" time="0"/>
-  <testcase classname="game.GameTest" name="buildTrueTest" time="0"/>
+  <testcase classname="game.GameTest" name="buildTrueTest" time="0.001"/>
   <testcase classname="game.GameTest" name="moveTrueTest" time="0"/>
 </testsuite>

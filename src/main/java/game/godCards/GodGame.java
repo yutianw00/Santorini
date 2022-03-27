@@ -1,6 +1,10 @@
 package game.godCards;
 
-import game.*;
+//import game.*;
+import game.Game;
+import game.History;
+import game.Player;
+import game.Board;
 import game.impl.HistoryImpl;
 import game.utils.Pos;
 import game.utils.State;
@@ -11,8 +15,6 @@ public class GodGame implements Game {
 
     private Game game;
     private GodPower god1, god2;
-    private int winnerId = -1; // no winner yet // TODO
-    private boolean hasFinished = false; // TODO
     private History<State> history = new HistoryImpl<>();
 
     public GodGame(Game game, String god1, String god2) {
@@ -64,24 +66,14 @@ public class GodGame implements Game {
         return res;
     }
 
-//    @Override
-//    public State chooseBuild(Pos pos) {
-//        State res = game.chooseBuild(pos);
-//        if (res != null) {
-//            res.addGod(god1, god2);
-//            history.addHistory(res);
-//        }
-//        return res;
-//    }
-
     @Override
     public void setBoard(Board board) {
         game.setBoard(board);
     }
 
-    @Override // TODO
-    public boolean undo() {
-        return game.undo();
+    @Override
+    public State undo() {
+        return history.undo();
     }
 
     @Override
@@ -101,7 +93,7 @@ public class GodGame implements Game {
 
     @Override
     public boolean isFinished() {
-        return game.isFinished() || hasFinished;
+        return game.isFinished();
     }
 
     @Override
@@ -114,7 +106,7 @@ public class GodGame implements Game {
         if (game.isFinished()) {
             return game.getWinner();
         } else {
-            return this.winnerId;
+            return -1;
         }
 
     }
@@ -157,6 +149,11 @@ public class GodGame implements Game {
     }
 
     @Override
+    public void setWinner(int playerId) {
+        game.setWinner(playerId);
+    }
+
+    @Override
     public State move(int playerId, int workerId, Pos pos) {
 
         boolean p1Win = god1.checkWin(playerId, workerId, pos);
@@ -165,14 +162,12 @@ public class GodGame implements Game {
         if (res != null) {
             // meaning the operation is performed successfully
             if (p1Win) {
-                winnerId = 1;
-                hasFinished = true;
                 game.setNextAction(Game.FINISH);
+                game.setWinner(1);
                 res = game.createState(game.getBoard());
             } else if (p2Win) {
-                winnerId = 2;
-                hasFinished = true;
                 game.setNextAction(Game.FINISH);
+                game.setWinner(2);
                 res = game.createState(game.getBoard());
             }
             res.addGod(god1, god2);

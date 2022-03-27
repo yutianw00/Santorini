@@ -25,7 +25,7 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2022</copyright>
     <item>
-      <title>File: 3,
+      <title>File: 1,
              Errors: 0,
              Warnings: 0,
              Infos: 0
@@ -46,35 +46,7 @@ under the License.
           <tbody>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#game.utils.State.java">game/utils/State.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#game.godCards.GodPower.java">game/godCards/GodPower.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#game.godCards.GodGame.java">game/godCards/GodGame.java</a>
+                  <a href="${project.url}/checkstyle.html#game.Game.java">game/Game.java</a>
                 </td>
                 <td>
                   0

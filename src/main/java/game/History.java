@@ -14,7 +14,7 @@ public interface History<T> {
      * undo the previous step, remove the previous step from the history
      * @return true if undo successful, false if no history is stored
      */
-    boolean undo();
+    T undo();
 
     /**
      * get the most recent history stored

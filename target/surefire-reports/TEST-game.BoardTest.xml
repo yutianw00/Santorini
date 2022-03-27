@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="10" failures="0" name="game.BoardTest" time="0.005" errors="0" skipped="0">
+<testsuite tests="10" failures="0" name="game.BoardTest" time="0.019" errors="0" skipped="0">
   <properties>
     <property name="idea.version" value="2021.1.3"/>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
@@ -56,12 +56,12 @@
     <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
     <property name="sun.cpu.endian" value="little"/>
   </properties>
-  <testcase classname="game.BoardTest" name="hasWorkerTestTrue" time="0.004"/>
+  <testcase classname="game.BoardTest" name="hasWorkerTestTrue" time="0.005"/>
   <testcase classname="game.BoardTest" name="checkBuildTestTrueDiagonal" time="0"/>
   <testcase classname="game.BoardTest" name="checkMoveTestTrueMoveDiagonal" time="0"/>
   <testcase classname="game.BoardTest" name="buildTest" time="0"/>
-  <testcase classname="game.BoardTest" name="checkBuildTestFalseHasBuilder" time="0"/>
-  <testcase classname="game.BoardTest" name="checkBuildTestFalseTooFar" time="0"/>
+  <testcase classname="game.BoardTest" name="checkBuildTestFalseHasBuilder" time="0.001"/>
+  <testcase classname="game.BoardTest" name="checkBuildTestFalseTooFar" time="0.012"/>
   <testcase classname="game.BoardTest" name="checkMoveTestFalseMoveFar" time="0"/>
   <testcase classname="game.BoardTest" name="hasWorkerTestFalse" time="0"/>
   <testcase classname="game.BoardTest" name="checkMoveTestFalseNotMove" time="0.001"/>

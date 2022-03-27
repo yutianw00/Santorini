@@ -39,15 +39,6 @@ public interface Game {
      */
     State chooseMove(Pos pos);
 
-//    /**
-//     * Choose the worker to build by position
-//     * Also switch the next action to BUILD on success
-//     * @param pos The position of the worker
-//     * @return new State with the position chosen if the pos contains a worker
-//     *  of the nextPlayer, null otherwise
-//     */
-//    State chooseBuild(Pos pos);
-
     /**
      * Create a new state from the current board and game settings
      * @param board The current board setting
@@ -66,7 +57,7 @@ public interface Game {
      * @return true if the undo is successful, false if
      *  no previous board state is recorded in history
      */
-    boolean undo(); // TODO: shouldn't be a boolean type, but should be a State type
+    State undo();
 
     /**
      * get the current state (the state that is just stored into the history)
@@ -200,5 +191,11 @@ public interface Game {
      * @return The setup state preparing to using the power next time
      */
     State setupPower(int playerId, int workerId);
+
+    /**
+     * Declare a winner
+     * @param playerId The winner player id
+     */
+    void setWinner(int playerId);
 
 }

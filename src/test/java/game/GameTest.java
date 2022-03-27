@@ -48,7 +48,7 @@ public class GameTest {
         state = game.setWorker(1, 2, new Pos(1,1));
         state = game.setWorker(2, 1, new Pos(1,2));
         state = game.setWorker(2, 2, new Pos(0,2));
-        assertTrue(state.getNextAction() == Game.MOVE);
+        assertTrue(state.getNextAction() == Game.CHOOSEMOVE);
         assertTrue(state.getBoard().hasWorker(new Pos(0,1)));
         assertTrue(state.getBoard().hasWorker(new Pos(1,1)));
         assertTrue(state.getBoard().hasWorker(new Pos(1,2)));
@@ -59,7 +59,7 @@ public class GameTest {
     @Test
     public void undoTest1() {
         game = new GameImpl();
-        assertFalse(game.undo());
+        assert(game.undo() == null);
     }
 
     @Test
@@ -67,10 +67,10 @@ public class GameTest {
         game = new GameImpl();
         state = game.setWorker(1, 1, new Pos(0,1));
         state = game.setWorker(1, 2, new Pos(1,1));
-        assertTrue(game.getHistory().size() == 2);
+        assertTrue(game.getHistory().size() == 3);
         State state0 = game.getHistory().get(0);
         game.undo();
-        assertTrue(game.getHistory().size() == 1);
+        assertTrue(game.getHistory().size() == 2);
         State state1 = game.getHistory().get(0);
         assertTrue(state0 == state1);
 

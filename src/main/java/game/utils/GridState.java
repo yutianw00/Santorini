@@ -1,9 +1,9 @@
 package game.utils;
 
 public class GridState {
-    int levels;
-    int player;
-    int chosen;
+    private int levels;
+    private int player;
+    private int chosen;
 
     public GridState(int levels, int player, int chosen) {
         this.levels = levels;

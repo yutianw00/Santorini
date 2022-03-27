@@ -24,16 +24,11 @@ public interface Board {
     boolean isInBound(Pos pos);
 
     /**
-     * choose a grid
-     * @param pos The pos of the grid
+     * Choose a pos
+     * @param pos the chosen pos
+     * @return The returned board with the grid at pos chosen
      */
     Board chooseGrid(Pos pos);
-
-    /**
-     * unchoose a grid
-     * @param pos The pos of the grid
-     */
-    Board unchooseGrid(Pos pos);
 
     /**
      * Check if a move is valid (meaning moving to an adjacent empty blocks without workers,

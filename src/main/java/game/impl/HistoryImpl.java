@@ -1,6 +1,7 @@
 package game.impl;
 
 import game.History;
+import game.utils.State;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,12 +20,11 @@ public class HistoryImpl<T> implements History<T> {
     }
 
     @Override
-    public boolean undo() {
-        if (history.size() >= 1) {
-            history.remove(history.size()-1);
-            return true;
+    public T undo() {
+        if (history.size() > 1) {
+            return history.remove(history.size()-1);
         } else {
-            return false;
+            return null;
         }
 
     }
