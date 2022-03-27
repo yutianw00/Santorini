@@ -204,7 +204,7 @@ public class BoardImpl implements Board {
                 char rightSign = ' ';
                 if (hasWorker(pos)) {
                     if (workers.get(0).getPos().equals(pos)
-                    || workers.get(1).getPos().equals(pos)) {
+                    || workers.get(1) != null && workers.get(1).getPos().equals(pos)) {
                         leftSign = '(';
                         rightSign = ')';
                     } else {

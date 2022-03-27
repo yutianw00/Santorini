@@ -98,7 +98,7 @@ public class Demeter implements GodPower{
         Board newBoard = board.chooseGrid(selectedWorker.getPos());
 
         this.isUsing = true;
-        State newState = new State(newBoard, playerId, game.getNextAction());
+        State newState = new State(newBoard, playerId, game.getNextAction(), workerId);
         newState.usePower(game.getNextPlayerId());
 
         game.getHistory().add(newState);

@@ -23,7 +23,7 @@ public class GameImpl implements Game {
     private int winnerId;
     private int nextPlayerId;
 
-    private int chosenWorkerId = 0;
+    private int chosenWorkerId = 1;
 
     private boolean hasFinished = false;
 
@@ -43,7 +43,18 @@ public class GameImpl implements Game {
         nextAction = SETUP;
         hasFinished = false;
 
-        history.addHistory(createState(board));
+        history.addHistory(createState(board, chosenWorkerId));
+    }
+
+    @Override
+    public void restore(State state) {
+        this.board = state.getBoard();
+
+        p1.linkWorker(board, 1);
+        p2.linkWorker(board, 2);
+        this.winnerId = state.getPlayerId();
+        this.nextPlayerId = state.getPlayerId();
+        this.hasFinished = state.getNextAction() == Game.FINISH;
     }
 
     @Override
@@ -71,7 +82,7 @@ public class GameImpl implements Game {
         Board newBoard = board.chooseGrid(pos);
         this.board = newBoard;
         this.nextAction = MOVE;
-        State newState = createState(board);
+        State newState = createState(board, chosenWorkerId);
         history.addHistory(newState);
         return newState;
     }
@@ -118,8 +129,8 @@ public class GameImpl implements Game {
     }
 
     @Override
-    public State createState(Board board) {
-        return new State(board, nextPlayerId, nextAction);
+    public State createState(Board board, int setWorkerId) {
+        return new State(board, nextPlayerId, nextAction, setWorkerId);
     }
 
     @Override
@@ -204,7 +215,7 @@ public class GameImpl implements Game {
             this.setNextAction(BUILD);
         }
 
-        State newState = createState(newBoard);
+        State newState = createState(newBoard, chosenWorkerId);
 
         history.addHistory(newState);
         return newState;
@@ -223,7 +234,7 @@ public class GameImpl implements Game {
 
         this.setNextAction(CHOOSEMOVE);
         this.flipPlayer();
-        State newState = createState(newBoard);
+        State newState = createState(newBoard, chosenWorkerId);
         history.addHistory(newState);
         return newState;
     }
@@ -248,12 +259,14 @@ public class GameImpl implements Game {
             flipPlayer();
         }
 
+        this.chosenWorkerId = workerId == 1 ? 2 : 1;
+
         Board newBoard = board.setBoardWorker(playerId, workerId, pos);
         p1.linkWorker(newBoard, 1);
         p2.linkWorker(newBoard, 2);
         this.board = newBoard;
 
-        State newState = createState(newBoard);
+        State newState = createState(newBoard, chosenWorkerId);
         history.addHistory(newState);
         return newState;
 

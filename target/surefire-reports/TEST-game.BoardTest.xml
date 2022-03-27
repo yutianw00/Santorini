@@ -56,14 +56,14 @@
     <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
     <property name="sun.cpu.endian" value="little"/>
   </properties>
-  <testcase classname="game.BoardTest" name="hasWorkerTestTrue" time="0.005"/>
+  <testcase classname="game.BoardTest" name="hasWorkerTestTrue" time="0.006"/>
   <testcase classname="game.BoardTest" name="checkBuildTestTrueDiagonal" time="0"/>
   <testcase classname="game.BoardTest" name="checkMoveTestTrueMoveDiagonal" time="0"/>
   <testcase classname="game.BoardTest" name="buildTest" time="0"/>
   <testcase classname="game.BoardTest" name="checkBuildTestFalseHasBuilder" time="0.001"/>
-  <testcase classname="game.BoardTest" name="checkBuildTestFalseTooFar" time="0.012"/>
-  <testcase classname="game.BoardTest" name="checkMoveTestFalseMoveFar" time="0"/>
+  <testcase classname="game.BoardTest" name="checkBuildTestFalseTooFar" time="0.011"/>
+  <testcase classname="game.BoardTest" name="checkMoveTestFalseMoveFar" time="0.001"/>
   <testcase classname="game.BoardTest" name="hasWorkerTestFalse" time="0"/>
-  <testcase classname="game.BoardTest" name="checkMoveTestFalseNotMove" time="0.001"/>
+  <testcase classname="game.BoardTest" name="checkMoveTestFalseNotMove" time="0"/>
   <testcase classname="game.BoardTest" name="checkBuildTestTrueAdjacent" time="0"/>
 </testsuite>

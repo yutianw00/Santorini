@@ -1,25 +1,25 @@
-#Sat Mar 26 23:03:08 EDT 2022
-/Users/yutianw/Documents/academic/S22/17214/17214hw3/hw3-santorini-yutianw00/src/main/java/game/utils/State.java=1648348817545
-/Users/yutianw/Documents/academic/S22/17214/17214hw3/hw3-santorini-yutianw00/src/main/java/game/impl/HistoryImpl.java=1648350100492
-/Users/yutianw/Documents/academic/S22/17214/17214hw3/hw3-santorini-yutianw00/src/main/java/game/impl/GameImpl.java=1648350154712
+#Sun Mar 27 00:39:57 EDT 2022
+/Users/yutianw/Documents/academic/S22/17214/17214hw3/hw3-santorini-yutianw00/src/main/java/game/utils/State.java=1648354333285
+/Users/yutianw/Documents/academic/S22/17214/17214hw3/hw3-santorini-yutianw00/src/main/java/game/impl/HistoryImpl.java=1648351360689
+/Users/yutianw/Documents/academic/S22/17214/17214hw3/hw3-santorini-yutianw00/src/main/java/game/impl/GameImpl.java=1648355500938
 /Users/yutianw/Documents/academic/S22/17214/17214hw3/hw3-santorini-yutianw00/src/main/java/game/godCards/GodPower.java=1648331392851
-/Users/yutianw/Documents/academic/S22/17214/17214hw3/hw3-santorini-yutianw00/src/main/java/game/Game.java=1648350183500
-/Users/yutianw/Documents/academic/S22/17214/17214hw3/hw3-santorini-yutianw00/src/main/java/cli/IO.java=1645303815278
+/Users/yutianw/Documents/academic/S22/17214/17214hw3/hw3-santorini-yutianw00/src/main/java/game/Game.java=1648354131406
 /Users/yutianw/Documents/academic/S22/17214/17214hw3/hw3-santorini-yutianw00/src/main/java/game/Worker.java=1647128403887
-/Users/yutianw/Documents/academic/S22/17214/17214hw3/hw3-santorini-yutianw00/src/main/java/game/godCards/GodGame.java=1648350100496
+/Users/yutianw/Documents/academic/S22/17214/17214hw3/hw3-santorini-yutianw00/src/main/java/cli/IO.java=1645303815278
+/Users/yutianw/Documents/academic/S22/17214/17214hw3/hw3-santorini-yutianw00/src/main/java/game/godCards/GodGame.java=1648354220834
 /Users/yutianw/Documents/academic/S22/17214/17214hw3/hw3-santorini-yutianw00/src/main/java/game/History.java=1648350100482
 /Users/yutianw/Documents/academic/S22/17214/17214hw3/hw3-santorini-yutianw00/src/main/java/game/impl/PlayerImpl.java=1648349843399
 configuration*?=443486FA839B7CF3952D94CEC30CA1C5A4EA3825
-/Users/yutianw/Documents/academic/S22/17214/17214hw3/hw3-santorini-yutianw00/src/main/java/app/App.java=1648349608506
+/Users/yutianw/Documents/academic/S22/17214/17214hw3/hw3-santorini-yutianw00/src/main/java/app/App.java=1648355942813
 /Users/yutianw/Documents/academic/S22/17214/17214hw3/hw3-santorini-yutianw00/src/main/java/game/Player.java=1648343290726
-/Users/yutianw/Documents/academic/S22/17214/17214hw3/hw3-santorini-yutianw00/src/main/java/game/godCards/Minotaur.java=1648343738590
+/Users/yutianw/Documents/academic/S22/17214/17214hw3/hw3-santorini-yutianw00/src/main/java/game/godCards/Minotaur.java=1648354220827
 /Users/yutianw/Documents/academic/S22/17214/17214hw3/hw3-santorini-yutianw00/src/main/java/cli/ControlImpl.java=1647145868144
 /Users/yutianw/Documents/academic/S22/17214/17214hw3/hw3-santorini-yutianw00/src/main/java/game/impl/WorkerImpl.java=1647128403880
 /Users/yutianw/Documents/academic/S22/17214/17214hw3/hw3-santorini-yutianw00/src/main/java/game/utils/GridState.java=1648350100477
 /Users/yutianw/Documents/academic/S22/17214/17214hw3/hw3-santorini-yutianw00/src/main/java/game/utils/Pos.java=1645303504926
-/Users/yutianw/Documents/academic/S22/17214/17214hw3/hw3-santorini-yutianw00/src/main/java/game/impl/BoardImpl.java=1648350100488
+/Users/yutianw/Documents/academic/S22/17214/17214hw3/hw3-santorini-yutianw00/src/main/java/game/impl/BoardImpl.java=1648355942822
 /Users/yutianw/Documents/academic/S22/17214/17214hw3/hw3-santorini-yutianw00/src/main/java/cli/Main.java=1645303815284
-/Users/yutianw/Documents/academic/S22/17214/17214hw3/hw3-santorini-yutianw00/src/main/java/game/godCards/Demeter.java=1648344448347
+/Users/yutianw/Documents/academic/S22/17214/17214hw3/hw3-santorini-yutianw00/src/main/java/game/godCards/Demeter.java=1648354220830
 /Users/yutianw/Documents/academic/S22/17214/17214hw3/hw3-santorini-yutianw00/src/main/java/game/godCards/Pan.java=1648344888743
 /Users/yutianw/Documents/academic/S22/17214/17214hw3/hw3-santorini-yutianw00/src/main/java/game/Board.java=1648350100472
 /Users/yutianw/Documents/academic/S22/17214/17214hw3/hw3-santorini-yutianw00/src/main/java/cli/Control.java=1645303815270

@@ -26,6 +26,7 @@ public class State {
     private String god1 = "", god2 = "";
     private boolean canUse1 = false, canUse2 = false; // whether the player can use power
     private boolean usePower1 = false, usePower2 = false; // whether the player is using power
+    private int setWorkerId;
 
     public int getStatus() {
         return status;
@@ -55,11 +56,12 @@ public class State {
         return usePower2;
     }
 
-    public State(Board board, int playerId, int nextAction) {
+    public State(Board board, int playerId, int nextAction, int setWorkerId) {
         this.board = board;
         this.playerId = playerId;
         this.nextAction = nextAction;
         this.status = STOK;
+        this.setWorkerId = setWorkerId;
     }
 
     public State(State otherState, int status) {
@@ -72,7 +74,18 @@ public class State {
         this.canUse2 = otherState.getCanUse2();
         this.usePower1 = otherState.getUsePower1();
         this.usePower2 = otherState.getUsePower2();
+        this.setWorkerId = otherState.setWorkerId;
+
         this.status = status;
+
+    }
+
+    public int getSetWorkerId() {
+        return setWorkerId;
+    }
+
+    public void storeSetWorkerId(int id) {
+        this.setWorkerId = id;
     }
 
     public void addGod(GodPower god1, GodPower god2) {

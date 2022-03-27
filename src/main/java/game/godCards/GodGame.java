@@ -22,9 +22,19 @@ public class GodGame implements Game {
 
         this.god1 = newGod(1, god1);
         this.god2 = newGod(2, god2);
-        State originalState = createState(game.getBoard());
+        State originalState = createState(game.getBoard(), 0);
         originalState.addGod(this.god1, this.god2);
         history.addHistory(originalState);
+    }
+
+    @Override
+    public State createState(Board board, int setWorkerId) {
+        return game.createState(board, setWorkerId);
+    }
+
+    @Override
+    public void restore(State state) {
+        this.game.restore(state);
     }
 
     @Override
@@ -112,13 +122,6 @@ public class GodGame implements Game {
     }
 
     @Override
-    public State createState(Board board) {
-        State res = game.createState(board);
-        res.addGod(god1, god2);
-        return res;
-    }
-
-    @Override
     public void flipPlayer() {
         game.flipPlayer();
     }
@@ -164,11 +167,11 @@ public class GodGame implements Game {
             if (p1Win) {
                 game.setNextAction(Game.FINISH);
                 game.setWinner(1);
-                res = game.createState(game.getBoard());
+                res = game.createState(game.getBoard(), workerId);
             } else if (p2Win) {
                 game.setNextAction(Game.FINISH);
                 game.setWinner(2);
-                res = game.createState(game.getBoard());
+                res = game.createState(game.getBoard(), workerId);
             }
             res.addGod(god1, god2);
             history.addHistory(res);

@@ -22,7 +22,8 @@ public class HistoryImpl<T> implements History<T> {
     @Override
     public T undo() {
         if (history.size() > 1) {
-            return history.remove(history.size()-1);
+            history.remove(history.size()-1);
+            return history.get(history.size()-1);
         } else {
             return null;
         }

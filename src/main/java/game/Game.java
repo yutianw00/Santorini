@@ -18,6 +18,13 @@ public interface Game {
     int USEPOWER = 6;
 
     /**
+     * Restore the game status by using the previous state,
+     * in case of an undo happens
+     * @param state The state that the game will be restored to
+     */
+    void restore(State state);
+
+    /**
      * get player by id
      * @param playerId the player id
      * @return The player
@@ -42,9 +49,10 @@ public interface Game {
     /**
      * Create a new state from the current board and game settings
      * @param board The current board setting
+     * @param setWorkerId The id of the current active worker
      * @return the created state
      */
-    State createState(Board board);
+    State createState(Board board, int setWorkerId);
 
     /**
      * Set the board of the game to be a new {@link Board}
