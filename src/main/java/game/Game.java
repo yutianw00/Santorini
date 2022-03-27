@@ -49,6 +49,13 @@ public interface Game {
     State chooseBuild(Pos pos);
 
     /**
+     * Create a new state from the current board and game settings
+     * @param board The current board setting
+     * @return the created state
+     */
+    State createState(Board board);
+
+    /**
      * Set the board of the game to be a new {@link Board}
      * @param board The new board to set
      */

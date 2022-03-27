@@ -116,6 +116,11 @@ public class GodGame implements Game {
     }
 
     @Override
+    public State createState(Board board) {
+        return game.createState(board);
+    }
+
+    @Override
     public void flipPlayer() {
         game.flipPlayer();
     }
@@ -172,12 +177,14 @@ public class GodGame implements Game {
             if (p1Win) {
                 winnerId = 1;
                 hasFinished = true;
+                game.setNextAction(Game.FINISH);
+                res = game.createState(game.getBoard());
             } else if (p2Win) {
                 winnerId = 2;
                 hasFinished = true;
+                game.setNextAction(Game.FINISH);
+                res = game.createState(game.getBoard());
             }
-        }
-        if (res != null) {
             res.addGod(god1, god2);
         }
         return res;

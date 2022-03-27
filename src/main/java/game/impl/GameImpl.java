@@ -131,7 +131,8 @@ public class GameImpl implements Game {
         return this.board;
     }
 
-    private State createState(Board board) {
+    @Override
+    public State createState(Board board) {
         return new State(board, nextPlayerId, nextAction);
     }
 
@@ -206,8 +207,6 @@ public class GameImpl implements Game {
         Board newBoard = board.setBoardWorker(playerId, workerId, pos); // delegation
         p1.linkWorker(newBoard, 1);
         p2.linkWorker(newBoard, 2);
-//        Player currPlayer = playerId == 1 ? p1 : p2;
-//        currPlayer.setWorker(pos, workerId);
 
         newBoard = newBoard.chooseGrid(pos); // highlight the moved position
 

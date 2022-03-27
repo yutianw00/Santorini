@@ -6,6 +6,11 @@ import game.Worker;
 import game.utils.Pos;
 import game.utils.State;
 
+/**
+ * Win Condition: You also win if
+ * your Worker moves down two or
+ * more levels.
+ */
 public class Pan implements GodPower{
 
     private Game game;
