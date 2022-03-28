@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <title>React App</title>
+  </head>
+  <body>
+    <div id="root">
+    </div>
+
+    <div id="handlebars">
+      <div id="header">
+        <h1 style="text-align: center">Welcome to Santorini !</h1>
+          <div class="player1 grid"> Player 1: blue player - worker position indicated by () - {{god1msg}} 
+            <span class="{{canUse1}}">
+              <a href="/usepower1"><button>Use Power!</button></a>
+            </span>
+          </div>
+          <div class="player2 grid"> Player 2: green player - worker position indicated by [] - {{god2msg}} 
+            <span class="{{canUse2}}">
+              <a href="/usepower2"><button>Use Power!</button></a>
+            </span>
+          </div>
+      
+        <h3 style="text-align: center">{{instruction}}</h2>
+        <h1 class="{{showError}}">Oops, something goes wrong. Please try again.</h1>
+      </div>
+      
+      <div id="board" class="{{player}}">
+        {{#each cells}}
+          {{#if ../finish}}
+            <div class="cell chosen{{chosen}}">{{text}}</div>
+          {{else}}
+            <a href={{../linkheader}}{{pos}}><div class="cell chosen{{chosen}}">{{text}}</div></a>
+          {{/if}}
+        {{/each}}
+      </div>
+      <div id="bottombar">
+        <a href="/newgame"><button>New Game: Normal Mode</button></a>
+        <a href="/newgodgame"><button>New Game: God Mode</button></a>
+        <a href="/undo"><button>Undo</button></a>
+      </div>
+
+      <div id="choosegod" class="{{selectGod}}">
+        <h2>Choose your god!</h2>
+        <h3 class="{{selectGodError}}">Error: two players cannot select the same god!</h3>
+        <br>
+        <form action="/startGodGame">
+          <p>Player 1: choose your god: 
+            <select name="god1" id="god1">
+              <option value="Minotaur">Minotaur</option>
+              <option value="Demeter">Demeter</option>
+              <option value="Pan">Pan</option>
+            </select>
+          </p>
+          <br>
+          <p>Player 2: choose your god: 
+            <select name="god2" id="god2">
+              <option value="Minotaur">Minotaur</option>
+              <option value="Demeter">Demeter</option>
+              <option value="Pan">Pan</option>
+            </select>
+          </p>
+          <br><br>
+          <input type="submit" value="Start Game!">
+        </form>
+        
+      </div>
+    </div>
+
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  </body>
+</html>
