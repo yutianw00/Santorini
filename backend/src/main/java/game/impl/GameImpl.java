@@ -186,10 +186,6 @@ public class GameImpl implements Game {
         }
     }
 
-    private void linkWorker() {
-
-    }
-
     @Override
     public State move(int playerId, int workerId, Pos pos) {
         Worker worker = getWorker(playerId, workerId);
