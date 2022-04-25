@@ -22,7 +22,7 @@ public class GodGame implements Game {
 
         this.god1 = newGod(1, god1);
         this.god2 = newGod(2, god2);
-        State originalState = createState(game.getBoard(), 0);
+        State originalState = createState(game.getBoard(), 1);
         originalState.addGod(this.god1, this.god2);
         history.addHistory(originalState);
     }
